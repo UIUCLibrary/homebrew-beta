@@ -7,7 +7,6 @@ class Speedwagon < Formula
     url "https://github.com/UIUCLibrary/pygetmarc/archive/0.1.3b1.tar.gz"
     sha256 "2753be8fd85105e42638ce55eff1090ea472f0e0813cfa4a2fe86447fde9e72e"
   end
-
   resource "hathichecksumupdater" do
     url "https://github.com/UIUCLibrary/HT_checksum_update/archive/0.1.2b2.tar.gz"
     sha256 "66696d159861e3ecfcaefac406590ef14e130d92285f318cc4e9b1d45a301d0b"
