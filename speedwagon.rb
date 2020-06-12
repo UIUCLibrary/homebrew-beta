@@ -1,7 +1,17 @@
 class Speedwagon < Formula
   include Language::Python::Virtualenv
   url "https://jenkins.library.illinois.edu/job/OpenSourceProjects/job/Speedwagon/job/dev/2/artifact/dist/speedwagon-0.1.5.dev0.zip"
+  sha256 "63b714cce8feafa539682338c22ea4a5281f8220d4274e4da31d1dcc5480986b"
   # url "https://jenkins.library.illinois.edu/job/OpenSourceProjects/job/Speedwagon/job/master/1482/artifact/dist/speedwagon-0.1.5.dev0-py3-none-any.whl"
+
+  resource "pyhathiprep" do
+    url "https://github.com/UIUCLibrary/pyhathiprep/archive/0.1.3.tar.gz"
+    sha256 "c7bb9aa8b6f20d7322b110280e0620fa62f325c390f508bd11af0387e8bbf924"
+  end
+  resource "HathiZip" do
+    url "https://github.com/UIUCLibrary/HathiZip/archive/v0.1.6b1.tar.gz"
+    sha256 "9fcf36dfe9f7151e8902fbd15dcf1f2825e5c9ca1426335acb8489b5bac9fbc3"
+  end
 
   resource "uiucprescon-getmarc" do
     url "https://github.com/UIUCLibrary/pygetmarc/archive/0.1.3b1.tar.gz"
@@ -121,8 +131,8 @@ class Speedwagon < Formula
 
     # system "#{libexec}/bin/pip", "install", "uiucprescon-getmarc==0.1.2", "-i" ,"https://devpi.library.illinois.edu/production/release/+simple/", "-v", "--no-deps"
     # system "#{libexec}/bin/pip", "install", "hathichecksumupdater", "-i" ,"https://devpi.library.illinois.edu/production/release/+simple/", "-v", "--no-deps"
-    system "#{libexec}/bin/pip", "install", "HathiZip", "-i" ,"https://devpi.library.illinois.edu/production/release/+simple/", "-v", "--no-deps"
-    system "#{libexec}/bin/pip", "install", "pyhathiprep", "-i" ,"https://devpi.library.illinois.edu/production/release/+simple/", "-v", "--no-deps"
+    # system "#{libexec}/bin/pip", "install", "HathiZip", "-i" ,"https://devpi.library.illinois.edu/production/release/+simple/", "-v", "--no-deps"
+    # system "#{libexec}/bin/pip", "install", "pyhathiprep", "-i" ,"https://devpi.library.illinois.edu/production/release/+simple/", "-v", "--no-deps"
     system "#{libexec}/bin/pip", "install", "HathiValidate==0.3.5", "-i" ,"https://devpi.library.illinois.edu/production/release/+simple/", "-v", "--no-deps"
     system "#{libexec}/bin/pip", "install", "uiucprescon.ocr==0.1.1b1", "-i" ,"https://devpi.library.illinois.edu/production/release/+simple/", "-v", "--no-deps"
     system "#{libexec}/bin/pip", "install", "pykdu-compress==0.1.3b1", "-i" ,"https://devpi.library.illinois.edu/production/release/+simple/", "-v", "--no-deps"
