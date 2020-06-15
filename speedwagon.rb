@@ -218,15 +218,13 @@ class Speedwagon < Formula
       uiucprescon.ocr].each do |r|
         venv.pip_install resource(r)
       end
-    # venv.pip_install resources
-    # venv.pip_install(["pykdu-compress==0.1.3b1", "-i", "https://devpi.library.illinois.edu/production/release/+simple/"])
-    # resource("uiucprescon.packager").stage do
-    #   system "#{libexec}/bin/pip", "install", "-v", "--no-deps", "--no-binary", ":all:", "--ignore-installed", ".[kdu]"
-    # end
-    # system "#{libexec}/bin/pip", "install", "-v", "--no-deps", "--no-binary", ":all:", "--ignore-installed", ".[kdu]"
+
+    resource("uiucprescon.packager").stage do
+      system "#{libexec}/bin/pip", "install", "-v", "--no-deps", "--no-binary", ":all:", "--ignore-installed", "#{Pathname.pwd}[kdu]"
+    end
+
     system "#{libexec}/bin/pip", "install", "-v", "--no-deps", "--no-binary", ":all:", "--ignore-installed", "pykdu-compress==0.1.3b1", "-i", "https://devpi.library.illinois.edu/production/release/+simple/"
     system "#{libexec}/bin/pip", "install", "-v", "--no-deps", "--no-binary", ":all:", "--ignore-installed", "uiucprescon.images==0.0.3", "-i", "https://devpi.library.illinois.edu/production/release/+simple/"
-    system "#{libexec}/bin/pip", "install", "-v", "--no-deps", "--no-binary", ":all:", "--ignore-installed", "uiucprescon.packager[kdu]==0.2.11b2", "-i", "https://devpi.library.illinois.edu/production/release/+simple/"
 
     venv.pip_install_and_link buildpath
 
