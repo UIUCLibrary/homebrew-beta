@@ -1,14 +1,20 @@
 class Speedwagon < Formula
   include Language::Python::Virtualenv
-  url "https://jenkins.library.illinois.edu/job/OpenSourceProjects/job/Speedwagon/job/dev/2/artifact/dist/speedwagon-0.1.5.dev0.zip"
-  sha256 "63b714cce8feafa539682338c22ea4a5281f8220d4274e4da31d1dcc5480986b"
-  # url "https://jenkins.library.illinois.edu/job/OpenSourceProjects/job/Speedwagon/job/master/1482/artifact/dist/speedwagon-0.1.5.dev0-py3-none-any.whl"
+  url "https://jenkins.library.illinois.edu/job/OpenSourceProjects/job/Speedwagon/job/dev/10/artifact/dist/speedwagon-0.1.5.dev0.zip"
+  sha256 "b3266baee1ce30a170c81582cc1e91fab059722de72769fde321743f4dd773f7"
+  homepage "https://github.com/UIUCLibrary/Speedwagon"
+  desc "Collection of tools and workflows for DS"
+  head "https://github.com/UIUCLibrary/Speedwagon.git"
 
-  # resource "uiucprescon-packager" do
-  #   url "https://github.com/UIUCLibrary/Packager/archive/v0.2.11b1.tar.gz"
-  #   sha256 "4aa0aef6261ba6df6edf66660faa94c08818046250f4e0c7b9bcb038893d6b59"
-  # end  # url "https://jenkins.library.illinois.edu/job/OpenSourceProjects/job/Speedwagon/job/master/1482/artifact/dist/speedwagon-0.1.5.dev0-py3-none-any.whl"
+  resource "uiucprescon.packager" do
+    url "https://github.com/UIUCLibrary/Packager/archive/v0.2.11b2.tar.gz"
+    sha256 "ba4c9ffc7b2b5cd899334eb18562fec8fa635ffc1358fa4a95c22c9a934ff9ef"
+  end
 
+  resource "uiucprescon.ocr" do
+    url "https://github.com/UIUCLibrary/Tesseract_Glue/archive/v0.1.1b2.tar.gz"
+    sha256 "e7b1eb20fe9b907a3dda0cd904b2a272a6324e583e9822c61d65c0b5c96e1bff"
+  end
   resource "HathiValidate" do
     url "https://github.com/UIUCLibrary/HathiValidate/archive/v0.3.6b1.tar.gz"
     sha256 "c919c6622cc56d8a66f853c47173dc7b221caba6e9d3d5da3c14cd7f73d1399a"
@@ -30,7 +36,18 @@ class Speedwagon < Formula
     url "https://github.com/UIUCLibrary/HT_checksum_update/archive/0.1.2b2.tar.gz"
     sha256 "66696d159861e3ecfcaefac406590ef14e130d92285f318cc4e9b1d45a301d0b"
   end
-
+  resource "py3exiv2bind" do
+    url "https://github.com/UIUCLibrary/pyexiv2bind/archive/0.1.5b3.tar.gz"
+    sha256 "68d16d7bca61b0af54fd8d160073f65cf18ab2697c9487f54a96c6b627f6aebd"
+  end
+  resource "uiucprescon-imagevalidate" do
+    url "https://github.com/UIUCLibrary/imagevalidate/archive/0.1.5b1.tar.gz"
+    sha256 "1e398940fb780b37b187ffcd59dde6e5ef2981f28d0a6ef0b4b744da8184b3a5"
+  end
+  # ==================================================
+  # Third party
+  # ==================================================
+  #
   resource "ruamel.yaml" do
     url "https://files.pythonhosted.org/packages/16/8b/54a26c1031595e5edd0e616028b922d78d8ffba8bc775f0a4faeada846cc/ruamel.yaml-0.16.10.tar.gz"
     sha256 "099c644a778bf72ffa00524f78dd0b6476bca94a1da344130f4bf3381ce5b954"
@@ -56,14 +73,7 @@ class Speedwagon < Formula
     url "https://files.pythonhosted.org/packages/d6/67/6e2507586eb1cfa6d55540845b0cd05b4b77c414f6bca8b00b45483b976e/yarl-1.4.2.tar.gz"
     sha256 "58cd9c469eced558cd81aa3f484b2924e8897049e06889e8ff2510435b7ef74b"
   end
-  resource "imagevalidate" do
-    url "https://github.com/UIUCLibrary/imagevalidate/archive/0.1.5b1.tar.gz"
-    sha256 "1e398940fb780b37b187ffcd59dde6e5ef2981f28d0a6ef0b4b744da8184b3a5"
-  end
-  resource "pyexiv2bind" do
-    url "https://github.com/UIUCLibrary/pyexiv2bind/archive/0.1.5b3.tar.gz"
-    sha256 "68d16d7bca61b0af54fd8d160073f65cf18ab2697c9487f54a96c6b627f6aebd"
-  end
+
 
   resource "pluggy" do
     url "https://files.pythonhosted.org/packages/75/21/cdabca0144cfa282c2893dc8e07957245ac8657896ef3ea26f18b6fda710/pluggy-0.12.0.tar.gz"
@@ -77,6 +87,10 @@ class Speedwagon < Formula
   resource "importlib-resources" do
     url "https://files.pythonhosted.org/packages/83/a4/ce09af12e1a91b5b77cefc893ef5054619553734c5b42f143d93ed581744/importlib_resources-1.0.2.tar.gz"
     sha256 "d3279fd0f6f847cced9f7acc19bd3e5df54d34f93a2e7bb5f238f81545787078"
+  end
+  resource "zipp" do
+    url "https://files.pythonhosted.org/packages/ce/8c/2c5f7dc1b418f659d36c04dec9446612fc7b45c8095cc7369dd772513055/zipp-3.1.0.tar.gz"
+    sha256 "c599e4d75c98f6798c509911d08a22e6c021d074469042177c8c86fb92eefd96"
   end
   resource "importlib-metadata" do
     url "https://files.pythonhosted.org/packages/fd/5c/9caf9fe3d92afc3c0296c97b0fd72cacfcaf20e8b2c42306840914e052fa/importlib_metadata-0.18.tar.gz"
@@ -118,32 +132,119 @@ class Speedwagon < Formula
     url "https://files.pythonhosted.org/packages/73/a0/0987d3c153b18fd5f7b190bdc71e8edd05ff65e9084efd1f4985c2b1dc0f/PyQt5_sip-12.8.0.tar.gz"
     sha256 "0a34b6596bdd28d52da3a51fa8d9bb0b287bcb605c2512aa3251b9028cc71f4d"
   end
-  homepage "https://github.com/UIUCLibrary/Speedwagon"
-  desc "Collection of tools and workflows for DS"
+
   depends_on "cmake"
   depends_on "python"
   depends_on "conan"
+  depends_on "tesseract"
   depends_on "qt5"
-  # # depends_on :xcode => "9.3"
-  # resource "py3exiv2bind" do
-  #   url "https://devpi.library.illinois.edu/production/release/+f/f21/854dda13f73e6/py3exiv2bind-0.1.5b3.zip"
-    # sha256 "f21854dda13f73e6d60a7c25224eac3544800b5c3fecbf00e5f45efd4e2ab09azip"
-  #   url "https://pypi.python.org/packages/source/s/six/six-1.9.0.tar.gz"
-  #   sha256 "e24052411fc4fbd1f672635537c3fc2330d9481b18c0317695b46259512c91d5"
-  # end
 
+  # depends_on :xcode => "11.3.1"
 
   def install
     venv = virtualenv_create(libexec, "python3")
-    venv.pip_install resources
+    # venv.pip_install(<<~END
+    #       aiohttp==3.5.4
+    #       async-timeout==3.0.1
+    #       attrs==19.1.0
+    #       chardet==3.0.4
+    #       idna==2.8
+    #       idna-ssl==1.1.0
+    #       importlib_metadata==0.18
+    #       importlib_resources==1.0.2
+    #       lxml==4.5.1
+    #       multidict==4.5.2
+    #       pluggy==0.12.0
+    #       PyQt5==5.15.0
+    #       PyQt5_sip==12.8.0
+    #       pytz==2020.1
+    #       pyyaml==5.3.1
+    #       ruamel.yaml==0.16.10
+    #       ruamel.yaml.clib==0.2.0
+    #       tzlocal==2.1
+    #       yarl==1.4.2
+    #       zipp==3.1.0
+    #     END
+    # )
+          # venv.pip_install([
+          #                'aiohttp==3.5.4',
+          #                'async-timeout==3.0.1',
+          #                'attrs==19.1.0',
+          #                'chardet==3.0.4',
+          #                'idna==2.8',
+          #                'idna-ssl==1.1.0',
+          #                'importlib_metadata==0.18',
+          #                'importlib_resources==1.0.2',
+          #                'lxml==4.5.1',
+          #                'multidict==4.5.2',
+          #                'pluggy==0.12.0',
+          #                'PyQt5==5.15.0',
+          #                'PyQt5_sip==12.8.0',
+          #                'pytz==2020.1',
+          #                'pyyaml==5.3.1',
+          #                'ruamel.yaml==0.16.10',
+          #                'ruamel.yaml.clib==0.2.0',
+          #                'tzlocal==2.1',
+          #                'yarl==1.4.2',
+          #                'zipp==3.1.0'
+          #            ])
+    %w[ruamel.yaml
+      ruamel.yaml.clib
+      tzlocal
+      pyyaml
+      pytz
+      yarl
+      pluggy
+      multidict
+      importlib-resources
+      zipp
+      importlib-metadata
+      idna-ssl
+      idna
+      chardet
+      attrs
+      async-timeout
+      aiohttp
+      lxml
+      PyQt5
+      PyQt5_sip
+      hathichecksumupdater
+      HathiValidate
+      HathiZip
+      py3exiv2bind
+      pyhathiprep
+      uiucprescon-getmarc
+      uiucprescon-imagevalidate
+      uiucprescon.ocr].each do |r|
+        venv.pip_install resource(r)
+      end
+    # venv.pip_install resources
+    # venv.pip_install(["pykdu-compress==0.1.3b1", "-i", "https://devpi.library.illinois.edu/production/release/+simple/"])
+    # resource("uiucprescon.packager").stage do
+    #   system "#{libexec}/bin/pip", "install", "-v", "--no-deps", "--no-binary", ":all:", "--ignore-installed", ".[kdu]"
+    # end
+    # system "#{libexec}/bin/pip", "install", "-v", "--no-deps", "--no-binary", ":all:", "--ignore-installed", ".[kdu]"
+    system "#{libexec}/bin/pip", "install", "-v", "--no-deps", "--no-binary", ":all:", "--ignore-installed", "pykdu-compress==0.1.3b1", "-i", "https://devpi.library.illinois.edu/production/release/+simple/"
+    system "#{libexec}/bin/pip", "install", "-v", "--no-deps", "--no-binary", ":all:", "--ignore-installed", "uiucprescon.images==0.0.3", "-i", "https://devpi.library.illinois.edu/production/release/+simple/"
+    system "#{libexec}/bin/pip", "install", "-v", "--no-deps", "--no-binary", ":all:", "--ignore-installed", "uiucprescon.packager[kdu]==0.2.11b2", "-i", "https://devpi.library.illinois.edu/production/release/+simple/"
 
-    system "#{libexec}/bin/pip", "install", "uiucprescon.ocr==0.1.1b1", "-i" ,"https://devpi.library.illinois.edu/production/release/+simple/", "-v", "--no-deps"
-    system "#{libexec}/bin/pip", "install", "pykdu-compress==0.1.3b1", "-i" ,"https://devpi.library.illinois.edu/production/release/+simple/", "-v", "--no-deps"
-    system "#{libexec}/bin/pip", "install", "uiucprescon.images==0.0.3", "-i" ,"https://devpi.library.illinois.edu/production/release/+simple/", "-v", "--no-deps"
-    system "#{libexec}/bin/pip", "install", "uiucprescon-packager[kdu]==0.2.10", "-i" ,"https://devpi.library.illinois.edu/production/release/+simple/", "-v", "--no-deps"
-    # system "#{libexec}/bin/pip", "install", "speedwagon-0.1.5.dev0.zip", "-i" ,"https://devpi.library.illinois.edu/production/release/+simple/", "-v"
     venv.pip_install_and_link buildpath
+
+    system "#{libexec}/bin/pip", "check"
+
     # virtualenv_install_with_resources
-    # system "python", *Language::Python.setup_install_args(prefix)
   end
+
+  def test
+    system "#{libexec}/bin/pip", "check"
+    system "#{bin}/speedwagon", "--version"
+  end
+
+  bottle do
+    root_url "/Users/hborcher/RubymineProjects/homebrew-beta"
+    # root_url "https://homebrew.bintray.com/bottles-beta"
+    cellar :any
+    sha256 "986d221e46034d54e0da81d5a9d98318549a4e9ffca6a85df5011d745efaa988" => :catalina
+  end
+
 end
