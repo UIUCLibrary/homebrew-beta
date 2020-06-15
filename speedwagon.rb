@@ -1,10 +1,15 @@
 class Speedwagon < Formula
   include Language::Python::Virtualenv
-  url "https://jenkins.library.illinois.edu/job/OpenSourceProjects/job/Speedwagon/job/dev/10/artifact/dist/speedwagon-0.1.5.dev0.zip"
-  sha256 "b3266baee1ce30a170c81582cc1e91fab059722de72769fde321743f4dd773f7"
+  url "https://jenkins.library.illinois.edu/job/OpenSourceProjects/job/Speedwagon/job/dev/12/artifact/dist/speedwagon-0.1.5.dev0.zip"
+  sha256 "0395a506f1a1b33792f91bfb8826ebd7bfa7ccc847aa3b5023cd25b677516437"
   homepage "https://github.com/UIUCLibrary/Speedwagon"
   desc "Collection of tools and workflows for DS"
   head "https://github.com/UIUCLibrary/Speedwagon.git"
+
+  resource "uiucprescon.images" do
+    url "https://github.com/UIUCLibrary/uiucprescon.images/archive/v0.0.4b1.tar.gz"
+    sha256 "7de3b381e2f932e446a35647f9ae3d9e7c6ffc3f934d4e2b9c91d6b0f19e89ad"
+  end
 
   resource "uiucprescon.packager" do
     url "https://github.com/UIUCLibrary/Packager/archive/v0.2.11b2.tar.gz"
@@ -40,7 +45,7 @@ class Speedwagon < Formula
     url "https://github.com/UIUCLibrary/pyexiv2bind/archive/0.1.5b3.tar.gz"
     sha256 "68d16d7bca61b0af54fd8d160073f65cf18ab2697c9487f54a96c6b627f6aebd"
   end
-  resource "uiucprescon-imagevalidate" do
+  resource "uiucprescon.imagevalidate" do
     url "https://github.com/UIUCLibrary/imagevalidate/archive/0.1.5b1.tar.gz"
     sha256 "1e398940fb780b37b187ffcd59dde6e5ef2981f28d0a6ef0b4b744da8184b3a5"
   end
@@ -73,7 +78,6 @@ class Speedwagon < Formula
     url "https://files.pythonhosted.org/packages/d6/67/6e2507586eb1cfa6d55540845b0cd05b4b77c414f6bca8b00b45483b976e/yarl-1.4.2.tar.gz"
     sha256 "58cd9c469eced558cd81aa3f484b2924e8897049e06889e8ff2510435b7ef74b"
   end
-
 
   resource "pluggy" do
     url "https://files.pythonhosted.org/packages/75/21/cdabca0144cfa282c2893dc8e07957245ac8657896ef3ea26f18b6fda710/pluggy-0.12.0.tar.gz"
@@ -124,116 +128,72 @@ class Speedwagon < Formula
     url "https://files.pythonhosted.org/packages/03/a8/73d795778143be51d8b86750b371b3efcd7139987f71618ad9f4b8b65543/lxml-4.5.1.tar.gz"
     sha256 "27ee0faf8077c7c1a589573b1450743011117f1aa1a91d5ae776bbc5ca6070f2"
   end
+
   resource "PyQt5" do
     url "https://files.pythonhosted.org/packages/8c/90/82c62bbbadcca98e8c6fa84f1a638de1ed1c89e85368241e9cc43fcbc320/PyQt5-5.15.0.tar.gz"
     sha256 "c6f75488ffd5365a65893bc64ea82a6957db126fbfe33654bcd43ae1c30c52f9"
-    end
+  end
+
   resource "PyQt5_sip" do
     url "https://files.pythonhosted.org/packages/73/a0/0987d3c153b18fd5f7b190bdc71e8edd05ff65e9084efd1f4985c2b1dc0f/PyQt5_sip-12.8.0.tar.gz"
     sha256 "0a34b6596bdd28d52da3a51fa8d9bb0b287bcb605c2512aa3251b9028cc71f4d"
   end
 
   depends_on "cmake"
-  depends_on "python"
   depends_on "conan"
+  depends_on "python"
+  depends_on "qt"
   depends_on "tesseract"
-  depends_on "qt5"
-
-  # depends_on :xcode => "11.3.1"
 
   def install
     venv = virtualenv_create(libexec, "python3")
-    # venv.pip_install(<<~END
-    #       aiohttp==3.5.4
-    #       async-timeout==3.0.1
-    #       attrs==19.1.0
-    #       chardet==3.0.4
-    #       idna==2.8
-    #       idna-ssl==1.1.0
-    #       importlib_metadata==0.18
-    #       importlib_resources==1.0.2
-    #       lxml==4.5.1
-    #       multidict==4.5.2
-    #       pluggy==0.12.0
-    #       PyQt5==5.15.0
-    #       PyQt5_sip==12.8.0
-    #       pytz==2020.1
-    #       pyyaml==5.3.1
-    #       ruamel.yaml==0.16.10
-    #       ruamel.yaml.clib==0.2.0
-    #       tzlocal==2.1
-    #       yarl==1.4.2
-    #       zipp==3.1.0
-    #     END
-    # )
-          # venv.pip_install([
-          #                'aiohttp==3.5.4',
-          #                'async-timeout==3.0.1',
-          #                'attrs==19.1.0',
-          #                'chardet==3.0.4',
-          #                'idna==2.8',
-          #                'idna-ssl==1.1.0',
-          #                'importlib_metadata==0.18',
-          #                'importlib_resources==1.0.2',
-          #                'lxml==4.5.1',
-          #                'multidict==4.5.2',
-          #                'pluggy==0.12.0',
-          #                'PyQt5==5.15.0',
-          #                'PyQt5_sip==12.8.0',
-          #                'pytz==2020.1',
-          #                'pyyaml==5.3.1',
-          #                'ruamel.yaml==0.16.10',
-          #                'ruamel.yaml.clib==0.2.0',
-          #                'tzlocal==2.1',
-          #                'yarl==1.4.2',
-          #                'zipp==3.1.0'
-          #            ])
     %w[ruamel.yaml
-      ruamel.yaml.clib
-      tzlocal
-      pyyaml
-      pytz
-      yarl
-      pluggy
-      multidict
-      importlib-resources
-      zipp
-      importlib-metadata
-      idna-ssl
-      idna
-      chardet
-      attrs
-      async-timeout
-      aiohttp
-      lxml
-      PyQt5
-      PyQt5_sip
-      hathichecksumupdater
-      HathiValidate
-      HathiZip
-      py3exiv2bind
-      pyhathiprep
-      uiucprescon-getmarc
-      uiucprescon-imagevalidate
-      uiucprescon.ocr].each do |r|
-        venv.pip_install resource(r)
-      end
-
-    resource("uiucprescon.packager").stage do
-      system "#{libexec}/bin/pip", "install", "-v", "--no-deps", "--no-binary", ":all:", "--ignore-installed", "#{Pathname.pwd}[kdu]"
+       ruamel.yaml.clib
+       tzlocal
+       pyyaml
+       pytz
+       yarl
+       pluggy
+       multidict
+       importlib-resources
+       zipp
+       importlib-metadata
+       idna-ssl
+       idna
+       chardet
+       attrs
+       async-timeout
+       aiohttp
+       lxml
+       PyQt5
+       PyQt5_sip
+       hathichecksumupdater
+       HathiValidate
+       HathiZip
+       py3exiv2bind
+       pyhathiprep
+       uiucprescon.images
+       uiucprescon-getmarc
+       uiucprescon.imagevalidate
+       uiucprescon.ocr].each do |r|
+      venv.pip_install resource(r)
     end
 
-    system "#{libexec}/bin/pip", "install", "-v", "--no-deps", "--no-binary", ":all:", "--ignore-installed", "pykdu-compress==0.1.3b1", "-i", "https://devpi.library.illinois.edu/production/release/+simple/"
-    system "#{libexec}/bin/pip", "install", "-v", "--no-deps", "--no-binary", ":all:", "--ignore-installed", "uiucprescon.images==0.0.3", "-i", "https://devpi.library.illinois.edu/production/release/+simple/"
+    resource("uiucprescon.packager").stage do
+      system "#{libexec}/bin/pip", "install", "-v", "--no-deps", "--no-binary", ":all:",
+             "--ignore-installed", "#{Pathname.pwd}[kdu]"
+    end
+
+    system "#{libexec}/bin/pip", "install", "-v", "--no-deps", "--no-binary", ":all:",
+           "--ignore-installed", "pykdu-compress==0.1.3b1", "-i",
+           "https://devpi.library.illinois.edu/production/release/+simple/"
 
     venv.pip_install_and_link buildpath
 
     system "#{libexec}/bin/pip", "check"
-
-    # virtualenv_install_with_resources
   end
 
-  def test
+  test do
     system "#{libexec}/bin/pip", "check"
     system "#{bin}/speedwagon", "--version"
   end
@@ -244,5 +204,4 @@ class Speedwagon < Formula
     cellar :any
     sha256 "986d221e46034d54e0da81d5a9d98318549a4e9ffca6a85df5011d745efaa988" => :catalina
   end
-
 end
