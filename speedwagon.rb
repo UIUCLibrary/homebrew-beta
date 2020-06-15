@@ -199,9 +199,9 @@ class Speedwagon < Formula
   end
 
   bottle do
-    root_url "/Users/hborcher/RubymineProjects/homebrew-beta"
-    # root_url "https://homebrew.bintray.com/bottles-beta"
+    root_url "https://homebrew.bintray.com/bottles-beta"
     cellar :any
-    sha256 "986d221e46034d54e0da81d5a9d98318549a4e9ffca6a85df5011d745efaa988" => :catalina
+    rebuild 1
+    sha256 "9f8ace355fe3752edf8a651259fb7a5e24d5427af52b7fa0e8804a200292b39b" => :catalina
   end
 end
