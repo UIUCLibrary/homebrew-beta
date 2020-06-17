@@ -1,7 +1,7 @@
 class Speedwagon < Formula
   include Language::Python::Virtualenv
-  url "https://jenkins.library.illinois.edu/job/OpenSourceProjects/job/Speedwagon/job/dev/12/artifact/dist/speedwagon-0.1.5.dev0.zip"
-  sha256 "0395a506f1a1b33792f91bfb8826ebd7bfa7ccc847aa3b5023cd25b677516437"
+  url "https://jenkins.library.illinois.edu/user/hborcher/my-views/view/Active/job/OpenSourceProjects/job/Speedwagon/job/master/1505/artifact/dist/speedwagon-0.1.5b1.zip"
+  sha256 "5052bd76d7ef4c840ec95c8b19e28b9e9d47080c9662ddf1e868844e56183c77"
   homepage "https://github.com/UIUCLibrary/Speedwagon"
   desc "Collection of tools and workflows for DS"
   head "https://github.com/UIUCLibrary/Speedwagon.git"
@@ -199,9 +199,9 @@ class Speedwagon < Formula
   end
 
   bottle do
-    root_url "https://homebrew.bintray.com/bottles-beta"
+    root_url "https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta"
     cellar :any
-    rebuild 1
-    sha256 "9f8ace355fe3752edf8a651259fb7a5e24d5427af52b7fa0e8804a200292b39b" => :catalina
+    sha256 "bd16ab784a916ca4f39b0fe389d6edef79eda466a0ad89fa6faf81f739a6a6c4" => :catalina
   end
+
 end
