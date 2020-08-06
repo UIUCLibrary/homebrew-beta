@@ -222,7 +222,7 @@ class Speedwagon < Formula
   bottle do
     root_url "https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/"
     cellar :any
-    sha256 "0c3deeffee9ae964b177900e17a426422ad8a87db012de60d67c879c39f3ef00" => :catalina
+    sha256 "6549da80d9c583d602a83b6c4abac78f3a877a2fee731b53cc56f2150a726f64" => :catalina
     sha256 "8725ba4f4f6dc5c5980f44b8f6e06d6e1bdb1b30c7854d96e2ce26112a84ccec" => :mojave
   end
 
