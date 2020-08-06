@@ -206,7 +206,7 @@ class Speedwagon < Formula
     end
 
     system "#{libexec}/bin/pip", "install", "-v", "--no-deps", "--no-binary", ":all:",
-           "--ignore-installed", "pykdu-compress==0.1.3b1", "-i",
+           "--ignore-installed", "pykdu-compress==0.1.3b10", "-i",
            "https://devpi.library.illinois.edu/production/release/+simple/"
 
     venv.pip_install_and_link buildpath
