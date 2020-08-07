@@ -1,10 +1,11 @@
 class Getmarc2 < Formula
   include Language::Python::Virtualenv
+  desc "Get Marc xml data"
+  homepage "https://github.com/UIUCLibrary/uiucprescon.getmarc2"
   url "https://github.com/UIUCLibrary/uiucprescon.getmarc2/archive/0.0.1b4.tar.gz"
   sha256 "f6d288551bd8593b9daaf23d11c6d4da875d452081b980b7fbc5f47e4b88b3e1"
-  homepage "https://github.com/UIUCLibrary/uiucprescon.getmarc2"
-  desc "Get Marc xml data"
   head "https://github.com/UIUCLibrary/uiucprescon.getmarc2.git"
+  depends_on "python@3.8"
 
   resource "lxml" do
     url "https://files.pythonhosted.org/packages/03/a8/73d795778143be51d8b86750b371b3efcd7139987f71618ad9f4b8b65543/lxml-4.5.1.tar.gz"
@@ -22,27 +23,25 @@ class Getmarc2 < Formula
     url "https://files.pythonhosted.org/packages/ad/13/eb56951b6f7950cadb579ca166e448ba77f9d24efc03edd7e55fa57d04b7/idna-2.8.tar.gz"
     sha256 "c357b3f628cf53ae2c4c05627ecc484553142ca23264e593d327bcde5e9c3407"
   end
-
   resource "certifi" do
     url "https://files.pythonhosted.org/packages/40/a7/ded59fa294b85ca206082306bba75469a38ea1c7d44ea7e1d64f5443d67a/certifi-2020.6.20.tar.gz"
     sha256 "5930595817496dd21bb8dc35dad090f1c2cd0adfaf21204bf6732ca5d8ee34d3"
   end
-
   resource "urllib3" do
     url "https://files.pythonhosted.org/packages/81/f4/87467aeb3afc4a6056e1fe86626d259ab97e1213b1dfec14c7cb5f538bf0/urllib3-1.25.10.tar.gz"
     sha256 "91056c15fa70756691db97756772bb1eb9678fa585d9184f24534b100dc60f4a"
   end
-  depends_on "python@3.8"
 
   def install
     venv = virtualenv_create(libexec, "python3")
     %w[
-    chardet
-    idna
-    urllib3
-    certifi
-    lxml
-    requests].each do |r|
+      chardet
+      idna
+      urllib3
+      certifi
+      lxml
+      requests
+    ].each do |r|
       venv.pip_install resource(r)
     end
     venv.pip_install_and_link buildpath
