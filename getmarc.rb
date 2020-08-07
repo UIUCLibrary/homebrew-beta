@@ -1,11 +1,22 @@
-class Getmarc2 < Formula
+class Getmarc < Formula
   include Language::Python::Virtualenv
   desc "Get Marc xml data"
   homepage "https://github.com/UIUCLibrary/uiucprescon.getmarc2"
-  url "https://github.com/UIUCLibrary/uiucprescon.getmarc2/archive/0.0.1b4.tar.gz"
-  sha256 "f6d288551bd8593b9daaf23d11c6d4da875d452081b980b7fbc5f47e4b88b3e1"
+  url "https://github.com/UIUCLibrary/uiucprescon.getmarc2/archive/v0.1.0.b1.tar.gz"
+  sha256 "aed77f729932f826eb8449dfb75f946d898463bcca38699c0488758b6743f42b"
   head "https://github.com/UIUCLibrary/uiucprescon.getmarc2.git"
+  version "0.1.0b1"
+  bottle do
+    root_url "https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/"
+    cellar :any
+    sha256 "29c3a26bb35dd168fd87047c482fd38666e8adf78ece8e54f4e1d3d5178a63a0" => :catalina
+  end
+
   depends_on "python@3.8"
+  depends_on "libxml2"
+  depends_on "libxslt"
+  depends_on "cython" => :build
+
 
   resource "lxml" do
     url "https://files.pythonhosted.org/packages/03/a8/73d795778143be51d8b86750b371b3efcd7139987f71618ad9f4b8b65543/lxml-4.5.1.tar.gz"
@@ -38,18 +49,7 @@ class Getmarc2 < Formula
   end
 
   def install
-    venv = virtualenv_create(libexec, "python3")
-    %w[
-      chardet
-      idna
-      urllib3
-      certifi
-      lxml
-      requests
-    ].each do |r|
-      venv.pip_install resource(r)
-    end
-    venv.pip_install_and_link buildpath
+    virtualenv_install_with_resources
     system "#{libexec}/bin/pip", "check"
   end
 end
