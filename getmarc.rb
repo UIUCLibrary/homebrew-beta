@@ -9,6 +9,7 @@ class Getmarc < Formula
   bottle do
     root_url "https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/"
     cellar :any
+    sha256 "4a0aa741bed31111c5a752e25ad62348843a5f8c5ca8a156a1322dfc4662f9ff" => :mojave
     sha256 "29c3a26bb35dd168fd87047c482fd38666e8adf78ece8e54f4e1d3d5178a63a0" => :catalina
   end
 
