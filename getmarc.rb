@@ -2,15 +2,14 @@ class Getmarc < Formula
   include Language::Python::Virtualenv
   desc "Get Marc xml data"
   homepage "https://github.com/UIUCLibrary/uiucprescon.getmarc2"
-  url "https://github.com/UIUCLibrary/uiucprescon.getmarc2/archive/v0.1.0.b1.tar.gz"
-  sha256 "aed77f729932f826eb8449dfb75f946d898463bcca38699c0488758b6743f42b"
+  url "https://github.com/UIUCLibrary/uiucprescon.getmarc2/archive/v0.1.0b2.tar.gz"
+  sha256 "9f924006570a2747febbc6d258d4af0b5f40a2cc895c888e8e4d00203af91e7f"
   head "https://github.com/UIUCLibrary/uiucprescon.getmarc2.git"
-  version "0.1.0b1"
+  version "0.1.0b2"
   bottle do
     root_url "https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/"
     cellar :any
-    sha256 "4a0aa741bed31111c5a752e25ad62348843a5f8c5ca8a156a1322dfc4662f9ff" => :mojave
-    sha256 "29c3a26bb35dd168fd87047c482fd38666e8adf78ece8e54f4e1d3d5178a63a0" => :catalina
+    sha256 "d868830a9ed6369eb61d333b6f3e736531b2dd98a6d021043ad33a4ca33429f5" => :catalina
   end
 
   depends_on "python@3.8"
