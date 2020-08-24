@@ -114,7 +114,7 @@ pipeline{
                                     def filename = tagData['filename']
                                     def uploadFile = bottle['root_url'] + filename
                                     sh(label: "Using ${local_filename} to upload to ${uploadFile}",
-                                       script: "curl -v --user $NEXUS_USR:$NEXUS_PSW' --upload-file ${filename} ${uploadFile}"
+                                       script: "curl -v --user ${NEXUS_USR}:${NEXUS_PSW}' --upload-file ${filename} ${uploadFile}"
                                    )
 
                                 }
