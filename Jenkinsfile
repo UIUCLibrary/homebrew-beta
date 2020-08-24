@@ -95,6 +95,9 @@ pipeline{
                 }
             }
             post{
+                success{
+                    archiveArtifacts artifacts: "*.bottle.*"
+                }
                 cleanup{
                     sh( label: "Removing ${HOMEBREW_FORMULA_FILE}",
                         script: "brew uninstall ${HOMEBREW_FORMULA_FILE} -v",
