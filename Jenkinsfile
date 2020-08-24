@@ -1,7 +1,5 @@
 node {
     stage("Dummy"){
-        steps{
-            echo "HERE"
-        }
+        echo "HERE"
     }
 }
