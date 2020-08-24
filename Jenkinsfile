@@ -13,7 +13,7 @@ node('master') {
 pipeline{
     agent none
     parameters {
-        booleanParam defaultValue: false, description: '', name: 'CREATE_PACKAGES'
+        booleanParam defaultValue: false, description: '', name: 'BUILD_PACKAGES'
     }
     stages{
         stage("Build"){
