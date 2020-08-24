@@ -38,6 +38,7 @@ pipeline{
                 script{
                     formulas.each{
                         echo "Auditing ${it.path}"
+                        sh "brew audit ${it.path}"
                     }
                 }
             }
