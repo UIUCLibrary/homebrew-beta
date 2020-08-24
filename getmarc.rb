@@ -13,10 +13,10 @@ class Getmarc < Formula
     sha256 "0028ecd0b135d755722c989d5f28754837bf6cbed46495d4169c528dcb4b5e7a" => :mojave
   end
 
-  depends_on "python@3.8"
+  depends_on "cython" => :build
   depends_on "libxml2"
   depends_on "libxslt"
-  depends_on "cython" => :build
+  depends_on "python@3.8"
 
 
   resource "lxml" do
