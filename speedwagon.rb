@@ -6,6 +6,13 @@ class Speedwagon < Formula
   sha256 "5052bd76d7ef4c840ec95c8b19e28b9e9d47080c9662ddf1e868844e56183c77"
   head "https://github.com/UIUCLibrary/Speedwagon.git"
 
+  bottle do
+    root_url "https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/"
+    cellar :any
+    sha256 "6549da80d9c583d602a83b6c4abac78f3a877a2fee731b53cc56f2150a726f64" => :catalina
+    sha256 "d29703bf7ab80d501418be9a8e921c0baa8f9ffcef43eec849b3d8206bc2a298" => :mojave
+  end
+
   resource "uiucprescon.images" do
     url "https://github.com/UIUCLibrary/uiucprescon.images/archive/v0.0.4b1.tar.gz"
     sha256 "7de3b381e2f932e446a35647f9ae3d9e7c6ffc3f934d4e2b9c91d6b0f19e89ad"
@@ -158,13 +165,6 @@ class Speedwagon < Formula
   resource "PyQt5_sip" do
     url "https://files.pythonhosted.org/packages/73/a0/0987d3c153b18fd5f7b190bdc71e8edd05ff65e9084efd1f4985c2b1dc0f/PyQt5_sip-12.8.0.tar.gz"
     sha256 "0a34b6596bdd28d52da3a51fa8d9bb0b287bcb605c2512aa3251b9028cc71f4d"
-  end
-
-  bottle do
-    root_url "https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/"
-    cellar :any
-    sha256 "6549da80d9c583d602a83b6c4abac78f3a877a2fee731b53cc56f2150a726f64" => :catalina
-    sha256 "d29703bf7ab80d501418be9a8e921c0baa8f9ffcef43eec849b3d8206bc2a298" => :mojave
   end
 
   depends_on "cmake" => :build
