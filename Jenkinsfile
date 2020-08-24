@@ -97,9 +97,12 @@ pipeline{
                     input {
                         message 'Upload artifact?'
                         parameters {
-                            string defaultValue: '', description: '', name: 'NEXUS_USR', trim: true
+                            string defaultValue: '', description: '', name: 'NEXUS_USR', trim: false
                             password defaultValue: '', description: '', name: 'NEXUS_PSW'
                         }
+                    }
+                    options {
+                      retry(3)
                     }
                     steps{
                         script{
