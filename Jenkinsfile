@@ -24,6 +24,7 @@ pipeline{
         booleanParam defaultValue: false, description: '', name: 'AUDIT_FORMULA'
 //         todo: change this to false
         booleanParam defaultValue: true, description: '', name: 'BOTTLE_FORMULA'
+        booleanParam defaultValue: true, description: '', name: 'BOTTLE_UPLOAD'
     }
     stages{
         stage("Audit"){
@@ -93,7 +94,7 @@ pipeline{
                         )
                     }
                 }
-                stage("Upload new bottle to storage"){
+                stage("Upload new bottle to repository"){
                     input {
                         message 'Upload artifact?'
                         parameters {
@@ -104,12 +105,15 @@ pipeline{
                     options {
                         retry(3)
                     }
+                    when{
+                        equals expected: true, actual: params.BOTTLE_UPLOAD
+                        beforeInput true
+                    }
                     steps{
                         script{
                             findFiles( excludes: '', glob: '*.bottle.json').each{
-                                def all_metadata = readJSON( file: it.path)
                                 def formulaName = HOMEBREW_FORMULA_FILE.replace(".rb", "")
-                                def bottle = all_metadata[formulaName]['bottle']
+                                def bottle = readJSON( file: it.path)[formulaName]['bottle']
                                 bottle['tags'].each { tag, tagData ->
                                     def local_filename = tagData['local_filename']
                                     def filename = tagData['filename']
