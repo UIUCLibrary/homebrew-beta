@@ -72,7 +72,10 @@ pipeline{
             stages{
                 stage("Uninstall existing formula"){
                     steps{
-                        sh returnStatus:true, script: "brew uninstall ${HOMEBREW_FORMULA_FILE} -v"
+                        sh(label: "Removing ${HOMEBREW_FORMULA_FILE}",
+                           script: "brew uninstall ${HOMEBREW_FORMULA_FILE} -v",
+                           returnStatus:true
+                        )
                     }
 
                 }
