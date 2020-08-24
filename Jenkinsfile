@@ -1,8 +1,9 @@
+def formulas
 node('master') {
-    stage("Dummy"){
+    stage("Checking Ruby files"){
         ws{
             checkout scm
-            def formulas =  findFiles excludes: '', glob: '*.rb'
+            formulas =  findFiles excludes: '', glob: '*.rb'
             formulas.each{
                 echo "Found ${it.path}"
 
