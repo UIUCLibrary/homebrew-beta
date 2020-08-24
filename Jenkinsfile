@@ -97,28 +97,25 @@ pipeline{
                     input {
                         message 'Upload artifact?'
                         parameters {
-                            string defaultValue: '', description: '', name: 'NEXUS_USR', trim: false
+                            string defaultValue: '', description: '', name: 'NEXUS_USR', trim: true
                             password defaultValue: '', description: '', name: 'NEXUS_PSW'
                         }
                     }
                     options {
-                      retry(3)
+                        retry(3)
                     }
                     steps{
                         script{
                             findFiles( excludes: '', glob: '*.bottle.json').each{
-                                echo "Reading ${it.path}"
                                 def all_metadata = readJSON( file: it.path)
-                                echo "Got ${all_metadata}"
                                 def formulaName = HOMEBREW_FORMULA_FILE.replace(".rb", "")
                                 def bottle = all_metadata[formulaName]['bottle']
                                 bottle['tags'].each { tag, tagData ->
                                     def local_filename = tagData['local_filename']
                                     def filename = tagData['filename']
                                     def uploadFile = bottle['root_url'] + filename
-                                    echo "Using ${NEXUS_USR}"
                                     sh(label: "Using ${local_filename} to upload to ${uploadFile}",
-                                       script: "curl -v --user '${NEXUS_USR}:${NEXUS_PSW}' --upload-file ${filename} ${uploadFile}"
+                                       script: "curl -v --user '${NEXUS_USR}:${NEXUS_PSW}' --upload-file ${local_filename} ${uploadFile}"
                                    )
 
                                 }
