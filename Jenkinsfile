@@ -14,7 +14,10 @@ node('master') {
 pipeline{
     agent none
     stages{
-        stage("Dummy"){
+        stage("Build"){
+            agent {
+                label 'mac'
+            }
             steps{
                 script{
                     formulas.each{
