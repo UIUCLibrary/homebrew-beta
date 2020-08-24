@@ -17,11 +17,6 @@ def pipelineParameters = {
     booleanParam( defaultValue: false, description: '', name: 'BUILD_P')
 }
 
-def get_pipelineParameters(){
-    return {
-        booleanParam( defaultValue: false, description: '', name: 'BUILD_P')
-    }
-}
 pipeline{
     agent none
     parameters {
@@ -105,7 +100,7 @@ pipeline{
                                 echo "Reading ${it.path}"
                                 def bottle_metadata = readJSON( file: it.path)
                                 echo "Got ${bottle_metadata}"
-                                def formulaName = HOMEBREW_FORMULA_FILE.replace(".json", "")
+                                def formulaName = HOMEBREW_FORMULA_FILE.replace(".rb", "")
                                 echo "formulaName = ${formulaName}"
                                 echo "Got ${bottle_metadata[formulaName]}"
 
