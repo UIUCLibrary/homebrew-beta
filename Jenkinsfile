@@ -81,7 +81,7 @@ pipeline{
                 }
                 stage("Building bottle"){
                     steps{
-                        sh "brew install --build-bottle ${HOMEBREW_FORMULA_FILE} -v"
+                        sh "brew install --build-bottle ${HOMEBREW_FORMULA_FILE}"
                     }
                 }
                 stage("Adding bottle to current formula"){
