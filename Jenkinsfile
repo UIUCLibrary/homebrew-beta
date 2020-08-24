@@ -96,9 +96,9 @@ pipeline{
                 stage("Upload new bottle to storage"){
                     steps{
                         script{
-                            findFiles( excludes: '', glob: '*.bottle.json').each{
-                                echo "Reading ${it.path}"
-                                def all_metadata = readJSON( file: it.path)
+                            findFiles( excludes: '', glob: '*.bottle.json').each{ -> jsonFile
+                                echo "Reading ${jsonFile.path}"
+                                def all_metadata = readJSON( file: jsonFile.path)
                                 echo "Got ${all_metadata}"
                                 def formulaName = HOMEBREW_FORMULA_FILE.replace(".rb", "")
                                 def bottle = all_metadata[formulaName]['bottle']
