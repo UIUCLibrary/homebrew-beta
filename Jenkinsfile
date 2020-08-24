@@ -1,6 +1,6 @@
 def formulas
 node('master') {
-    stage("Checking Ruby files"){
+    stage("Checking Formula files"){
         ws{
             checkout scm
             formulas =  findFiles excludes: '', glob: '*.rb'
@@ -16,7 +16,12 @@ pipeline{
     stages{
         stage("Dummy"){
             steps{
-                echo "DUmmy"
+                script{
+                    formulas.each{
+                        echo "Got ${it.path}"
+
+                    }
+                }
             }
         }
     }
