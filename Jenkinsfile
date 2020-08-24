@@ -15,7 +15,9 @@ def pipelineParameters = {
 }
 
 def get_pipelineParameters(){
-    return pipelineParameters
+    return {
+        booleanParam( defaultValue: false, description: '', name: 'BUILD_P')
+    }
 }
 pipeline{
     agent none
