@@ -22,6 +22,7 @@ def get_pipelineParameters(){
 pipeline{
     agent none
     parameters {
+        booleanParam defaultValue: true, description: '', name: 'AUDIT_FORMULA'
         booleanParam defaultValue: false, description: '', name: 'BUILD_PACKAGES'
     }
     stages{
@@ -29,11 +30,14 @@ pipeline{
             agent {
                 label 'mac'
             }
+            when{
+                equals expected: true, actual: params.AUDIT_FORMULA
+                beforeAgent true
+            }
             steps{
                 script{
                     formulas.each{
                         echo "Auditing ${it.path}"
-
                     }
                 }
             }
