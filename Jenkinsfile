@@ -14,7 +14,9 @@ def pipelineParameters = {
     booleanParam( defaultValue: false, description: '', name: 'BUILD_P')
 }
 
-
+def get_pipelineParameters(){
+    return pipelineParameters
+}
 pipeline{
     agent none
     parameters {
@@ -38,7 +40,7 @@ pipeline{
                 script{
                     input(
                         message: 'Build the following',
-                        parameters: {pipelineParameters}
+                        parameters: get_pipelineParameters()
 //                         [
 //                             booleanParam(defaultValue: false, description: '', name: 'sss')
 //                         ]
