@@ -102,7 +102,7 @@ pipeline{
                                 echo "Got ${all_metadata}"
                                 def formulaName = HOMEBREW_FORMULA_FILE.replace(".rb", "")
                                 def bottle = all_metadata[formulaName]['bottle']
-                                echo "Got ${bottle}"
+                                echo "Got bottle ${bottle}"
                                 bottle['tags'].each { -> tag
                                     echo "got ${tag}"
                                 }
