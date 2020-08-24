@@ -106,24 +106,14 @@ pipeline{
                                 def upload_url = bottle['root_url']
                                 echo "Got bottle url ${upload_url}"
                                 echo "tags = ${bottle['tags']}"
-//                                 .each {
                                 bottle['tags'].each { tag, tagData ->
                                     echo "got ${tag}"
                                     def local_filename = tagData['local_filename']
                                     def filename = tagData['filename']
-                                    echo "Using ${local_filename} to upload to ${upload_url}/${filename}"
+                                    def uploadFile = "${upload_url}${filename}"
+                                    echo "Using ${local_filename} to upload to ${uploadFile}"
 
                                 }
-//                                     echo "got ${it}"
-//                                     def tag = readJSON(text: "${it}")
-//                                     echo "got tag ${tag}"
-//                                     echo "getting file local_filename"
-//                                     echo "local_filename = ${local_filename}"
-//                                     def filename = it['filename']
-//                                     echo "Using ${local_filename} to upload as ${local_filename}"
-//                                 }
-//                                 def localBottleArchive =
-
                             }
                         }
                     }
