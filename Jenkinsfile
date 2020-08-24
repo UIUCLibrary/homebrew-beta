@@ -36,12 +36,25 @@ pipeline{
             }
             steps{
                 script{
+                    def forumla_audits = [:]
                     formulas.each{
-                        echo "Auditing ${it.path}"
-                        catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE', message: "${it.path} failed audit") {
-                            sh "brew audit ${it.path}"
+                        forumla_audits[it.path] = {
+                            stage("Auditing ${it.path}"){
+                                echo "Auditing ${it.path}"
+                            }
                         }
+//                             def task = [:]
+//                         [
+//                                                         it.path: stage("Auditing ${it.path}"){
+//                                                             echo "Auditing ${it.path}"
+//                                                         }
+//                                                     ]
+//                         forumla_audits.add(task)
+// //                         catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE', message: "${it.path} failed audit") {
+// //                             sh "brew audit ${it.path}"
+// //                         }
                     }
+                    parallel(forumla_audits)
                 }
             }
         }
