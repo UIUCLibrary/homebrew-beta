@@ -65,15 +65,28 @@ pipeline{
                     choice choices: formulas, description: '', name: 'HOMEBREW_FORMULA_FILE'
                 }
             }
-            steps{
-                echo "Using ${HOMEBREW_FORMULA_FILE}"
-                script{
-                    formulas.each{
-                        echo "Got ${it.path}"
+            stages{
+                stage("Uninstall existing formula"){
+                    steps{
+                        sh "brew uninstall ${HOMEBREW_FORMULA_FILE} -v"
+                    }
 
+                }
+                stage("Building bottle"){
+                    steps{
+                        sh "brew install --build-bottle ${HOMEBREW_FORMULA_FILE} -v"
                     }
                 }
             }
+//             steps{
+//                 echo "Using ${HOMEBREW_FORMULA_FILE}"
+//                 script{
+//                     formulas.each{
+//                         echo "Got ${it.path}"
+//
+//                     }
+//                 }
+//             }
         }
     }
 }
