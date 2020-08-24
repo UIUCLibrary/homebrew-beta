@@ -103,15 +103,18 @@ pipeline{
                                 def formulaName = HOMEBREW_FORMULA_FILE.replace(".rb", "")
                                 def bottle = all_metadata[formulaName]['bottle']
                                 echo "Got bottle ${bottle}"
+                                def upload_url = bottle['root_url']
+                                echo "Got bottle url ${upload_url}"
                                 bottle['tags'].each {
                                     echo "got ${it}"
+                                    def tag = readJSON(text: it)
+                                    echo "got tag ${tag}"
+
                                     def local_filename = it['local_filename']
                                     def filename = it['filename']
                                     echo "Using ${local_filename} to upload as ${local_filename}"
                                 }
 //                                 def localBottleArchive =
-                                def upload_url = bottle['root_url']
-                                echo "Got bottle url ${upload_url}"
 
                             }
                         }
