@@ -105,6 +105,9 @@ pipeline{
                                 echo "Got bottle ${bottle}"
                                 bottle['tags'].each {
                                     echo "got ${it}"
+                                    def local_filename = it['local_filename']
+                                    def filename = it['filename']
+                                    echo "Using ${local_filename} to upload as ${local_filename}"
                                 }
 //                                 def localBottleArchive =
                                 def upload_url = bottle['root_url']
