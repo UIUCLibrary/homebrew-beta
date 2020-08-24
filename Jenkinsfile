@@ -10,9 +10,8 @@ node('master') {
         }
     }
 }
-def parameters = {
+def parameters
 
-}
 pipeline{
     agent none
     parameters {
