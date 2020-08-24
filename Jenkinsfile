@@ -38,7 +38,7 @@ pipeline{
                 script{
                     formulas.each{
                         echo "Auditing ${it.path}"
-                        catchError(message: "${it.path} failed audit") {
+                        catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE', message: "${it.path} failed audit") {
                             sh "brew audit ${it.path}"
                         }
                     }
