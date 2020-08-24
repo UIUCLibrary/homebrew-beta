@@ -77,6 +77,14 @@ pipeline{
                         sh "brew install --build-bottle ${HOMEBREW_FORMULA_FILE} -v"
                     }
                 }
+                post{
+                    cleanup{
+                        sh( label: "Removing ${HOMEBREW_FORMULA_FILE}",
+                            script: "brew uninstall ${HOMEBREW_FORMULA_FILE} -v",
+                            returnStatus:true
+                        )
+                    }
+                }
             }
 //             steps{
 //                 echo "Using ${HOMEBREW_FORMULA_FILE}"
