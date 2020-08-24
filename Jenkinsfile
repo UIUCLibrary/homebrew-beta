@@ -26,29 +26,23 @@ pipeline{
     }
     stages{
         stage("Build"){
-//             agent {
-//                 label 'mac'
-//             }
+            agent {
+                label 'mac'
+            }
             when{
                 equals expected: true, actual: params.BUILD_PACKAGES
                 beforeInput true
-//                 beforeAgent true
+                beforeAgent true
             }
             input {
                 message 'Build the following'
                 parameters {
-                    choice choices: formulas, description: '', name: 'ad'
-                    }
+                    choice choices: formulas, description: '', name: 'HOMEBREW_FORMULA_FILE'
+                }
             }
             steps{
+                echo "Using ${HOMEBREW_FORMULA_FILE}"
                 script{
-//                     input(
-//                         message: 'Build the following',
-//                         parameters: get_pipelineParameters()
-//                         [
-//                             booleanParam(defaultValue: false, description: '', name: 'sss')
-//                         ]
-//                     )
                     formulas.each{
                         echo "Got ${it.path}"
 
