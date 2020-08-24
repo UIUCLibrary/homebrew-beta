@@ -36,8 +36,8 @@ pipeline{
                     def forumla_audits = [:]
                     formulas.each{
                         forumla_audits[it.path] = {
-                            stage("Auditing ${it.path}"){
-                                node('mac') {
+                            node('mac') {
+                                stage("Auditing ${it.path}"){
                                     checkout scm
                                     catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE', message: "${it.path} failed audit") {
                                         sh "brew audit ${it.path}"
