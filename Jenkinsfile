@@ -11,7 +11,7 @@ node('master') {
     }
 }
 def pipelineParameters = {
-    booleanParam( defaultValue: false, description: '', name: 'BUILD_PACKAGE')
+    booleanParam( defaultValue: false, description: '', name: 'BUILD_P')
 }
 
 def getParams(){
