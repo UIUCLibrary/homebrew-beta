@@ -100,7 +100,13 @@ pipeline{
                 }
                 stage("Upload new bottle to storage"){
                     steps{
-                        echo "reading *.bottle.json"
+                        script{
+                            findFiles( excludes: '', glob: '*.bottle.json').each{
+                                echo "Reading ${it.path}"
+
+                            }
+//                             readJSON file: 'dddd', text: ''
+                        }
                     }
                 }
             }
