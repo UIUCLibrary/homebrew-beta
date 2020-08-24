@@ -23,7 +23,7 @@ pipeline{
     agent none
     parameters {
         booleanParam defaultValue: true, description: '', name: 'AUDIT_FORMULA'
-        booleanParam defaultValue: false, description: '', name: 'BUILD_PACKAGES'
+        booleanParam defaultValue: false, description: '', name: 'BOTTLE_FORMULA'
     }
     stages{
         stage("Audit"){
@@ -58,7 +58,7 @@ pipeline{
                 lock('homebrew')
             }
             when{
-                equals expected: true, actual: params.BUILD_PACKAGES
+                equals expected: true, actual: params.BOTTLE_FORMULA
                 beforeInput true
                 beforeAgent true
                 beforeOptions true
@@ -66,7 +66,7 @@ pipeline{
             input {
                 message 'Build the following'
                 parameters {
-                    choice choices: formulas, description: '', name: 'HOMEBREW_FORMULA_FILE'
+                    choice choices: formulas, description: 'Bottle Homebrew formula', name: 'HOMEBREW_FORMULA_FILE'
                 }
             }
             stages{
