@@ -27,9 +27,6 @@ pipeline{
     }
     stages{
         stage("Audit"){
-//             agent {
-//                 label 'mac'
-//             }
             when{
                 equals expected: true, actual: params.AUDIT_FORMULA
                 beforeAgent true
@@ -41,6 +38,7 @@ pipeline{
                         forumla_audits[it.path] = {
                             stage("Auditing ${it.path}"){
                                 node('mac') {
+                                    checkout scm
                                     catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE', message: "${it.path} failed audit") {
                                         sh "brew audit ${it.path}"
                                     }
