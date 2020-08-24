@@ -107,7 +107,10 @@ pipeline{
                                 echo "Got bottle url ${upload_url}"
                                 echo "tags = ${bottle['tags']}"
 //                                 .each {
-//                                 bottle['tags'].each {
+                                bottle['tags'].each { tag ->
+                                    echo "got ${tag}"
+
+                                }
 //                                     echo "got ${it}"
 //                                     def tag = readJSON(text: "${it}")
 //                                     echo "got tag ${tag}"
