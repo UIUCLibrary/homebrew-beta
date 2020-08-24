@@ -105,7 +105,7 @@ pipeline{
                                 bottle['tags'].each { tag, tagData ->
                                     def local_filename = tagData['local_filename']
                                     def filename = tagData['filename']
-                                    def uploadFile = "${bottle['root_url']}${filename}"
+                                    def uploadFile = bottle['root_url'] + filename
                                     echo "Using ${local_filename} to upload to ${uploadFile}"
 
                                 }
