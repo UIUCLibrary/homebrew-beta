@@ -36,7 +36,13 @@ pipeline{
 //             }
             steps{
                 script{
-                    input message: 'Build the following', parameters: [booleanParam(defaultValue: false, description: '', name: 'sss')]
+                    input(
+                        message: 'Build the following',
+                        parameters: pipelineParameters
+//                         [
+//                             booleanParam(defaultValue: false, description: '', name: 'sss')
+//                         ]
+                    )
                     formulas.each{
                         echo "Got ${it.path}"
 
