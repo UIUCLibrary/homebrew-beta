@@ -14,9 +14,6 @@ def pipelineParameters = {
     booleanParam( defaultValue: false, description: '', name: 'BUILD_P')
 }
 
-def getParams(){
-
-}
 
 pipeline{
     agent none
@@ -30,8 +27,8 @@ pipeline{
 //             }
             when{
                 equals expected: true, actual: params.BUILD_PACKAGES
-                beforeInput true
-                beforeAgent true
+//                 beforeInput true
+//                 beforeAgent true
             }
 //             input {
 //                 message 'Build the following'
