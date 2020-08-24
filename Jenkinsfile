@@ -11,3 +11,13 @@ node('master') {
         }
     }
 }
+pipeline{
+    agent none
+    stages{
+        stage("Dummy"){
+            steps{
+                echo "DUmmy"
+            }
+        }
+    }
+}
