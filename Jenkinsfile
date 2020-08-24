@@ -10,7 +10,9 @@ node('master') {
         }
     }
 }
-def pipelineParameters = {}
+def pipelineParameters = {
+    booleanParam( defaultValue: false, description: '', name: 'BUILD_PACKAGE')
+}
 
 pipeline{
     agent none
