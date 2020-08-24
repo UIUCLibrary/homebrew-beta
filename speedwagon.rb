@@ -160,6 +160,13 @@ class Speedwagon < Formula
     sha256 "0a34b6596bdd28d52da3a51fa8d9bb0b287bcb605c2512aa3251b9028cc71f4d"
   end
 
+  bottle do
+    root_url "https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/"
+    cellar :any
+    sha256 "6549da80d9c583d602a83b6c4abac78f3a877a2fee731b53cc56f2150a726f64" => :catalina
+    sha256 "d29703bf7ab80d501418be9a8e921c0baa8f9ffcef43eec849b3d8206bc2a298" => :mojave
+  end
+
   depends_on "cmake" => :build
   depends_on "conan" => :build
   depends_on "python@3.8"
@@ -219,10 +226,4 @@ class Speedwagon < Formula
     system "#{bin}/speedwagon", "--version"
   end
 
-  bottle do
-    root_url "https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/"
-    cellar :any
-    sha256 "6549da80d9c583d602a83b6c4abac78f3a877a2fee731b53cc56f2150a726f64" => :catalina
-    sha256 "d29703bf7ab80d501418be9a8e921c0baa8f9ffcef43eec849b3d8206bc2a298" => :mojave
-  end
 end
