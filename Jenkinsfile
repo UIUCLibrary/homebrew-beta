@@ -39,7 +39,7 @@ pipeline{
                             node('mac') {
                                 stage("Auditing ${it.path}"){
                                     checkout scm
-                                    catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE', message: "${it.path} failed audit") {
+                                    catchError(buildResult: 'UNSTABLE', stageResult: 'UNSTABLE', message: "${it.path} failed audit") {
                                         sh "brew audit ${it.path}"
                                     }
                                 }
