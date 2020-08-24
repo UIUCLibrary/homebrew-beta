@@ -27,9 +27,9 @@ pipeline{
     }
     stages{
         stage("Audit"){
-            agent {
-                label 'mac'
-            }
+//             agent {
+//                 label 'mac'
+//             }
             when{
                 equals expected: true, actual: params.AUDIT_FORMULA
                 beforeAgent true
@@ -40,8 +40,10 @@ pipeline{
                     formulas.each{
                         forumla_audits[it.path] = {
                             stage("Auditing ${it.path}"){
-                                catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE', message: "${it.path} failed audit") {
-                                    sh "brew audit ${it.path}"
+                                node('mac') {
+                                    catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE', message: "${it.path} failed audit") {
+                                        sh "brew audit ${it.path}"
+                                    }
                                 }
                             }
                         }
