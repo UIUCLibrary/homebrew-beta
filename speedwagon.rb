@@ -1,8 +1,8 @@
 class Speedwagon < Formula
   include Language::Python::Virtualenv
+  desc "Collection of tools and workflows for DS"
   url "https://github.com/UIUCLibrary/Speedwagon/releases/download/v0.1.5b1/speedwagon-0.1.5b1.zip"
   sha256 "5052bd76d7ef4c840ec95c8b19e28b9e9d47080c9662ddf1e868844e56183c77"
-  desc "Collection of tools and workflows for DS"
   homepage "https://github.com/UIUCLibrary/Speedwagon"
   head "https://github.com/UIUCLibrary/Speedwagon.git"
 
