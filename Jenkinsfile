@@ -96,7 +96,7 @@ pipeline{
             }
             post{
                 success{
-                    archiveArtifacts artifacts: "*.bottle.*"
+                    archiveArtifacts artifacts: "*.bottle.*,${HOMEBREW_FORMULA_FILE}"
                 }
                 cleanup{
                     sh( label: "Removing ${HOMEBREW_FORMULA_FILE}",
