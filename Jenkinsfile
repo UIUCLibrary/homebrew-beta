@@ -14,6 +14,10 @@ def pipelineParameters = {
     booleanParam( defaultValue: false, description: '', name: 'BUILD_PACKAGE')
 }
 
+def getParams(){
+
+}
+
 pipeline{
     agent none
     parameters {
@@ -21,22 +25,21 @@ pipeline{
     }
     stages{
         stage("Build"){
-            agent {
-                label 'mac'
-            }
+//             agent {
+//                 label 'mac'
+//             }
             when{
                 equals expected: true, actual: params.BUILD_PACKAGES
                 beforeInput true
                 beforeAgent true
             }
-            input {
-                message 'Build the following'
-                parameters {
-                    booleanParam( defaultValue: false, description: '', name: 'BUILD_PACKAGE')
-                }
-            }
+//             input {
+//                 message 'Build the following'
+//                 parameters( getParams())
+//             }
             steps{
                 script{
+                    input message: 'Build the following', parameters: [booleanParam(defaultValue: false, description: '', name: 'sss')]
                     formulas.each{
                         echo "Got ${it.path}"
 
