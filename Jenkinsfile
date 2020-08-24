@@ -1,12 +1,11 @@
-def formulas
+def formulas = []
 node('master') {
     stage("Checking Formula files"){
         ws{
             checkout scm
-            formulas =  findFiles excludes: '', glob: '*.rb'
-            formulas.each{
+            findFiles( excludes: '', glob: '*.rb').each{
                 echo "Found ${it.path}"
-
+                formulas << it
             }
         }
     }
