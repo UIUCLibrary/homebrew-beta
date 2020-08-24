@@ -103,9 +103,10 @@ pipeline{
                         script{
                             findFiles( excludes: '', glob: '*.bottle.json').each{
                                 echo "Reading ${it.path}"
+                                def bottle_metadata = readJSON( file: it.path)
+                                echo "Got ${bottle_metadata}"
 
                             }
-//                             readJSON file: 'dddd', text: ''
                         }
                     }
                 }
