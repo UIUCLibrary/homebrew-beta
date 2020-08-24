@@ -18,7 +18,6 @@ class Getmarc < Formula
   depends_on "libxslt"
   depends_on "python@3.8"
 
-
   resource "lxml" do
     url "https://files.pythonhosted.org/packages/03/a8/73d795778143be51d8b86750b371b3efcd7139987f71618ad9f4b8b65543/lxml-4.5.1.tar.gz"
     sha256 "27ee0faf8077c7c1a589573b1450743011117f1aa1a91d5ae776bbc5ca6070f2"
