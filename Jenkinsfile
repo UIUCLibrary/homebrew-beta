@@ -10,6 +10,9 @@ node('master') {
         }
     }
 }
+def parameters = {
+
+}
 pipeline{
     agent none
     parameters {
@@ -28,7 +31,7 @@ pipeline{
             input {
                 message 'Build the following'
                 parameters {
-                    booleanParam defaultValue: false, description: '', name: 'BUILD_PACKAGE'
+                    booleanParam( defaultValue: false, description: '', name: 'BUILD_PACKAGE')
                 }
             }
             steps{
