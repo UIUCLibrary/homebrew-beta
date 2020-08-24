@@ -25,6 +25,19 @@ pipeline{
         booleanParam defaultValue: false, description: '', name: 'BUILD_PACKAGES'
     }
     stages{
+        stage("Audit"){
+            agent {
+                label 'mac'
+            }
+            steps{
+                script{
+                    formulas.each{
+                        echo "Auditing ${it.path}"
+
+                    }
+                }
+            }
+        }
         stage("Build"){
             agent {
                 label 'mac'
