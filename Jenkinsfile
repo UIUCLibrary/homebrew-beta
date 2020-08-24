@@ -107,7 +107,7 @@ pipeline{
                                 echo "Got bottle url ${upload_url}"
                                 bottle['tags'].each {
                                     echo "got ${it}"
-                                    def tag = readJSON(text: it)
+                                    def tag = readJSON(text: "${it}")
                                     echo "got tag ${tag}"
 
                                     def local_filename = it['local_filename']
