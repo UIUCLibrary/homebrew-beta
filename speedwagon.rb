@@ -2,8 +2,8 @@ class Speedwagon < Formula
   include Language::Python::Virtualenv
   url "https://github.com/UIUCLibrary/Speedwagon/releases/download/v0.1.5b1/speedwagon-0.1.5b1.zip"
   sha256 "5052bd76d7ef4c840ec95c8b19e28b9e9d47080c9662ddf1e868844e56183c77"
-  homepage "https://github.com/UIUCLibrary/Speedwagon"
   desc "Collection of tools and workflows for DS"
+  homepage "https://github.com/UIUCLibrary/Speedwagon"
   head "https://github.com/UIUCLibrary/Speedwagon.git"
 
   resource "uiucprescon.images" do
@@ -225,5 +225,4 @@ class Speedwagon < Formula
     sha256 "6549da80d9c583d602a83b6c4abac78f3a877a2fee731b53cc56f2150a726f64" => :catalina
     sha256 "d29703bf7ab80d501418be9a8e921c0baa8f9ffcef43eec849b3d8206bc2a298" => :mojave
   end
-
 end
