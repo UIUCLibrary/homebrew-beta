@@ -54,10 +54,14 @@ pipeline{
             agent {
                 label 'mac'
             }
+            options {
+                lock('homebrew')
+            }
             when{
                 equals expected: true, actual: params.BUILD_PACKAGES
                 beforeInput true
                 beforeAgent true
+                beforeOptions true
             }
             input {
                 message 'Build the following'
@@ -77,13 +81,13 @@ pipeline{
                         sh "brew install --build-bottle ${HOMEBREW_FORMULA_FILE} -v"
                     }
                 }
-                post{
-                    cleanup{
-                        sh( label: "Removing ${HOMEBREW_FORMULA_FILE}",
-                            script: "brew uninstall ${HOMEBREW_FORMULA_FILE} -v",
-                            returnStatus:true
-                        )
-                    }
+            }
+            post{
+                cleanup{
+                    sh( label: "Removing ${HOMEBREW_FORMULA_FILE}",
+                        script: "brew uninstall ${HOMEBREW_FORMULA_FILE} -v",
+                        returnStatus:true
+                    )
                 }
             }
 //             steps{
