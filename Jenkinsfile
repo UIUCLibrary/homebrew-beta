@@ -111,7 +111,7 @@ pipeline{
                                     echo "got ${tag}"
                                     def local_filename = tagData['local_filename']
                                     def filename = tagData['filename']
-                                    echo "Using ${local_filename} to upload as ${filename}"
+                                    echo "Using ${local_filename} to upload to ${upload_url}/${filename}"
 
                                 }
 //                                     echo "got ${it}"
