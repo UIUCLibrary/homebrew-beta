@@ -1,4 +1,4 @@
-node {
+node('master') {
     stage("Dummy"){
         def formulas =  findFiles excludes: '', glob: '*.rb'
         formulas.each{
