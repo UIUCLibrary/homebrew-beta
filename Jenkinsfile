@@ -24,7 +24,7 @@ pipeline{
         booleanParam defaultValue: false, description: '', name: 'AUDIT_FORMULA'
 //         todo: change this to false
         booleanParam defaultValue: true, description: '', name: 'BOTTLE_FORMULA'
-        booleanParam defaultValue: true, description: '', name: 'BOTTLE_UPLOAD'
+        booleanParam defaultValue: false, description: '', name: 'BOTTLE_UPLOAD'
     }
     stages{
         stage("Audit"){
