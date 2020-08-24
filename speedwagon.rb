@@ -225,5 +225,4 @@ class Speedwagon < Formula
     system "#{libexec}/bin/pip", "check"
     system "#{bin}/speedwagon", "--version"
   end
-
 end
