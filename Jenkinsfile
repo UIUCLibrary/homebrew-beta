@@ -107,7 +107,7 @@ pipeline{
                                 echo "Got bottle url ${upload_url}"
                                 echo "tags = ${bottle['tags']}"
 //                                 .each {
-                                bottle['tags'].each { tag ->
+                                bottle['tags'].each { tag, tagData ->
                                     echo "got ${tag}"
 
                                 }
