@@ -98,11 +98,11 @@ pipeline{
                         script{
                             findFiles( excludes: '', glob: '*.bottle.json').each{
                                 echo "Reading ${it.path}"
-                                def bottle_metadata = readJSON( file: it.path)
+                                def all_metadata = readJSON( file: it.path)
                                 echo "Got ${bottle_metadata}"
                                 def formulaName = HOMEBREW_FORMULA_FILE.replace(".rb", "")
-                                echo "formulaName = ${formulaName}"
-                                echo "Got ${bottle_metadata[formulaName]}"
+                                def bottle = all_metadata[formulaName]['bottle']
+                                echo "Got ${bottle}"
 
                             }
                         }
