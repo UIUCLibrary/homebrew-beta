@@ -37,7 +37,7 @@ pipeline{
             input {
                 message 'Build the following'
                 parameters {
-                    choice choices: ['sd', 'sdcv'], description: '', name: 'ad'
+                    choice choices: formulas, description: '', name: 'ad'
                     }
             }
             steps{
