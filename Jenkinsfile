@@ -38,7 +38,7 @@ pipeline{
                 script{
                     input(
                         message: 'Build the following',
-                        parameters: pipelineParameters
+                        parameters: {pipelineParameters}
 //                         [
 //                             booleanParam(defaultValue: false, description: '', name: 'sss')
 //                         ]
