@@ -97,7 +97,8 @@ pipeline{
                     input {
                         message 'Upload artifact?'
                         parameters {
-                            credentials credentialType: 'com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl', defaultValue: '', description: '', name: 'NEXUS_CREDS', required: true
+                            string defaultValue: '', description: '', name: 'NEXUS_USR', trim: true
+                            password defaultValue: '', description: '', name: 'NEXUS_PSW'
                         }
                     }
                     steps{
@@ -113,7 +114,7 @@ pipeline{
                                     def filename = tagData['filename']
                                     def uploadFile = bottle['root_url'] + filename
                                     sh(label: "Using ${local_filename} to upload to ${uploadFile}",
-                                       script: "curl -v --user $NEXUS_CREDS_USR:$NEXUS_CREDS_PSW' --upload-file ${filename} ${uploadFile}"
+                                       script: "curl -v --user $NEXUS_USR:$NEXUS_PSW' --upload-file ${filename} ${uploadFile}"
                                    )
 
                                 }
