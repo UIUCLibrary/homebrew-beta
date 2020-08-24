@@ -109,6 +109,7 @@ pipeline{
 //                                 .each {
                                 bottle['tags'].each { tag, tagData ->
                                     echo "got ${tag}"
+                                    echo "got tagData ${tagData}"
 
                                 }
 //                                     echo "got ${it}"
