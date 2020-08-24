@@ -102,15 +102,10 @@ pipeline{
                                 echo "Got ${all_metadata}"
                                 def formulaName = HOMEBREW_FORMULA_FILE.replace(".rb", "")
                                 def bottle = all_metadata[formulaName]['bottle']
-                                echo "Got bottle ${bottle}"
-                                def upload_url = bottle['root_url']
-                                echo "Got bottle url ${upload_url}"
-                                echo "tags = ${bottle['tags']}"
                                 bottle['tags'].each { tag, tagData ->
-                                    echo "got ${tag}"
                                     def local_filename = tagData['local_filename']
                                     def filename = tagData['filename']
-                                    def uploadFile = "${upload_url}${filename}"
+                                    def uploadFile = "${bottle['root_url']}${filename}"
                                     echo "Using ${local_filename} to upload to ${uploadFile}"
 
                                 }
