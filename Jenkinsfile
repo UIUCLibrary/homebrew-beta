@@ -106,6 +106,7 @@ pipeline{
                                 def bottle_metadata = readJSON( file: it.path)
                                 echo "Got ${bottle_metadata}"
                                 def formulaName = HOMEBREW_FORMULA_FILE.replace(".json", "")
+                                echo "formulaName = ${formulaName}"
                                 echo "Got ${bottle_metadata[formulaName]}"
 
                             }
