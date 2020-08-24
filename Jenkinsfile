@@ -10,20 +10,13 @@ node('master') {
         }
     }
 }
-// TODO: remove this and turn the choice input back on
-def HOMEBREW_FORMULA_FILE = "getmarc.rb"
 
-def pipelineParameters = {
-    booleanParam( defaultValue: false, description: '', name: 'BUILD_P')
-}
 
 pipeline{
     agent none
     parameters {
-//         todo: change this to true
-        booleanParam defaultValue: false, description: '', name: 'AUDIT_FORMULA'
-//         todo: change this to false
-        booleanParam defaultValue: true, description: '', name: 'BOTTLE_FORMULA'
+        booleanParam defaultValue: true, description: '', name: 'AUDIT_FORMULA'
+        booleanParam defaultValue: false, description: '', name: 'BOTTLE_FORMULA'
         booleanParam defaultValue: false, description: '', name: 'BOTTLE_UPLOAD'
     }
     stages{
@@ -64,12 +57,12 @@ pipeline{
                 beforeAgent true
                 beforeOptions true
             }
-//             input {
-//                 message 'Build the following'
-//                 parameters {
-//                     choice choices: formulas, description: 'Bottle Homebrew formula', name: 'HOMEBREW_FORMULA_FILE'
-//                 }
-//             }
+            input {
+                message 'Build the following'
+                parameters {
+                    choice choices: formulas, description: 'Bottle Homebrew formula', name: 'HOMEBREW_FORMULA_FILE'
+                }
+            }
             stages{
                 stage("Uninstall existing formula"){
                     steps{
