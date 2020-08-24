@@ -98,6 +98,11 @@ pipeline{
                         )
                     }
                 }
+                stage("Upload new bottle to storage"){
+                    steps{
+                        echo "reading *.bottle.json"
+                    }
+                }
             }
             post{
                 success{
