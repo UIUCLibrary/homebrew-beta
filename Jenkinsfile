@@ -31,22 +31,24 @@ pipeline{
 //             }
             when{
                 equals expected: true, actual: params.BUILD_PACKAGES
-//                 beforeInput true
+                beforeInput true
 //                 beforeAgent true
             }
-//             input {
-//                 message 'Build the following'
-//                 parameters( getParams())
-//             }
+            input {
+                message 'Build the following'
+                parameters {
+                    choice choices: ['sd', 'sdcv'], description: '', name: 'ad'
+                    }
+            }
             steps{
                 script{
-                    input(
-                        message: 'Build the following',
-                        parameters: get_pipelineParameters()
+//                     input(
+//                         message: 'Build the following',
+//                         parameters: get_pipelineParameters()
 //                         [
 //                             booleanParam(defaultValue: false, description: '', name: 'sss')
 //                         ]
-                    )
+//                     )
                     formulas.each{
                         echo "Got ${it.path}"
 
