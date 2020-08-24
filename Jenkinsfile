@@ -94,6 +94,12 @@ pipeline{
                     }
                 }
                 stage("Upload new bottle to storage"){
+                    input {
+                        message 'Upload artifact?'
+                        parameters {
+                            credentials credentialType: 'com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl', defaultValue: '', description: '', name: 'NEXUS_CREDS', required: true
+                        }
+                    }
                     steps{
                         script{
                             findFiles( excludes: '', glob: '*.bottle.json').each{
@@ -106,7 +112,9 @@ pipeline{
                                     def local_filename = tagData['local_filename']
                                     def filename = tagData['filename']
                                     def uploadFile = bottle['root_url'] + filename
-                                    echo "Using ${local_filename} to upload to ${uploadFile}"
+                                    sh(label: "Using ${local_filename} to upload to ${uploadFile}",
+                                       script: "curl -v --user $NEXUS_CREDS_USR:$NEXUS_CREDS_PSW' --upload-file ${filename} ${uploadFile}"
+                                   )
 
                                 }
                             }
