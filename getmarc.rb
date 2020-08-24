@@ -3,9 +3,9 @@ class Getmarc < Formula
   desc "Get Marc xml data"
   homepage "https://github.com/UIUCLibrary/uiucprescon.getmarc2"
   url "https://github.com/UIUCLibrary/uiucprescon.getmarc2/archive/v0.1.0b2.tar.gz"
+  version "0.1.0b2"
   sha256 "9f924006570a2747febbc6d258d4af0b5f40a2cc895c888e8e4d00203af91e7f"
   head "https://github.com/UIUCLibrary/uiucprescon.getmarc2.git"
-  version "0.1.0b2"
   bottle do
     root_url "https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/"
     cellar :any
