@@ -11,7 +11,6 @@ class Getmarc < Formula
     cellar :any
     sha256 "d868830a9ed6369eb61d333b6f3e736531b2dd98a6d021043ad33a4ca33429f5" => :catalina
     sha256 "323bbfc8d766f3d34ee7b5b0db28b97872fcbc32ae396e013616742a1d03c6ce" => :mojave
-
   end
 
   depends_on "cython" => :build
