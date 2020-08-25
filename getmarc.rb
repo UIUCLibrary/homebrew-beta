@@ -3,9 +3,9 @@ class Getmarc < Formula
   desc "Get Marc xml data"
   homepage "https://github.com/UIUCLibrary/uiucprescon.getmarc2"
   url "https://github.com/UIUCLibrary/uiucprescon.getmarc2/archive/v0.1.0b2.tar.gz"
+  version "0.1.0b2"
   sha256 "9f924006570a2747febbc6d258d4af0b5f40a2cc895c888e8e4d00203af91e7f"
   head "https://github.com/UIUCLibrary/uiucprescon.getmarc2.git"
-  version "0.1.0b2"
   bottle do
     root_url "https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/"
     cellar :any
@@ -13,11 +13,10 @@ class Getmarc < Formula
     sha256 "323bbfc8d766f3d34ee7b5b0db28b97872fcbc32ae396e013616742a1d03c6ce" => :mojave
   end
 
-  depends_on "python@3.8"
+  depends_on "cython" => :build
   depends_on "libxml2"
   depends_on "libxslt"
-  depends_on "cython" => :build
-
+  depends_on "python@3.8"
 
   resource "lxml" do
     url "https://files.pythonhosted.org/packages/03/a8/73d795778143be51d8b86750b371b3efcd7139987f71618ad9f4b8b65543/lxml-4.5.1.tar.gz"
