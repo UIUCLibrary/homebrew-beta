@@ -228,8 +228,7 @@ class Speedwagon < Formula
            "https://devpi.library.illinois.edu/production/release/+simple/"
   end
 
-  def python_deps
-    # rubocop:disable Metrics/MethodLength
+  def python_deps # rubocop:disable Metrics/MethodLength
     %w[
       distro
       six
