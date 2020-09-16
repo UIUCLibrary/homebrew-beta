@@ -6,7 +6,6 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   desc "Collection of tools and workflows for DS"
   homepage "https://github.com/UIUCLibrary/Speedwagon"
   url "https://github.com/UIUCLibrary/Speedwagon/releases/download/v0.1.5b2/speedwagon-0.1.5b2.tar.gz"
-  version "0.1.5b2"
   sha256 "11d60288200f91fb30c4ba08297492ee1429b1dc829290207ad828fd6b1ebb0a"
   head "https://github.com/UIUCLibrary/Speedwagon.git"
 
@@ -19,6 +18,7 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   depends_on "conan" => :build
   depends_on "python@3.8"
   depends_on "qt"
+  depends_on "sip"
   depends_on "tesseract"
 
   resource "uiucprescon.images" do
@@ -233,6 +233,8 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
 
   def python_deps # rubocop:disable Metrics/MethodLength
     %w[
+      PyQt5
+      PyQt5_sip
       distro
       six
       pyparsing
@@ -257,8 +259,6 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
       async-timeout
       aiohttp
       lxml
-      PyQt5
-      PyQt5_sip
       hathichecksumupdater
       HathiValidate
       HathiZip
