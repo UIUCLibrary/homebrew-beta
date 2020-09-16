@@ -266,5 +266,6 @@ class Speedwagon < Formula
       uiucprescon-getmarc
       uiucprescon.imagevalidate
     ]
+    # rubocop:enable Metrics/MethodLength
   end
 end
