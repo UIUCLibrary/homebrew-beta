@@ -199,7 +199,7 @@ class Speedwagon < Formula
 
   def install
     venv = virtualenv_create(libexec, "python3")
-    get_python_deps.each do |r|
+    python_deps.each do |r|
       venv.pip_install resource(r)
     end
 
@@ -221,9 +221,10 @@ class Speedwagon < Formula
     system "#{libexec}/bin/pip", "check"
     system "#{bin}/speedwagon", "--version"
   end
+
   private
 
-  def get_python_deps
+  def python_deps
     %w[
       distro
       six
