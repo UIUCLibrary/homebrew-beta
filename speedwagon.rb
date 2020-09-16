@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Forumula for building Speedwagon for distribution via Homebrew
 class Speedwagon < Formula
   include Language::Python::Virtualenv
