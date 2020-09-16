@@ -61,15 +61,23 @@ pipeline{
                 message 'Build the following'
                 parameters {
                     choice choices: formulas, description: 'Bottle Homebrew formula', name: 'HOMEBREW_FORMULA_FILE'
+                    booleanParam defaultValue: false, description: 'Use head instead of version in formula', name: 'INSTALL_HEAD'
                 }
             }
             stages{
                 stage("Uninstall existing formula"){
                     steps{
-                        sh(label: "Removing ${HOMEBREW_FORMULA_FILE}",
-                           script: "brew uninstall ${HOMEBREW_FORMULA_FILE} -v",
-                           returnStatus:true
-                        )
+                        script{
+                            def head_command = ""
+                            if(INSTALL_HEAD){
+                                 head_command = " --HEAD"
+                            }
+
+                            sh(label: "Removing ${HOMEBREW_FORMULA_FILE}",
+                               script: "brew uninstall ${HOMEBREW_FORMULA_FILE} -v${head_command}",
+                               returnStatus:true
+                            )
+                        }
                     }
 
                 }
