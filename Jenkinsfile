@@ -80,7 +80,7 @@ pipeline{
                     steps{
                         script{
                             def head_command = ""
-                            if(INSTALL_HEAD){
+                            if(INSTALL_HEAD == true){
                                  head_command = " --HEAD"
                             }
                             sh "brew install --build-bottle ${HOMEBREW_FORMULA_FILE}${head_command}"
