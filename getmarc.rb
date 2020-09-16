@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
+# Homebrew release formula for getmarc
 class Getmarc < Formula
   include Language::Python::Virtualenv
-  desc "Get Marc xml data"
+  desc "Gets Marc xml data"
   homepage "https://github.com/UIUCLibrary/uiucprescon.getmarc2"
   url "https://github.com/UIUCLibrary/uiucprescon.getmarc2/archive/v0.1.0b2.tar.gz"
   version "0.1.0b2"
