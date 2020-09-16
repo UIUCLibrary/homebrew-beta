@@ -5,9 +5,9 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   include Language::Python::Virtualenv
   desc "Collection of tools and workflows for DS"
   homepage "https://github.com/UIUCLibrary/Speedwagon"
-  url "https://github.com/UIUCLibrary/Speedwagon/archive/v0.1.5b2.tar.gz"
+  url "https://github.com/UIUCLibrary/Speedwagon/releases/download/v0.1.5b2/speedwagon-0.1.5b2.tar.gz"
   version "0.1.5b2"
-  sha256 "479991ce49d17a2390a837e5278c4828071267d9df6c53eefef92c288845cc41"
+  sha256 "11d60288200f91fb30c4ba08297492ee1429b1dc829290207ad828fd6b1ebb0a"
   head "https://github.com/UIUCLibrary/Speedwagon.git"
 
   bottle do
