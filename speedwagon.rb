@@ -1,3 +1,4 @@
+# Forumula for building Speedwagon for distribution via Homebrew
 class Speedwagon < Formula
   include Language::Python::Virtualenv
   desc "Collection of tools and workflows for DS"
