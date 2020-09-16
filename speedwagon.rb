@@ -203,14 +203,7 @@ class Speedwagon < Formula
       venv.pip_install resource(r)
     end
 
-    resource("uiucprescon.packager").stage do
-      system "#{libexec}/bin/pip", "install", "-v", "--no-deps", "--no-binary", ":all:",
-             "--ignore-installed", "#{Pathname.pwd}[kdu]"
-    end
-
-    system "#{libexec}/bin/pip", "install", "-v", "--no-deps", "--no-binary", ":all:",
-           "--ignore-installed", "pykdu-compress==0.1.3b13", "-i",
-           "https://devpi.library.illinois.edu/production/release/+simple/"
+    install_special
 
     venv.pip_install_and_link buildpath
 
@@ -223,6 +216,17 @@ class Speedwagon < Formula
   end
 
   private
+
+  def install_special
+    resource("uiucprescon.packager").stage do
+      system "#{libexec}/bin/pip", "install", "-v", "--no-deps", "--no-binary", ":all:",
+             "--ignore-installed", "#{Pathname.pwd}[kdu]"
+    end
+
+    system "#{libexec}/bin/pip", "install", "-v", "--no-deps", "--no-binary", ":all:",
+           "--ignore-installed", "pykdu-compress==0.1.3b13", "-i",
+           "https://devpi.library.illinois.edu/production/release/+simple/"
+  end
 
   def python_deps
     %w[
