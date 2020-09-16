@@ -229,6 +229,7 @@ class Speedwagon < Formula
   end
 
   def python_deps
+    # rubocop:disable Metrics/MethodLength
     %w[
       distro
       six
