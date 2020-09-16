@@ -205,35 +205,35 @@ class Speedwagon < Formula
       pyparsing
       packaging
       scikit-build
-     uiucprescon.ocr
+      uiucprescon.ocr
       ruamel.yaml
-       ruamel.yaml.clib
-       tzlocal
-       pyyaml
-       pytz
-       yarl
-       pluggy
-       multidict
-       importlib-resources
-       zipp
-       importlib-metadata
-       idna-ssl
-       idna
-       chardet
-       attrs
-       async-timeout
-       aiohttp
-       lxml
-       PyQt5
-       PyQt5_sip
-       hathichecksumupdater
-       HathiValidate
-       HathiZip
-       py3exiv2bind
-       pyhathiprep
-       uiucprescon.images
-       uiucprescon-getmarc
-       uiucprescon.imagevalidate
+      ruamel.yaml.clib
+      tzlocal
+      pyyaml
+      pytz
+      yarl
+      pluggy
+      multidict
+      importlib-resources
+      zipp
+      importlib-metadata
+      idna-ssl
+      idna
+      chardet
+      attrs
+      async-timeout
+      aiohttp
+      lxml
+      PyQt5
+      PyQt5_sip
+      hathichecksumupdater
+      HathiValidate
+      HathiZip
+      py3exiv2bind
+      pyhathiprep
+      uiucprescon.images
+      uiucprescon-getmarc
+      uiucprescon.imagevalidate
         ].each do |r|
       venv.pip_install resource(r)
     end
