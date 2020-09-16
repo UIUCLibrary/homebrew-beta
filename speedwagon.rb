@@ -234,7 +234,7 @@ class Speedwagon < Formula
       uiucprescon.images
       uiucprescon-getmarc
       uiucprescon.imagevalidate
-       ].each do |r|
+     ].each do |r|
       venv.pip_install resource(r)
     end
 
