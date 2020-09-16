@@ -67,23 +67,24 @@ pipeline{
             stages{
                 stage("Uninstall existing formula"){
                     steps{
-                        script{
-                            def head_command = ""
-                            if(INSTALL_HEAD){
-                                 head_command = " --HEAD"
-                            }
 
-                            sh(label: "Removing ${HOMEBREW_FORMULA_FILE}",
-                               script: "brew uninstall ${HOMEBREW_FORMULA_FILE} -v",
-                               returnStatus:true
-                            )
-                        }
+                        sh(label: "Removing ${HOMEBREW_FORMULA_FILE}",
+                           script: "brew uninstall ${HOMEBREW_FORMULA_FILE} -v",
+                           returnStatus:true
+                        )
+
                     }
 
                 }
                 stage("Building bottle"){
                     steps{
-                        sh "brew install --build-bottle ${HOMEBREW_FORMULA_FILE}${head_command}"
+                        script{
+                            def head_command = ""
+                            if(INSTALL_HEAD){
+                                 head_command = " --HEAD"
+                            }
+                            sh "brew install --build-bottle ${HOMEBREW_FORMULA_FILE}${head_command}"
+                        }
                     }
                 }
                 stage("Adding bottle to current formula"){
