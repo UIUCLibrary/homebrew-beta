@@ -74,7 +74,7 @@ pipeline{
                             }
 
                             sh(label: "Removing ${HOMEBREW_FORMULA_FILE}",
-                               script: "brew uninstall ${HOMEBREW_FORMULA_FILE} -v${head_command}",
+                               script: "brew uninstall ${HOMEBREW_FORMULA_FILE} -v",
                                returnStatus:true
                             )
                         }
@@ -83,7 +83,7 @@ pipeline{
                 }
                 stage("Building bottle"){
                     steps{
-                        sh "brew install --build-bottle ${HOMEBREW_FORMULA_FILE}"
+                        sh "brew install --build-bottle ${HOMEBREW_FORMULA_FILE}${head_command}"
                     }
                 }
                 stage("Adding bottle to current formula"){
