@@ -199,6 +199,31 @@ class Speedwagon < Formula
 
   def install
     venv = virtualenv_create(libexec, "python3")
+    get_python_deps.each do |r|
+      venv.pip_install resource(r)
+    end
+
+    resource("uiucprescon.packager").stage do
+      system "#{libexec}/bin/pip", "install", "-v", "--no-deps", "--no-binary", ":all:",
+             "--ignore-installed", "#{Pathname.pwd}[kdu]"
+    end
+
+    system "#{libexec}/bin/pip", "install", "-v", "--no-deps", "--no-binary", ":all:",
+           "--ignore-installed", "pykdu-compress==0.1.3b13", "-i",
+           "https://devpi.library.illinois.edu/production/release/+simple/"
+
+    venv.pip_install_and_link buildpath
+
+    system "#{libexec}/bin/pip", "check"
+  end
+
+  test do
+    system "#{libexec}/bin/pip", "check"
+    system "#{bin}/speedwagon", "--version"
+  end
+  private
+
+  def get_python_deps
     %w[
       distro
       six
@@ -234,26 +259,6 @@ class Speedwagon < Formula
       uiucprescon.images
       uiucprescon-getmarc
       uiucprescon.imagevalidate
-    ].each do |r|
-      venv.pip_install resource(r)
-    end
-
-    resource("uiucprescon.packager").stage do
-      system "#{libexec}/bin/pip", "install", "-v", "--no-deps", "--no-binary", ":all:",
-             "--ignore-installed", "#{Pathname.pwd}[kdu]"
-    end
-
-    system "#{libexec}/bin/pip", "install", "-v", "--no-deps", "--no-binary", ":all:",
-           "--ignore-installed", "pykdu-compress==0.1.3b13", "-i",
-           "https://devpi.library.illinois.edu/production/release/+simple/"
-
-    venv.pip_install_and_link buildpath
-
-    system "#{libexec}/bin/pip", "check"
-  end
-
-  test do
-    system "#{libexec}/bin/pip", "check"
-    system "#{bin}/speedwagon", "--version"
+    ]
   end
 end
