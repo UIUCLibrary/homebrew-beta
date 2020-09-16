@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Forumula for building Speedwagon for distribution via Homebrew
-class Speedwagon < Formula
+class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   include Language::Python::Virtualenv
   desc "Collection of tools and workflows for DS"
   homepage "https://github.com/UIUCLibrary/Speedwagon"
