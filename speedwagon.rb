@@ -69,8 +69,8 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   end
 
   resource "uiucprescon.imagevalidate" do
-    url "https://github.com/UIUCLibrary/imagevalidate/archive/0.1.5b1.tar.gz"
-    sha256 "1e398940fb780b37b187ffcd59dde6e5ef2981f28d0a6ef0b4b744da8184b3a5"
+    url "https://github.com/UIUCLibrary/imagevalidate/archive/v0.1.5b8.tar.gz"
+    sha256 "524736608a23c64bc89f0cd434eaba348499abbdc4b45c5720f3dd7d10ffe09b"
   end
 
   # ==================================================
