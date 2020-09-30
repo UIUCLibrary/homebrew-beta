@@ -1,6 +1,6 @@
 # homebrew-beta
 
-This is the beta tap for tools released from UIUC prescon for the Homebrew 
+This is the beta tap for tools released from University of Illinois library for the Homebrew 
 package manager on Mac OS.
 
 ## Instructions
