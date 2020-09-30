@@ -100,6 +100,7 @@ pipeline{
                         script{
                             findFiles( excludes: '', glob: '*.bottle.json').each{
                                 def bottleMetadata = readJSON( file: it.path)
+                                def formulaName = HOMEBREW_FORMULA_FILE.replace(".rb", "")
                                 def newforumula = bottleMetadata["uiuclibrary/beta/${formulaName}"]['formula']['path']
                                 sh "ls -la \$(brew --prefix)/Homebrew/${newforumula}"
                                 sh "python3 scripts/patch_json.py ${it.path} > ${it.path}"
