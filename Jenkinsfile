@@ -94,9 +94,20 @@ pipeline{
                 }
                 stage("Adding bottle to current formula"){
                     steps{
-                        sh(label: "Creating a bottle package",
-                           script: """brew bottle --merge \$(find . -type f -name "*bottle.json") --write --no-commit --verbose"""
-                        )
+                        script{
+                            findFiles( excludes: '', glob: '*.bottle.json').each{
+                                def formulaName = HOMEBREW_FORMULA_FILE.replace(".rb", "")
+                                def bottleMetadata = readJSON( file: it.path)
+                                bottleMetadata["uiuclibrary/beta/${formulaName}"]['formula']['path'] = HOMEBREW_FORMULA_FILE
+                                echo "bottleMetadata = ${bottleMetadata}"
+                                writeJSON file: it.path , json: bottleMetadata
+//                                 sh "python3 -c 'import sys,json,os;data=json.load(sys.stdin);formula=data[list(data.keys())[0]][\"formula\"][\"path\"];data[list(data.keys())[0]][\"formula\"][\"path\"]=os.path.split(formula)[-1];print(data)' <  ${it}.path"
+                                sh(label: "Creating a bottle package",
+                                   script: "brew bottle --merge ${it.path} --write --no-commit --verbose"
+                                )
+                            }
+                        }
+                        sh "git status"
 //                           script: """brew bottle --force-core-tap --json --root_url=https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/ ${HOMEBREW_FORMULA_FILE}
 //                                       brew bottle --merge \$(find . -type f -name "*bottle.json") --write --no-commit --verbose
 //                                       """
