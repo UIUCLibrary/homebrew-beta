@@ -73,7 +73,9 @@ pipeline{
                             if(INSTALL_HEAD == true){
                                 sh "brew install --build-bottle ${HOMEBREW_FORMULA_FILE} --HEAD"
                             } else{
-                                sh "brew test-bot --local --root-url=https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/ --verbose --skip-setup ${HOMEBREW_FORMULA_FILE}"
+                                sh(label:"Running Homebrew Test-Bot",
+                                   script: "brew test-bot --local --root-url=https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/ --verbose --skip-setup ${HOMEBREW_FORMULA_FILE}"
+                                )
                             }
                         }
                     }
