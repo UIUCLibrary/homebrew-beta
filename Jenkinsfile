@@ -5,7 +5,6 @@ node('master') {
             checkout scm
             findFiles( excludes: '', glob: '*.rb').each{
                 echo "Found ${it.path}"
-                echo "directory ${it.directory}"
                 formulas << it
             }
         }
@@ -105,7 +104,8 @@ pipeline{
                                 def formulaFullPath = "${WORKSPACE}/${HOMEBREW_FORMULA_FILE}"
                                 echo "bottleMetadata before = ${bottleMetadata}"
                                 echo "Patching path = ${formulaFullPath}"
-                                bottleMetadata["uiuclibrary/beta/${formulaName}"]['formula']['path'] = "${formulaFullPath}"
+                                bottleMetadata["uiuclibrary/beta/${formulaName}"]['formula'].remove('path')
+                                bottleMetadata["uiuclibrary/beta/${formulaName}"]['formula'].put('path', formulaFullPath)
                                 echo "bottleMetadata after = ${bottleMetadata}"
                                 writeJSON file: it.path , json: bottleMetadata
 //                                 sh "python3 -c 'import sys,json,os;data=json.load(sys.stdin);formula=data[list(data.keys())[0]][\"formula\"][\"path\"];data[list(data.keys())[0]][\"formula\"][\"path\"]=os.path.split(formula)[-1];print(data)' <  ${it}.path"
