@@ -102,7 +102,7 @@ pipeline{
                                 def bottleMetadata = readJSON( file: it.path)
                                 def formulaName = HOMEBREW_FORMULA_FILE.replace(".rb", "")
                                 def newforumula = bottleMetadata["uiuclibrary/beta/${formulaName}"]['formula']['path']
-                                sh "cp \$(brew --prefix)/Homebrew/${newforumula} ${WORKSPACE/${HOMEBREW_FORMULA_FILE}}"
+                                sh "cp \$(brew --prefix)/Homebrew/${newforumula} ${WORKSPACE}/${HOMEBREW_FORMULA_FILE}"
 //                                 sh "python3 scripts/patch_json.py ${it.path} > ${it.path}"
 //                                 sh(label: "Creating a bottle package",
 //                                    script: "brew bottle --merge ${it.path} --write --no-commit --verbose"
