@@ -78,13 +78,15 @@ pipeline{
                     }
                     post{
                         always{
-                            archiveArtifacts artifacts: "logs/"
+                            archiveArtifacts artifacts: "logs/,steps_output.txt"
                         }
                         cleanup{
                             cleanWs(
                                 deleteDirs: true,
                                 patterns: [
                                     [pattern: 'logs/', type: 'INCLUDE'],
+                                    [pattern: 'home/', type: 'INCLUDE'],
+                                    [pattern: 'steps_output.txt', type: 'INCLUDE'],
                                 ]
                             )
                         }
