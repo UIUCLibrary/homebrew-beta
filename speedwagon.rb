@@ -12,8 +12,8 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   bottle do
     root_url "https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/"
     cellar :any
-    sha256 "2b090ef05bf4155d5b7c4efc505ea535c5e1c887f482a5e5f6e2ec9d67f02824" => :catalina
-    sha256 "b6fdb0748cc8dcf987a24cd1fe7f0cf8516b97a6b7fd127c6b20eafdbfb91be8" => :mojave
+    sha256 "afe2371a565dbdecf78fd2eb8a16cf2edd994eaed6421273c85f96e78698cf5e" => :catalina
+    sha256 "a460499733d5679e4f0f9d0688ed08c29eabc7484f3c54b5cd364a4cb3261271" => :mojave
   end
 
   depends_on "cmake" => :build
@@ -64,13 +64,13 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   end
 
   resource "py3exiv2bind" do
-    url "https://github.com/UIUCLibrary/pyexiv2bind/archive/v0.1.5b7.tar.gz"
-    sha256 "d3f75e4a2df55c55e8c71c9b4f77909e1970fa00848f304d4524067f2e5c52a9"
+    url "https://github.com/UIUCLibrary/pyexiv2bind/archive/v0.1.5b9.tar.gz"
+    sha256 "9b9f222ebb46032f704da15d73cc6ce91161c220ac8ba8fea4110259022c9297"
   end
 
   resource "uiucprescon.imagevalidate" do
-    url "https://github.com/UIUCLibrary/imagevalidate/archive/0.1.5b1.tar.gz"
-    sha256 "1e398940fb780b37b187ffcd59dde6e5ef2981f28d0a6ef0b4b744da8184b3a5"
+    url "https://github.com/UIUCLibrary/imagevalidate/archive/v0.1.5b8.tar.gz"
+    sha256 "524736608a23c64bc89f0cd434eaba348499abbdc4b45c5720f3dd7d10ffe09b"
   end
 
   # ==================================================
