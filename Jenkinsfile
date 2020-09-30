@@ -103,16 +103,8 @@ pipeline{
                                 def formulaName = HOMEBREW_FORMULA_FILE.replace(".rb", "")
                                 def newforumula = bottleMetadata["uiuclibrary/beta/${formulaName}"]['formula']['path']
                                 sh "cp \$(brew --prefix)/Homebrew/${newforumula} ${WORKSPACE}/${HOMEBREW_FORMULA_FILE}"
-//                                 sh "python3 scripts/patch_json.py ${it.path} > ${it.path}"
-//                                 sh(label: "Creating a bottle package",
-//                                    script: "brew bottle --merge ${it.path} --write --no-commit --verbose"
-//                                 )
                             }
                         }
-                        sh "git status"
-//                           script: """brew bottle --force-core-tap --json --root_url=https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/ ${HOMEBREW_FORMULA_FILE}
-//                                       brew bottle --merge \$(find . -type f -name "*bottle.json") --write --no-commit --verbose
-//                                       """
                     }
                 }
                 stage("Upload new bottle to repository"){
