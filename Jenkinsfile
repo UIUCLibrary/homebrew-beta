@@ -72,8 +72,9 @@ pipeline{
                             if(INSTALL_HEAD == true){
                                 sh "brew install --build-bottle ${HOMEBREW_FORMULA_FILE} --HEAD"
                             } else{
-                                sh """git status
-                                      brew test-bot --root-url=https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/ --verbose ${HOMEBREW_FORMULA_FILE}
+                                sh """git clean -f
+                                      git status
+                                      brew test-bot --root-url=https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/ --verbose --skip-setup ${HOMEBREW_FORMULA_FILE}
                                       git status
                                       """
                             }
