@@ -68,7 +68,7 @@ pipeline{
                 stage("Run homebrew test-bot"){
                     steps{
                         script{
-                            echo "using ${WORKSPACE}/${HOMEBREW_FORMULA_FILE}"
+
                             def head_command = ""
                             if(INSTALL_HEAD == true){
                                 sh "brew install --build-bottle ${HOMEBREW_FORMULA_FILE} --HEAD"
@@ -99,7 +99,9 @@ pipeline{
                             findFiles( excludes: '', glob: '*.bottle.json').each{
                                 def formulaName = HOMEBREW_FORMULA_FILE.replace(".rb", "")
                                 def bottleMetadata = readJSON( file: it.path)
-                                bottleMetadata["uiuclibrary/beta/${formulaName}"]['formula']['path'] = "${WORKSPACE}/${HOMEBREW_FORMULA_FILE}"
+                                def formulaFullPath = "${WORKSPACE}/${HOMEBREW_FORMULA_FILE}"
+                                echo "Patching path = ${formulaFullPath}"
+                                bottleMetadata["uiuclibrary/beta/${formulaName}"]['formula']['path'] = formulaFullPath
                                 echo "bottleMetadata = ${bottleMetadata}"
                                 writeJSON file: it.path , json: bottleMetadata
 //                                 sh "python3 -c 'import sys,json,os;data=json.load(sys.stdin);formula=data[list(data.keys())[0]][\"formula\"][\"path\"];data[list(data.keys())[0]][\"formula\"][\"path\"]=os.path.split(formula)[-1];print(data)' <  ${it}.path"
