@@ -65,25 +65,15 @@ pipeline{
                 }
             }
             stages{
-                stage("Uninstall existing formula"){
-                    steps{
-
-                        sh(label: "Removing ${HOMEBREW_FORMULA_FILE}",
-                           script: "brew uninstall ${HOMEBREW_FORMULA_FILE} -v",
-                           returnStatus:true
-                        )
-
-                    }
-
-                }
-                stage("Building bottle"){
+                stage("Run homebrew test-bot"){
                     steps{
                         script{
                             def head_command = ""
                             if(INSTALL_HEAD == true){
-                                 head_command = " --HEAD"
+                                sh "brew install --build-bottle ${HOMEBREW_FORMULA_FILE} --HEAD"
+                            } else{
+                                sh "brew test-bot --root-url=https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/ --verbose ${HOMEBREW_FORMULA_FILE}"
                             }
-                            sh "brew install --build-bottle ${HOMEBREW_FORMULA_FILE}${head_command}"
                         }
                     }
                 }
