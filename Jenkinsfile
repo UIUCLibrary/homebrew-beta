@@ -65,11 +65,9 @@ pipeline{
                 }
             }
             stages{
-                stage("Run homebrew test-bot"){
+                stage("Homebrew test-bot"){
                     steps{
                         script{
-
-                            def head_command = ""
                             if(INSTALL_HEAD == true){
                                 sh "brew install --build-bottle ${HOMEBREW_FORMULA_FILE} --HEAD"
                             } else{
@@ -153,15 +151,6 @@ pipeline{
                     )
                 }
             }
-//             steps{
-//                 echo "Using ${HOMEBREW_FORMULA_FILE}"
-//                 script{
-//                     formulas.each{
-//                         echo "Got ${it.path}"
-//
-//                     }
-//                 }
-//             }
         }
     }
 }
