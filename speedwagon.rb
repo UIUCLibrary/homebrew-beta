@@ -64,8 +64,8 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   end
 
   resource "py3exiv2bind" do
-    url "https://github.com/UIUCLibrary/pyexiv2bind/archive/v0.1.5b7.tar.gz"
-    sha256 "d3f75e4a2df55c55e8c71c9b4f77909e1970fa00848f304d4524067f2e5c52a9"
+    url "https://github.com/UIUCLibrary/pyexiv2bind/archive/v0.1.5b9.tar.gz"
+    sha256 "9b9f222ebb46032f704da15d73cc6ce91161c220ac8ba8fea4110259022c9297"
   end
 
   resource "uiucprescon.imagevalidate" do
