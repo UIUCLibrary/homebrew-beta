@@ -76,6 +76,19 @@ pipeline{
                             }
                         }
                     }
+                    post{
+                        always{
+                            archiveArtifacts artifacts: "logs/"
+                        }
+                        cleanup{
+                            cleanWs(
+                                deleteDirs: true,
+                                patterns: [
+                                    [pattern: 'logs/', type: 'INCLUDE'],
+                                ]
+                            )
+                        }
+                    }
                 }
                 stage("Adding bottle to current formula"){
                     steps{
