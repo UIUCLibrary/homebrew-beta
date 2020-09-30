@@ -5,6 +5,7 @@ node('master') {
             checkout scm
             findFiles( excludes: '', glob: '*.rb').each{
                 echo "Found ${it.path}"
+                echo "directory ${it.directory}"
                 formulas << it
             }
         }
