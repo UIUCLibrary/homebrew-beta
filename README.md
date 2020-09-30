@@ -1,7 +1,7 @@
 # homebrew-beta
 
-This is the beta tap for tools released from University of Illinois library for the Homebrew 
-package manager on Mac OS.
+This is the beta tap for tools released from University of Illinois library 
+for the Homebrew package manager on Mac OS.
 
 ## Instructions
 To add uiuclibrary/beta to homebrew use the following command.
