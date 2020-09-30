@@ -80,10 +80,11 @@ pipeline{
                 stage("Adding bottle to current formula"){
                     steps{
                         sh(label: "Creating a bottle package",
-                           script: """brew bottle --force-core-tap --json --root_url=https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/ ${HOMEBREW_FORMULA_FILE}
-                                      brew bottle --merge \$(find . -type f -name "*bottle.json") --write --no-commit --verbose
-                                      """
+                           script: """brew bottle --merge \$(find . -type f -name "*bottle.json") --write --no-commit --verbose"""
                         )
+//                           script: """brew bottle --force-core-tap --json --root_url=https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/ ${HOMEBREW_FORMULA_FILE}
+//                                       brew bottle --merge \$(find . -type f -name "*bottle.json") --write --no-commit --verbose
+//                                       """
                     }
                 }
                 stage("Upload new bottle to repository"){
