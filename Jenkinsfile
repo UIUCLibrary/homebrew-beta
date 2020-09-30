@@ -99,6 +99,9 @@ pipeline{
                     steps{
                         script{
                             findFiles( excludes: '', glob: '*.bottle.json').each{
+                                def bottleMetadata = readJSON( file: it.path)
+                                def newforumula = bottleMetadata["uiuclibrary/beta/${formulaName}"]['formula']['path']
+                                sh "ls -la \$(brew --prefix)/Homebrew/${newforumula}"
                                 sh "python3 scripts/patch_json.py ${it.path} > ${it.path}"
                                 sh(label: "Creating a bottle package",
                                    script: "brew bottle --merge ${it.path} --write --no-commit --verbose"
