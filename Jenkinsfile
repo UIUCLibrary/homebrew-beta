@@ -65,37 +65,48 @@ pipeline{
                 }
             }
             stages{
-                stage("Uninstall existing formula"){
-                    steps{
-
-                        sh(label: "Removing ${HOMEBREW_FORMULA_FILE}",
-                           script: "brew uninstall ${HOMEBREW_FORMULA_FILE} -v",
-                           returnStatus:true
-                        )
-
-                    }
-
-                }
-                stage("Building bottle"){
+                stage("Homebrew test-bot"){
                     steps{
                         script{
-                            def head_command = ""
                             if(INSTALL_HEAD == true){
-                                 head_command = " --HEAD"
+                                sh "brew install --build-bottle ${HOMEBREW_FORMULA_FILE} --HEAD"
+                            } else{
+                                sh(label:"Running Homebrew Test-Bot",
+                                   script: """ln -sF ${WORKSPACE} "\$(brew --repo uiuclibrary/jenkins-${JOB_BASE_NAME})"
+                                              trap "rm \$(brew --repo uiuclibrary/jenkins-${JOB_BASE_NAME})" EXIT
+                                              brew test-bot --debug --verbose --local --tap uiuclibrary/jenkins-${JOB_BASE_NAME} --root-url=https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/ --only-formulae "\$(brew --repo uiuclibrary/jenkins-${JOB_BASE_NAME})/${HOMEBREW_FORMULA_FILE}"
+                                              git status
+                                              """
+//                                               brew test-bot --local --root-url=https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/ --verbose --skip-setup ${HOMEBREW_FORMULA_FILE}
+                                )
                             }
-                            sh "brew install --build-bottle ${HOMEBREW_FORMULA_FILE}${head_command}"
+                        }
+                    }
+                    post{
+                        always{
+                            archiveArtifacts artifacts: "logs/,steps_output.txt"
+                        }
+                        cleanup{
+                            cleanWs(
+                                deleteDirs: true,
+                                patterns: [
+                                    [pattern: 'logs/', type: 'INCLUDE'],
+                                    [pattern: 'home/', type: 'INCLUDE'],
+                                    [pattern: 'steps_output.txt', type: 'INCLUDE'],
+                                ]
+                            )
                         }
                     }
                 }
-                stage("Adding bottle to current formula"){
-                    steps{
-                        sh(label: "Creating a bottle package",
-                           script: """brew bottle --force-core-tap --json --root_url=https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/ ${HOMEBREW_FORMULA_FILE}
-                                      brew bottle --merge \$(find . -type f -name "*bottle.json") --write --no-commit --verbose
-                                      """
-                        )
-                    }
-                }
+//                 stage("Adding bottle to current formula"){
+//                     steps{
+//                         sh(label: "Creating a bottle package",
+//                            script: """brew bottle --force-core-tap --json --root_url=https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/ ${HOMEBREW_FORMULA_FILE}
+//                                       brew bottle --merge \$(find . -type f -name "*bottle.json") --write --no-commit --verbose
+//                                       """
+//                         )
+//                     }
+//                 }
                 stage("Upload new bottle to repository"){
                     input {
                         message 'Upload artifact?'
@@ -139,17 +150,14 @@ pipeline{
                         script: "brew uninstall ${HOMEBREW_FORMULA_FILE} -v || echo '${HOMEBREW_FORMULA_FILE} not installed'",
                         returnStatus:true
                     )
+                    cleanWs(
+                        deleteDirs: true,
+                        patterns: [
+                            [pattern: '*.bottle.*', type: 'INCLUDE'],
+                        ]
+                    )
                 }
             }
-//             steps{
-//                 echo "Using ${HOMEBREW_FORMULA_FILE}"
-//                 script{
-//                     formulas.each{
-//                         echo "Got ${it.path}"
-//
-//                     }
-//                 }
-//             }
         }
     }
 }
