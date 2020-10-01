@@ -95,14 +95,11 @@ pipeline{
                 }
                 stage("Adding bottle to current formula"){
                     steps{
-                        script{
-                            findFiles( excludes: '', glob: '*.bottle.json').each{
-                                def bottleMetadata = readJSON( file: it.path)
-                                def formulaName = HOMEBREW_FORMULA_FILE.replace(".rb", "")
-                                def newforumula = bottleMetadata["uiuclibrary/beta/${formulaName}"]['formula']['path']
-                                sh "cp \$(brew --prefix)/Homebrew/${newforumula} ${WORKSPACE}/${HOMEBREW_FORMULA_FILE}"
-                            }
-                        }
+                        sh(label: "Creating a bottle package",
+                           script: """brew bottle --force-core-tap --json --root_url=https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/ ${HOMEBREW_FORMULA_FILE}
+                                      brew bottle --merge \$(find . -type f -name "*bottle.json") --write --no-commit --verbose
+                                      """
+                        )
                     }
                 }
                 stage("Upload new bottle to repository"){
@@ -124,8 +121,7 @@ pipeline{
                         script{
                             findFiles( excludes: '', glob: '*.bottle.json').each{
                                 def formulaName = HOMEBREW_FORMULA_FILE.replace(".rb", "")
-
-                                def bottle = readJSON( file: it.path)["uiuclibrary/beta/${formulaName}"]['bottle']
+                                def bottle = readJSON( file: it.path)[formulaName]['bottle']
                                 bottle['tags'].each { tag, tagData ->
                                     def local_filename = tagData['local_filename']
                                     def filename = tagData['filename']
@@ -149,6 +145,14 @@ pipeline{
                         script: "brew uninstall ${HOMEBREW_FORMULA_FILE} -v || echo '${HOMEBREW_FORMULA_FILE} not installed'",
                         returnStatus:true
                     )
+                    cleanup{
+                        cleanWs(
+                            deleteDirs: true,
+                            patterns: [
+                                [pattern: '*.bottle.*', type: 'INCLUDE'],
+                            ]
+                        )
+                    }
                 }
             }
         }
