@@ -150,14 +150,12 @@ pipeline{
                         script: "brew uninstall ${HOMEBREW_FORMULA_FILE} -v || echo '${HOMEBREW_FORMULA_FILE} not installed'",
                         returnStatus:true
                     )
-                    cleanup{
-                        cleanWs(
-                            deleteDirs: true,
-                            patterns: [
-                                [pattern: '*.bottle.*', type: 'INCLUDE'],
-                            ]
-                        )
-                    }
+                    cleanWs(
+                        deleteDirs: true,
+                        patterns: [
+                            [pattern: '*.bottle.*', type: 'INCLUDE'],
+                        ]
+                    )
                 }
             }
         }
