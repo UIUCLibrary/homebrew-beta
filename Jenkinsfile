@@ -72,7 +72,12 @@ pipeline{
                                 sh "brew install --build-bottle ${HOMEBREW_FORMULA_FILE} --HEAD"
                             } else{
                                 sh(label:"Running Homebrew Test-Bot",
-                                   script: "brew test-bot --local --root-url=https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/ --verbose --skip-setup ${HOMEBREW_FORMULA_FILE}"
+                                   script: """ln -s $PWD "\$(brew --repo uiuclibrary/test)"
+                                              brew test-bot --debug --verbose --local --tap uiuclibrary/test --root-url=https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/ --only-formulae "\$(brew --repo uiuclibrary/test)/${HOMEBREW_FORMULA_FILE}"
+                                              trap "rm \$(brew --repo uiuclibrary/test)" EXIT
+                                              git status
+                                              """
+//                                               brew test-bot --local --root-url=https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/ --verbose --skip-setup ${HOMEBREW_FORMULA_FILE}
                                 )
                             }
                         }
