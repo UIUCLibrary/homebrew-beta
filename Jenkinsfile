@@ -74,6 +74,7 @@ pipeline{
                                 sh(label:"Running Homebrew Test-Bot",
                                    script: """ln -sF $PWD "\$(brew --repo uiuclibrary/test)"
                                               trap "rm \$(brew --repo uiuclibrary/test)" EXIT
+                                              cat "\$(brew --repo uiuclibrary/test)/${HOMEBREW_FORMULA_FILE}"
                                               brew test-bot --debug --verbose --local --tap uiuclibrary/test --root-url=https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/ --only-formulae "\$(brew --repo uiuclibrary/test)/${HOMEBREW_FORMULA_FILE}"
                                               git status
                                               """
