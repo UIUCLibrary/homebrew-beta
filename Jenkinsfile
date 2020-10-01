@@ -72,7 +72,7 @@ pipeline{
                                 sh "brew install --build-bottle ${HOMEBREW_FORMULA_FILE} --HEAD"
                             } else{
                                 sh(label:"Running Homebrew Test-Bot",
-                                   script: """ln -sF $PWD "\$(brew --repo uiuclibrary/test)"
+                                   script: """ln -sF ${WORKSPACE} "\$(brew --repo uiuclibrary/test)"
                                               trap "rm \$(brew --repo uiuclibrary/test)" EXIT
                                               ls "\$(brew --repo uiuclibrary/test)"
                                               cat "\$(brew --repo uiuclibrary/test)/${HOMEBREW_FORMULA_FILE}"
