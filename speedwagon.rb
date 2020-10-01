@@ -13,6 +13,7 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
     root_url "https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/"
     cellar :any
     sha256 "ebb6711ef94a5c338885bf98a5d9b50842c924baeff31b695842ca75a34db712" => :catalina
+    sha256 "136dd1a7180720dce31bdf55cce99420753303d2922b4c9f99a7148750f5ce10" => :mojave
   end
 
   depends_on "cmake" => :build
