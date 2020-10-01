@@ -72,9 +72,9 @@ pipeline{
                                 sh "brew install --build-bottle ${HOMEBREW_FORMULA_FILE} --HEAD"
                             } else{
                                 sh(label:"Running Homebrew Test-Bot",
-                                   script: """ln -sF ${WORKSPACE} "\$(brew --repo uiuclibrary/test)"
-                                              trap "rm \$(brew --repo uiuclibrary/test)" EXIT
-                                              brew test-bot --debug --verbose --local --tap uiuclibrary/test --root-url=https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/ --only-formulae "\$(brew --repo uiuclibrary/test)/${HOMEBREW_FORMULA_FILE}"
+                                   script: """ln -sF ${WORKSPACE} "\$(brew --repo uiuclibrary/${JOB_BASE_NAME})"
+                                              trap "rm \$(brew --repo uiuclibrary/${JOB_BASE_NAME})" EXIT
+                                              brew test-bot --debug --verbose --local --tap uiuclibrary/${JOB_BASE_NAME} --root-url=https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/ --only-formulae "\$(brew --repo uiuclibrary/${JOB_BASE_NAME})/${HOMEBREW_FORMULA_FILE}"
                                               git status
                                               """
 //                                               brew test-bot --local --root-url=https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/ --verbose --skip-setup ${HOMEBREW_FORMULA_FILE}
@@ -98,15 +98,15 @@ pipeline{
                         }
                     }
                 }
-                stage("Adding bottle to current formula"){
-                    steps{
-                        sh(label: "Creating a bottle package",
-                           script: """brew bottle --force-core-tap --json --root_url=https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/ ${HOMEBREW_FORMULA_FILE}
-                                      brew bottle --merge \$(find . -type f -name "*bottle.json") --write --no-commit --verbose
-                                      """
-                        )
-                    }
-                }
+//                 stage("Adding bottle to current formula"){
+//                     steps{
+//                         sh(label: "Creating a bottle package",
+//                            script: """brew bottle --force-core-tap --json --root_url=https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/ ${HOMEBREW_FORMULA_FILE}
+//                                       brew bottle --merge \$(find . -type f -name "*bottle.json") --write --no-commit --verbose
+//                                       """
+//                         )
+//                     }
+//                 }
                 stage("Upload new bottle to repository"){
                     input {
                         message 'Upload artifact?'
