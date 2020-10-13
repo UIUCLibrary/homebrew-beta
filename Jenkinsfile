@@ -73,6 +73,7 @@ pipeline{
                             } else{
                                 sh(label:"Running Homebrew Test-Bot",
                                    script: """pwd
+                                              ls -la ${WORKSPACE}/
                                               ln -sF ${WORKSPACE}/ "\$(brew --repo uiuclibrary/jenkins-${JOB_BASE_NAME})"
                                               ls "\$(brew --repo uiuclibrary/jenkins-${JOB_BASE_NAME})"
                                               trap "rm \$(brew --repo uiuclibrary/jenkins-${JOB_BASE_NAME}) && brew untap uiuclibrary/jenkins-${JOB_BASE_NAME}" EXIT
