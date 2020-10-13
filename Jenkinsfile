@@ -87,6 +87,9 @@ pipeline{
                         always{
                             archiveArtifacts artifacts: "logs/,steps_output.txt"
                         }
+                        failed{
+                            sh "brew config"
+                        }
                         cleanup{
                             cleanWs(
                                 deleteDirs: true,
