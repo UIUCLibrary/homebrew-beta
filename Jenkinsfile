@@ -87,7 +87,7 @@ pipeline{
                         always{
                             archiveArtifacts artifacts: "logs/,steps_output.txt"
                         }
-                        failed{
+                        failure{
                             sh "brew config"
                         }
                         cleanup{
