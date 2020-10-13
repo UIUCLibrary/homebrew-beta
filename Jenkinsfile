@@ -72,9 +72,10 @@ pipeline{
                                 sh "brew install --build-bottle ${HOMEBREW_FORMULA_FILE} --HEAD"
                             } else{
                                 sh(label:"Running Homebrew Test-Bot",
-                                   script: """ln -sF ${WORKSPACE} "\$(brew --repo uiuclibrary/jenkins-${JOB_BASE_NAME})"
-                                              trap "rm \$(brew --repo uiuclibrary/jenkins-${JOB_BASE_NAME})" EXIT
-                                              brew test-bot --debug --verbose --local --tap uiuclibrary/jenkins-${JOB_BASE_NAME} --root-url=https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/ --only-formulae "\$(brew --repo uiuclibrary/jenkins-${JOB_BASE_NAME})/${HOMEBREW_FORMULA_FILE}"
+                                   script: """mkdir -p \$(brew --repo)/Library/Taps/uiuclibrary
+                                              ln -s ${WORKSPACE} \$(brew --repo uiuclibrary/jenkins-${JOB_BASE_NAME})
+                                              trap "brew untap uiuclibrary/jenkins-${JOB_BASE_NAME}" EXIT
+                                              brew test-bot --verbose --debug --local --tap uiuclibrary/jenkins-${JOB_BASE_NAME} --root-url=https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/ --only-formulae ${HOMEBREW_FORMULA_FILE}
                                               git status
                                               """
 //                                               brew test-bot --local --root-url=https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/ --verbose --skip-setup ${HOMEBREW_FORMULA_FILE}
@@ -86,7 +87,11 @@ pipeline{
                         always{
                             archiveArtifacts artifacts: "logs/,steps_output.txt"
                         }
+                        failure{
+                            sh "brew config"
+                        }
                         cleanup{
+                            sh "brew tap --repair"
                             cleanWs(
                                 deleteDirs: true,
                                 patterns: [
@@ -126,7 +131,17 @@ pipeline{
                         script{
                             findFiles( excludes: '', glob: '*.bottle.json').each{
                                 def formulaName = HOMEBREW_FORMULA_FILE.replace(".rb", "")
-                                def bottle = readJSON( file: it.path)[formulaName]['bottle']
+                                def jsonData = readJSON( file: it.path)
+                                def bottle
+                                def key = "uiuclibrary/jenkins-${JOB_BASE_NAME}/${formulaName}".toLowerCase()
+                                try{
+                                    bottle = jsonData[key]['bottle']
+                                } catch(Exception e){
+                                    echo "jsonData = ${jsonData}"
+                                    error "invalid data with key ${key}"
+                                }
+
+
                                 bottle['tags'].each { tag, tagData ->
                                     def local_filename = tagData['local_filename']
                                     def filename = tagData['filename']
