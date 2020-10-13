@@ -136,7 +136,7 @@ pipeline{
                                 try{
                                     bottle = jsonData["uiuclibrary/jenkins-${JOB_BASE_NAME})/${formulaName}"]['bottle']
                                 } catch(Exception e){
-                                    echo "bottle = ${bottle}"
+                                    echo "jsonData = ${jsonData}"
                                     error 'invalid data'
                                 }
 
