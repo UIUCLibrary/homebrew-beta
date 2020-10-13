@@ -91,6 +91,7 @@ pipeline{
                             sh "brew config"
                         }
                         cleanup{
+                            sh "brew tap --repair"
                             cleanWs(
                                 deleteDirs: true,
                                 patterns: [
