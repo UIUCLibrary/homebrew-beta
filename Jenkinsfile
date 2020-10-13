@@ -75,7 +75,7 @@ pipeline{
                                    script: """brew tap uiuclibrary/jenkins-${JOB_BASE_NAME} ${WORKSPACE}
                                               trap "brew untap uiuclibrary/jenkins-${JOB_BASE_NAME}" EXIT
                                               cat "\$(brew --repo uiuclibrary/jenkins-${JOB_BASE_NAME})/${HOMEBREW_FORMULA_FILE}"
-                                              brew test-bot --verbose --local --tap uiuclibrary/jenkins-${JOB_BASE_NAME} --root-url=https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/ --only-formulae ${HOMEBREW_FORMULA_FILE}"
+                                              brew test-bot --verbose --local --tap uiuclibrary/jenkins-${JOB_BASE_NAME} --root-url=https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/ --only-formulae ${HOMEBREW_FORMULA_FILE}
                                               git status
                                               """
 //                                               brew test-bot --local --root-url=https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/ --verbose --skip-setup ${HOMEBREW_FORMULA_FILE}
