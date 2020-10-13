@@ -72,9 +72,8 @@ pipeline{
                                 sh "brew install --build-bottle ${HOMEBREW_FORMULA_FILE} --HEAD"
                             } else{
                                 sh(label:"Running Homebrew Test-Bot",
-                                   script: """brew tap uiuclibrary/jenkins-${JOB_BASE_NAME} ${WORKSPACE}
+                                   script: """ln -s ${WORKSPACE} \$(brew --repo uiuclibrary/jenkins-${JOB_BASE_NAME})
                                               trap "brew untap uiuclibrary/jenkins-${JOB_BASE_NAME}" EXIT
-                                              cat "\$(brew --repo uiuclibrary/jenkins-${JOB_BASE_NAME})/${HOMEBREW_FORMULA_FILE}"
                                               brew test-bot --verbose --debug --local --tap uiuclibrary/jenkins-${JOB_BASE_NAME} --root-url=https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/ --only-formulae ${HOMEBREW_FORMULA_FILE}
                                               git status
                                               """
