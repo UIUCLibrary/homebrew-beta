@@ -131,7 +131,16 @@ pipeline{
                         script{
                             findFiles( excludes: '', glob: '*.bottle.json').each{
                                 def formulaName = HOMEBREW_FORMULA_FILE.replace(".rb", "")
-                                def bottle = readJSON( file: it.path)["uiuclibrary/jenkins-${JOB_BASE_NAME})/${formulaName}"]['bottle']
+                                def jsonData = readJSON( file: it.path)
+                                def bottle
+                                try{
+                                    bottle = jsonData["uiuclibrary/jenkins-${JOB_BASE_NAME})/${formulaName}"]['bottle']
+                                } catch(Exception e){
+                                    echo "bottle = ${bottle}"
+                                    error 'invalid data'
+                                }
+
+
                                 bottle['tags'].each { tag, tagData ->
                                     def local_filename = tagData['local_filename']
                                     def filename = tagData['filename']
