@@ -75,6 +75,7 @@ pipeline{
                                    script: """pwd
                                               ls "\$(brew --repo)"
                                               ln -sF ${WORKSPACE} "\$(brew --repo uiuclibrary/jenkins-${JOB_BASE_NAME})"
+                                              ls "\$(brew --repo uiuclibrary/jenkins-${JOB_BASE_NAME})"
                                               trap "rm \$(brew --repo uiuclibrary/jenkins-${JOB_BASE_NAME}) && brew untap uiuclibrary/jenkins-${JOB_BASE_NAME}" EXIT
                                               brew test-bot --debug --verbose --local --tap uiuclibrary/jenkins-${JOB_BASE_NAME} --root-url=https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/ --only-formulae "\$(brew --repo uiuclibrary/jenkins-${JOB_BASE_NAME})/${HOMEBREW_FORMULA_FILE}"
                                               git status
