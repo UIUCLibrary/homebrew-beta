@@ -14,6 +14,7 @@ class Getmarc < Formula
     root_url "https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/"
     cellar :any
     sha256 "765b22d1c670d92aced0e9ae75c16692142c9276353cfcad882afae40f299fc2" => :catalina
+    sha256 "e9ad582657482476ca8722f819426def0ca03255b8f4e385dcd0286658b7109c" => :mojave
   end
 
   depends_on "cython" => :build
