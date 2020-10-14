@@ -116,8 +116,8 @@ pipeline{
                     input {
                         message 'Upload artifact?'
                         parameters {
-                            string defaultValue: '', description: '', name: 'NEXUS_USR', trim: true
-                            password defaultValue: '', description: '', name: 'NEXUS_PSW'
+                            string defaultValue: '', description: 'Nexus Username', name: 'NEXUS_USR', trim: true
+                            password defaultValue: '', description: 'Nexus Password', name: 'NEXUS_PSW'
                         }
                     }
                     options {
@@ -146,6 +146,7 @@ pipeline{
                                     def local_filename = tagData['local_filename']
                                     def filename = tagData['filename']
                                     def uploadFile = bottle['root_url'] + filename
+//                                     FIXME: NEXUS_PSW is not hiding password
                                     sh(label: "Using ${local_filename} to upload to ${uploadFile}",
                                        script: "curl -v --user '${NEXUS_USR}:${NEXUS_PSW}' --upload-file ${local_filename} ${uploadFile}"
                                    )
