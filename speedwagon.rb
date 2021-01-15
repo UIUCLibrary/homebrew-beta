@@ -6,15 +6,15 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   include Language::Python::Virtualenv
   desc "Collection of tools and workflows for DS"
   homepage "https://github.com/UIUCLibrary/Speedwagon"
-  url "https://github.com/UIUCLibrary/Speedwagon/archive/v0.1.5b3.tar.gz"
-  sha256 "dc77b6029d27c12a86e62b9985c8b5c81dc1ef2dfd758ba4961bd622e429728c"
+  url "https://github.com/UIUCLibrary/Speedwagon/archive/v0.1.5b8.tar.gz"
+  sha256 "ca0af868b1bceace862474f5d2a31b5ecc0a7d2cfd3498462afdba04dd00c513"
   head "https://github.com/UIUCLibrary/Speedwagon.git"
 
   bottle do
     root_url "https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/"
     cellar :any
-    sha256 "a6bbf28c7b8cdabdd82de8bd10ff7c0f91f7b52e10523e1516e441ed8f2948da" => :catalina
-    sha256 "136dd1a7180720dce31bdf55cce99420753303d2922b4c9f99a7148750f5ce10" => :mojave
+    sha256 "826355a05bdf569403ab13f978d5468daa3acd747e45ed64902ee6f7c3ceeab0" => :catalina
+    sha256 "5d5b23f2a1ebb8ae253ec7b42896738cb1187c529e7c4d1c8e9b800a0e859f37" => :mojave
   end
 
   depends_on "cmake" => :build
@@ -35,23 +35,23 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   end
 
   resource "uiucprescon.ocr" do
-    url "https://github.com/UIUCLibrary/Tesseract_Glue/archive/v0.1.1b6.tar.gz"
-    sha256 "8be47a7643943abd58e627180af714a15acde91781081899de41b7ac595f5d01"
+    url "https://github.com/UIUCLibrary/Tesseract_Glue/archive/v0.1.1.tar.gz"
+    sha256 "97417dd1a523676fe14624a8c1b51df1b1790553abc854ec4e8a5a6447e1341d"
   end
 
   resource "HathiValidate" do
-    url "https://github.com/UIUCLibrary/HathiValidate/archive/v0.3.6b1.tar.gz"
-    sha256 "c919c6622cc56d8a66f853c47173dc7b221caba6e9d3d5da3c14cd7f73d1399a"
+    url "https://github.com/UIUCLibrary/HathiValidate/archive/v0.3.6b5.tar.gz"
+    sha256 "89c1141c08758a785525f7a2a7dccca58a8e3197f6094e0490fe9c8b2603da5e"
   end
 
   resource "pyhathiprep" do
-    url "https://github.com/UIUCLibrary/pyhathiprep/archive/v0.1.5b3.tar.gz"
-    sha256 "52cab76cce0f90fef7bd1c92aff9622c1003ee750583996cd5ae9b3aa7c4a75b"
+    url "https://github.com/UIUCLibrary/pyhathiprep/archive/v0.1.5b4.tar.gz"
+    sha256 "6a2d2caec46b646da0524c301d401f7f19fc859d4f5a30cb76c87928b70b2d19"
   end
 
   resource "HathiZip" do
-    url "https://github.com/UIUCLibrary/HathiZip/archive/v0.1.6b1.tar.gz"
-    sha256 "9fcf36dfe9f7151e8902fbd15dcf1f2825e5c9ca1426335acb8489b5bac9fbc3"
+    url "https://github.com/UIUCLibrary/HathiZip/archive/v0.1.9.tar.gz"
+    sha256 "40753f5325f9b31fca2a7fb51fa6626db0ca29fa43a1183b4b333fbec7d798c7"
   end
 
   resource "uiucprescon-getmarc" do
@@ -59,19 +59,14 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
     sha256 "2753be8fd85105e42638ce55eff1090ea472f0e0813cfa4a2fe86447fde9e72e"
   end
 
-  resource "hathichecksumupdater" do
-    url "https://github.com/UIUCLibrary/HT_checksum_update/archive/0.1.2b2.tar.gz"
-    sha256 "66696d159861e3ecfcaefac406590ef14e130d92285f318cc4e9b1d45a301d0b"
-  end
-
   resource "py3exiv2bind" do
-    url "https://github.com/UIUCLibrary/pyexiv2bind/archive/v0.1.5b10.tar.gz"
-    sha256 "3a2c5b6ca5eec4a5523ddc2f38957f276137819643c7f9aa0a1d967035f1c2d4"
+    url "https://github.com/UIUCLibrary/pyexiv2bind/archive/v0.1.5.tar.gz"
+    sha256 "1c9f5e10c91b993a7cf96939b007a1073838e9a17efd40b168e10e6f93912fa1"
   end
 
   resource "uiucprescon.imagevalidate" do
-    url "https://github.com/UIUCLibrary/imagevalidate/archive/v0.1.5b8.tar.gz"
-    sha256 "524736608a23c64bc89f0cd434eaba348499abbdc4b45c5720f3dd7d10ffe09b"
+    url "https://github.com/UIUCLibrary/imagevalidate/archive/v0.1.5.tar.gz"
+    sha256 "ff3e65fa517521067b7052131572617aafff7a0ff7cf9f50103e9a49c393be11"
   end
 
   # ==================================================
@@ -81,6 +76,11 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   resource "six" do
     url "https://files.pythonhosted.org/packages/6b/34/415834bfdafca3c5f451532e8a8d9ba89a21c9743a0c59fbd0205c7f9426/six-1.15.0.tar.gz"
     sha256 "30639c035cdb23534cd4aa2dd52c3bf48f06e5f4a941509c8bafd8ce11080259"
+  end
+
+  resource "requests" do
+    url "https://files.pythonhosted.org/packages/6b/47/c14abc08432ab22dc18b9892252efaf005ab44066de871e72a38d6af464b/requests-2.25.1.tar.gz"
+    sha256 "27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804"
   end
 
   resource "distro" do
@@ -203,6 +203,22 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
     sha256 "0a34b6596bdd28d52da3a51fa8d9bb0b287bcb605c2512aa3251b9028cc71f4d"
   end
 
+  resource "wheel" do
+    url "https://files.pythonhosted.org/packages/ed/46/e298a50dde405e1c202e316fa6a3015ff9288423661d7ea5e8f22f589071/wheel-0.36.2.tar.gz"
+    sha256 "e11eefd162658ea59a60a0f6c7d493a7190ea4b9a85e335b33489d9f17e0245e"
+  end
+
+  #===========
+  resource "certifi" do
+    url "https://files.pythonhosted.org/packages/06/a9/cd1fd8ee13f73a4d4f491ee219deeeae20afefa914dfb4c130cfc9dc397a/certifi-2020.12.5.tar.gz"
+    sha256 "1a4995114262bffbc2413b159f2a1a480c969de6e6eb13ee966d470af86af59c"
+  end
+
+  resource "urllib3" do
+    url "https://files.pythonhosted.org/packages/29/e6/d1a1d78c439cad688757b70f26c50a53332167c364edb0134cadd280e234/urllib3-1.26.2.tar.gz"
+    sha256 "19188f96923873c92ccb987120ec4acaa12f0461fa9ce5d3d0772bc965a39e08"
+  end
+
   def install
     venv = virtualenv_create(libexec, "python3")
     python_deps.each do |r|
@@ -230,7 +246,7 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
     end
 
     system "#{libexec}/bin/pip", "install", "-v", "--no-deps", "--no-binary", ":all:",
-           "--ignore-installed", "pykdu-compress==0.1.3b13", "-i",
+           "--ignore-installed", "pykdu-compress==0.1.3", "-i",
            "https://devpi.library.illinois.edu/production/release/+simple/"
   end
 
@@ -242,6 +258,10 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
       six
       pyparsing
       packaging
+      certifi
+      urllib3
+      requests
+      wheel
       scikit-build
       uiucprescon.ocr
       ruamel.yaml
@@ -262,7 +282,6 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
       async-timeout
       aiohttp
       lxml
-      hathichecksumupdater
       HathiValidate
       HathiZip
       py3exiv2bind
