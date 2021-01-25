@@ -40,18 +40,18 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   end
 
   resource "HathiValidate" do
-    url "https://api.github.com/repos/UIUCLibrary/HathiValidate/tarball/v0.3.6b5"
-    sha256 "c7fcf0107740d0a3565ddc0a1e099e9a287d28f805bc0bfb53d92ecf7fa96398"
+    url "https://github.com/UIUCLibrary/HathiValidate/archive/v0.3.6b5.tar.gz"
+    sha256 "89c1141c08758a785525f7a2a7dccca58a8e3197f6094e0490fe9c8b2603da5e"
   end
 
   resource "pyhathiprep" do
-    url "https://api.github.com/repos/UIUCLibrary/pyhathiprep/tarball/v0.1.5b4"
-    sha256 "48e16f1eb71ad97c9229295f42026819894badac2ffe54eb0ce20565e799fa50"
+    url "https://github.com/UIUCLibrary/pyhathiprep/archive/v0.1.5b4.tar.gz"
+    sha256 "6a2d2caec46b646da0524c301d401f7f19fc859d4f5a30cb76c87928b70b2d19"
   end
 
   resource "HathiZip" do
-    url "https://api.github.com/repos/UIUCLibrary/HathiZip/tarball/v0.1.9"
-    sha256 "90ad912ba78b035c33a582a6b0288fc82b37aecf39fedac69a4f6ad8403d013f"
+    url "https://github.com/UIUCLibrary/HathiZip/archive/v0.1.9.tar.gz"
+    sha256 "40753f5325f9b31fca2a7fb51fa6626db0ca29fa43a1183b4b333fbec7d798c7"
   end
 
   resource "uiucprescon-getmarc" do
