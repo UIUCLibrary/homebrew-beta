@@ -6,16 +6,15 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   include Language::Python::Virtualenv
   desc "Collection of tools and workflows for DS"
   homepage "https://github.com/UIUCLibrary/Speedwagon"
-  url "https://github.com/UIUCLibrary/Speedwagon/archive/v0.1.5b8.tar.gz"
-  sha256 "ca0af868b1bceace862474f5d2a31b5ecc0a7d2cfd3498462afdba04dd00c513"
+  url "https://github.com/UIUCLibrary/Speedwagon/archive/v0.1.5b10.tar.gz"
+  sha256 "efe7280c67755ae6f86032dd068f98f8d59717f050027607241657999841d14d"
   head "https://github.com/UIUCLibrary/Speedwagon.git"
 
   bottle do
     root_url "https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/"
-    cellar :any
-    sha256 "826355a05bdf569403ab13f978d5468daa3acd747e45ed64902ee6f7c3ceeab0" => :catalina
-    sha256 "5d5b23f2a1ebb8ae253ec7b42896738cb1187c529e7c4d1c8e9b800a0e859f37" => :mojave
+    sha256 cellar: :any, catalina: "1554da77f91e38a9131cd27b771e9dac0364c9d1d29afcebe6806150d5b039a4"
   end
+
 
   depends_on "cmake" => :build
   depends_on "conan" => :build
@@ -23,6 +22,7 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   depends_on "qt"
   depends_on "sip"
   depends_on "tesseract"
+
 
   resource "uiucprescon.images" do
     url "https://github.com/UIUCLibrary/uiucprescon.images/archive/v0.0.4b1.tar.gz"
@@ -43,10 +43,10 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
     url "https://github.com/UIUCLibrary/HathiValidate/archive/v0.3.6b5.tar.gz"
     sha256 "89c1141c08758a785525f7a2a7dccca58a8e3197f6094e0490fe9c8b2603da5e"
   end
-
+  #
   resource "pyhathiprep" do
-    url "https://github.com/UIUCLibrary/pyhathiprep/archive/v0.1.5b4.tar.gz"
-    sha256 "6a2d2caec46b646da0524c301d401f7f19fc859d4f5a30cb76c87928b70b2d19"
+    url "https://github.com/UIUCLibrary/pyhathiprep/archive/v0.1.5.tar.gz"
+    sha256 "a6d1295eabf0e21bf42e6949070a69b4b9e4f368f9ff5f0f3f785709e9000d23"
   end
 
   resource "HathiZip" do
@@ -63,7 +63,7 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
     url "https://github.com/UIUCLibrary/pyexiv2bind/archive/v0.1.5.tar.gz"
     sha256 "1c9f5e10c91b993a7cf96939b007a1073838e9a17efd40b168e10e6f93912fa1"
   end
-
+  #
   resource "uiucprescon.imagevalidate" do
     url "https://github.com/UIUCLibrary/imagevalidate/archive/v0.1.5.tar.gz"
     sha256 "ff3e65fa517521067b7052131572617aafff7a0ff7cf9f50103e9a49c393be11"
@@ -72,7 +72,6 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   # ==================================================
   # Third party
   # ==================================================
-
   resource "PyQt5" do
     url "https://files.pythonhosted.org/packages/28/6c/640e3f5c734c296a7193079a86842a789edb7988dca39eab44579088a1d1/PyQt5-5.15.2.tar.gz"
     sha256 "372b08dc9321d1201e4690182697c5e7ffb2e0770e6b4a45519025134b12e4fc"
@@ -134,8 +133,8 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   end
 
   resource "pytz" do
-    url "https://files.pythonhosted.org/packages/70/44/404ec10dca553032900a65bcded8b8280cf7c64cc3b723324e2181bf93c9/pytz-2020.5.tar.gz"
-    sha256 "180befebb1927b16f6b57101720075a984c019ac16b1b7575673bea42c6c3da5"
+    url "https://files.pythonhosted.org/packages/b0/61/eddc6eb2c682ea6fd97a7e1018a6294be80dba08fa28e7a3570148b4612d/pytz-2021.1.tar.gz"
+    sha256 "83a4a90894bf38e243cf052c8b58f381bfe9a7a483f6a9cab140bc7f702ac4da"
   end
 
   resource "requests" do
@@ -164,8 +163,8 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   end
 
   resource "urllib3" do
-    url "https://files.pythonhosted.org/packages/29/e6/d1a1d78c439cad688757b70f26c50a53332167c364edb0134cadd280e234/urllib3-1.26.2.tar.gz"
-    sha256 "19188f96923873c92ccb987120ec4acaa12f0461fa9ce5d3d0772bc965a39e08"
+    url "https://files.pythonhosted.org/packages/d7/8d/7ee68c6b48e1ec8d41198f694ecdc15f7596356f2ff8e6b1420300cf5db3/urllib3-1.26.3.tar.gz"
+    sha256 "de3eedaad74a2683334e282005cd8d7f22f4d55fa690a2a1020a416cb0a47e73"
   end
 
   resource "yarl" do
