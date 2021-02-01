@@ -15,14 +15,12 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
     sha256 cellar: :any, catalina: "1554da77f91e38a9131cd27b771e9dac0364c9d1d29afcebe6806150d5b039a4"
   end
 
-
   depends_on "cmake" => :build
   depends_on "conan" => :build
   depends_on "python@3.8"
   depends_on "qt"
   depends_on "sip"
   depends_on "tesseract"
-
 
   resource "uiucprescon.images" do
     url "https://github.com/UIUCLibrary/uiucprescon.images/archive/v0.0.4b1.tar.gz"
@@ -43,7 +41,7 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
     url "https://github.com/UIUCLibrary/HathiValidate/archive/v0.3.6b5.tar.gz"
     sha256 "89c1141c08758a785525f7a2a7dccca58a8e3197f6094e0490fe9c8b2603da5e"
   end
-  #
+
   resource "pyhathiprep" do
     url "https://github.com/UIUCLibrary/pyhathiprep/archive/v0.1.5.tar.gz"
     sha256 "a6d1295eabf0e21bf42e6949070a69b4b9e4f368f9ff5f0f3f785709e9000d23"
@@ -63,7 +61,7 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
     url "https://github.com/UIUCLibrary/pyexiv2bind/archive/v0.1.5.tar.gz"
     sha256 "1c9f5e10c91b993a7cf96939b007a1073838e9a17efd40b168e10e6f93912fa1"
   end
-  #
+
   resource "uiucprescon.imagevalidate" do
     url "https://github.com/UIUCLibrary/imagevalidate/archive/v0.1.5.tar.gz"
     sha256 "ff3e65fa517521067b7052131572617aafff7a0ff7cf9f50103e9a49c393be11"
