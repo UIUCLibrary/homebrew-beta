@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 (cd /usr/local/Homebrew && git stash && git clean -d -f)
-ln -s $PWD "$(brew --repo uiuclibrary/test)"
+ln -s $PWD "$(brew --repo uiuclibrary/build)"
 trap "rm $(brew --repo uiuclibrary/test)" EXIT
-brew test-bot --debug --verbose --tap uiuclibrary/test --root-url=https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/ --only-formulae "$(brew --repo uiuclibrary/test)/$1"
+brew test-bot --debug --verbose --tap uiuclibrary/build --root-url=https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/ --only-formulae "$(brew --repo uiuclibrary/build)/$1"

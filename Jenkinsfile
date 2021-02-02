@@ -89,6 +89,7 @@ pipeline{
                             archiveArtifacts artifacts: "logs/,steps_output.txt"
                         }
                         failure{
+                            archiveArtifacts artifacts: '*.bottle.tar.gz,*.bottle.json'
                             sh "brew config"
                         }
                         cleanup{
@@ -134,7 +135,7 @@ pipeline{
                                 def formulaName = HOMEBREW_FORMULA_FILE.replace(".rb", "")
                                 def jsonData = readJSON( file: it.path)
                                 def bottle
-                                def key = "uiuclibrary/jenkins-${JOB_BASE_NAME}/${formulaName}".toLowerCase()
+                                def key = "uiuclibrary/build/${formulaName}".toLowerCase()
                                 try{
                                     bottle = jsonData[key]['bottle']
                                 } catch(Exception e){
