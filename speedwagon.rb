@@ -6,14 +6,14 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   include Language::Python::Virtualenv
   desc "Collection of tools and workflows for DS"
   homepage "https://github.com/UIUCLibrary/Speedwagon"
-  url "https://github.com/UIUCLibrary/Speedwagon/archive/v0.1.5b10.tar.gz"
-  sha256 "efe7280c67755ae6f86032dd068f98f8d59717f050027607241657999841d14d"
+  url "https://github.com/UIUCLibrary/Speedwagon/archive/v0.1.5b11.tar.gz"
+  sha256 "dcae8f56ee4dd2f1c1cfdf12698e323904f555e9ed35348ce3df8b38573a885d"
   head "https://github.com/UIUCLibrary/Speedwagon.git"
 
   bottle do
     root_url "https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/"
-    sha256 cellar: :any, catalina: "1554da77f91e38a9131cd27b771e9dac0364c9d1d29afcebe6806150d5b039a4"
-    sha256 cellar: :any, mojave: "4da1a6ac9440664f9b4e5cc71178eb778314500064f36dfcad8ab6e3627a15a9"
+    sha256 cellar: :any, catalina: "fd85bb753c1e4e552fcc1faaedfcdfeb68bac2810b6dc341b6f646df5a05127c"
+    sha256 cellar: :any, mojave:   "1a7782670a4d228448178d62ce7af60cdd03137385eb77c4ba605efcf24c8f88"
   end
 
   depends_on "cmake" => :build
@@ -29,8 +29,8 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   end
 
   resource "uiucprescon.packager" do
-    url "https://github.com/UIUCLibrary/Packager/archive/v0.2.11b5.tar.gz"
-    sha256 "a434f9a6e8b7e2c947e2270186a79c0d5d796357ede4c035a2bf53e0a6b5a10c"
+    url "https://github.com/UIUCLibrary/Packager/archive/v0.2.11b6.tar.gz"
+    sha256 "c4e6ad3389e99e93d05c4b8c1c046d1c88f4c54ffeb5d0594fa28cf8f439ef8a"
   end
 
   resource "uiucprescon.ocr" do
@@ -39,8 +39,8 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   end
 
   resource "HathiValidate" do
-    url "https://github.com/UIUCLibrary/HathiValidate/archive/v0.3.6b5.tar.gz"
-    sha256 "89c1141c08758a785525f7a2a7dccca58a8e3197f6094e0490fe9c8b2603da5e"
+    url "https://github.com/UIUCLibrary/HathiValidate/archive/v0.3.6b6.tar.gz"
+    sha256 "0635d359df0b67519ade35d87b4ca3d9886e87bea7c7b6185ad3f9d235561ad1"
   end
 
   resource "pyhathiprep" do
