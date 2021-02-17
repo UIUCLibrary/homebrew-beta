@@ -9,6 +9,13 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   url "https://github.com/UIUCLibrary/Speedwagon/archive/v0.1.5b12.tar.gz"
   sha256 "6fcb3b2afec02d0dac016b6349b2fc326dfcf0ee5fe424b05dceb60e59977afa"
   head "https://github.com/UIUCLibrary/Speedwagon.git"
+  version "0.1.5b12"
+  version_scheme 1
+
+  bottle do
+    root_url "https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/"
+    sha256 cellar: :any, catalina: "c140ab5e83b63e3a3b2059d292be4754c7d30281769316b671be9c2af7f587a9"
+  end
 
   depends_on "cmake" => :build
   depends_on "conan" => :build
