@@ -7,10 +7,10 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   desc "Collection of tools and workflows for DS"
   homepage "https://github.com/UIUCLibrary/Speedwagon"
   url "https://github.com/UIUCLibrary/Speedwagon/archive/v0.1.5b12.tar.gz"
-  sha256 "6fcb3b2afec02d0dac016b6349b2fc326dfcf0ee5fe424b05dceb60e59977afa"
-  head "https://github.com/UIUCLibrary/Speedwagon.git"
   version "0.1.5b12"
+  sha256 "6fcb3b2afec02d0dac016b6349b2fc326dfcf0ee5fe424b05dceb60e59977afa"
   version_scheme 1
+  head "https://github.com/UIUCLibrary/Speedwagon.git"
 
   bottle do
     root_url "https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/"
