@@ -145,12 +145,16 @@ pipeline{
 
 
                                 bottle['tags'].each { tag, tagData ->
-                                    def local_filename = tagData['local_filename']
+                                    def localFilename = tagData['local_filename']
                                     def filename = tagData['filename']
                                     def uploadFile = bottle['root_url'] + filename
-//                                     FIXME: NEXUS_PSW is not hiding password
-                                    sh(label: "Using ${local_filename} to upload to ${uploadFile}",
-                                       script: "curl -v --user '${NEXUS_USR}:${NEXUS_PSW}' --upload-file ${local_filename} ${uploadFile}"
+                                    withEnv([
+                                        "uploadFile=${bottle['root_url'] + filename}",
+                                        "local_filename=${tagData['local_filename'}]"
+                                        ]) {
+                                        sh(label: "Using ${localFilename} to upload to ${uploadFile}",
+                                           script: 'curl -v --user $NEXUS_USR:$NEXUS_PSW --upload-file $localFilename $uploadFile'
+                                    }
                                    )
 
                                 }
