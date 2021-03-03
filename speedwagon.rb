@@ -68,7 +68,7 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   # Third party
   # ==================================================
   resource "PyQt5" do
-    url "https://files.pythonhosted.org/packages/6e/86/d715e71771cece0e060f2ebab20f3ded067b08a0927dfb3143530cae8098/PyQt5-5.15.2.tar.gz"
+    url "https://files.pythonhosted.org/packages/28/6c/640e3f5c734c296a7193079a86842a789edb7988dca39eab44579088a1d1/PyQt5-5.15.2.tar.gz"
     sha256 "372b08dc9321d1201e4690182697c5e7ffb2e0770e6b4a45519025134b12e4fc"
   end
 
