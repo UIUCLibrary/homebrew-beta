@@ -218,6 +218,7 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
       resource("aiohttp"),
       resource("lxml"),
       resource("PyQt5"),
+      resource("PyQt5-sip"),
     ]
   end
 
