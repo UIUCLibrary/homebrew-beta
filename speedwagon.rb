@@ -6,15 +6,15 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   include Language::Python::Virtualenv
   desc "Collection of tools and workflows for DS"
   homepage "https://github.com/UIUCLibrary/Speedwagon"
-  url "https://github.com/UIUCLibrary/Speedwagon/archive/v0.1.5b14.tar.gz"
-  version "0.1.5b14"
-  sha256 "8e0f83fc67230217fb0285305479488070cd5c30c36ebd9348dcc30456e1553e"
+  url "https://github.com/UIUCLibrary/Speedwagon/archive/v0.1.5b15.tar.gz"
+  version "0.1.5b15"
+  sha256 "719f5e921c0f1e025306e2b1e629b9ae9d388f7b95e53a7d9884cdfc63e02146"
   version_scheme 1
   head "https://github.com/UIUCLibrary/Speedwagon.git"
 
   depends_on "cmake" => :build
   depends_on "conan" => :build
-  depends_on "python@3.8"
+  depends_on "python@3.9"
   depends_on "qt@5"
   depends_on "sip"
   depends_on "tesseract"
@@ -169,14 +169,12 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
 
   def install
     venv = virtualenv_create(libexec, "python3")
-    python_deps.each do |r|
-      venv.pip_install resource(r)
-    end
-
+    venv.pip_install third_party_python_deps
+    venv.pip_install first_party_python_deps
     install_special
-
     venv.pip_install_and_link buildpath
 
+    system "#{libexec}/bin/pip", "list"
     system "#{libexec}/bin/pip", "check"
   end
 
@@ -193,41 +191,45 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
              "--ignore-installed", "#{Pathname.pwd}[kdu]"
     end
 
+    system "#{libexec}/bin/pip", "install", "-v", "PyQt5-Qt==5.15.2", "PyQt5==5.15.2"
     system "#{libexec}/bin/pip", "install", "-v", "--no-deps", "--no-binary", ":all:",
            "--ignore-installed", "pykdu-compress==0.1.3", "-i",
            "https://devpi.library.illinois.edu/production/release/+simple/"
   end
 
-  def python_deps # rubocop:disable Metrics/MethodLength
-    %w[
-      PyQt5-sip
-      PyQt5
-      certifi
-      urllib3
-      requests
-      uiucprescon.ocr
-      ruamel.yaml
-      ruamel.yaml.clib
-      tzlocal
-      PyYAML
-      pytz
-      yarl
-      multidict
-      importlib-resources
-      idna
-      chardet
-      attrs
-      async-timeout
-      typing-extensions
-      aiohttp
-      lxml
-      HathiValidate
-      HathiZip
-      py3exiv2bind
-      pyhathiprep
-      uiucprescon.images
-      uiucprescon-getmarc
-      uiucprescon.imagevalidate
+  def third_party_python_deps # rubocop:disable Metrics/MethodLength,Metrics/AbcSize
+    [
+      resource("idna"),
+      resource("certifi"),
+      resource("urllib3"),
+      resource("requests"),
+      resource("ruamel.yaml"),
+      resource("ruamel.yaml.clib"),
+      resource("tzlocal"),
+      resource("PyYAML"),
+      resource("pytz"),
+      resource("yarl"),
+      resource("multidict"),
+      resource("importlib-resources"),
+      resource("chardet"),
+      resource("attrs"),
+      resource("async-timeout"),
+      resource("typing-extensions"),
+      resource("aiohttp"),
+      resource("lxml"),
+    ]
+  end
+
+  def first_party_python_deps # rubocop:disable Metrics/MethodLength
+    [
+      resource("uiucprescon.ocr"),
+      resource("HathiValidate"),
+      resource("HathiZip"),
+      resource("py3exiv2bind"),
+      resource("pyhathiprep"),
+      resource("uiucprescon.images"),
+      resource("uiucprescon-getmarc"),
+      resource("uiucprescon.imagevalidate"),
     ]
   end
 end
