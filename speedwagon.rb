@@ -169,9 +169,9 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
 
   def install
     venv = virtualenv_create(libexec, "python3")
+    install_special
     venv.pip_install third_party_python_deps
     venv.pip_install first_party_python_deps
-    install_special
     venv.pip_install_and_link buildpath
 
     system "#{libexec}/bin/pip", "list"
@@ -191,7 +191,7 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
              "--ignore-installed", "#{Pathname.pwd}[kdu]"
     end
 
-    system "#{libexec}/bin/pip", "install", "-v", "PyQt5-Qt==5.15.2", "PyQt5==5.15.2"
+    system "#{libexec}/bin/pip", "install", "-v", "PyQt5-Qt==5.15.2"
     system "#{libexec}/bin/pip", "install", "-v", "--no-deps", "--no-binary", ":all:",
            "--ignore-installed", "pykdu-compress==0.1.3", "-i",
            "https://devpi.library.illinois.edu/production/release/+simple/"
@@ -217,6 +217,7 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
       resource("typing-extensions"),
       resource("aiohttp"),
       resource("lxml"),
+      resource("PyQt5"),
     ]
   end
 
