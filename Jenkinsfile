@@ -86,10 +86,11 @@ pipeline{
                     }
                     post{
                         always{
+                            sh 'ls -laR'
                             archiveArtifacts artifacts: "logs/,steps_output.txt"
+                            archiveArtifacts(artifacts: '*.bottle.tar.gz,*.bottle.json', allowEmptyArchive: true)
                         }
                         failure{
-                            archiveArtifacts artifacts: '*.bottle.tar.gz,*.bottle.json'
                             sh "brew config"
                         }
                         cleanup{
@@ -105,6 +106,7 @@ pipeline{
                         }
                     }
                 }
+
 //                 stage("Adding bottle to current formula"){
 //                     steps{
 //                         sh(label: "Creating a bottle package",
@@ -163,9 +165,9 @@ pipeline{
                 }
             }
             post{
-                always{
-                    archiveArtifacts artifacts: "*.bottle.*,${HOMEBREW_FORMULA_FILE}"
-                }
+//                 always{
+//                     archiveArtifacts artifacts: "*.bottle.*,${HOMEBREW_FORMULA_FILE}"
+//                 }
                 cleanup{
                     sh( label: "Removing ${HOMEBREW_FORMULA_FILE}",
                         script: "brew uninstall ${HOMEBREW_FORMULA_FILE} -v || echo '${HOMEBREW_FORMULA_FILE} not installed'",
