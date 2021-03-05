@@ -147,16 +147,31 @@ pipeline{
 
 
                                 bottle['tags'].each { tag, tagData ->
-                                    def localFilename = tagData['local_filename']
-                                    def filename = tagData['filename']
-                                    def uploadFile = bottle['root_url'] + filename
-                                    withEnv([
-                                        "uploadFile=${bottle['root_url'] + filename}",
-                                        "localFilename=${tagData['localFilename']}"
-                                        ]) {
-                                        sh(label: "Using ${localFilename} to upload to ${uploadFile}",
-                                           script: 'curl --silent --user $NEXUS_USR:$NEXUS_PSW --upload-file $localFilename $uploadFile'
-                                       )
+                                    try{
+                                        def localFilename = tagData['local_filename']
+                                        if(!localFilename){
+                                            error "${tag} is missing required field local_filename"
+                                        }
+
+                                        def filename = tagData['filename']
+                                        if(!filename){
+                                            error "${tag} is missing required field filename"
+                                        }
+                                        def uploadFile = bottle['root_url'] + filename
+                                        if(!uploadFile){
+                                            error "${tag} is missing required field root_url"
+                                        }
+                                        withEnv([
+                                            "uploadFile=${bottle['root_url'] + filename}",
+                                            "localFilename=${tagData['localFilename']}"
+                                            ]) {
+                                            sh(label: "Using ${localFilename} to upload to ${uploadFile}",
+                                               script: 'curl --silent --user $NEXUS_USR:$NEXUS_PSW --upload-file $localFilename $uploadFile'
+                                           )
+                                        }
+                                    } catch(Exception e){
+                                        echo "Unable to upload bottle with the following information.\n${tagData}"
+                                        throw e;
                                     }
                                 }
                             }
