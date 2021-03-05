@@ -155,7 +155,7 @@ pipeline{
                                         "localFilename=${tagData['localFilename']}"
                                         ]) {
                                         sh(label: "Using ${localFilename} to upload to ${uploadFile}",
-                                           script: 'curl -v --user $NEXUS_USR:$NEXUS_PSW --upload-file $localFilename $uploadFile'
+                                           script: 'curl --silent --user $NEXUS_USR:$NEXUS_PSW --upload-file $localFilename $uploadFile'
                                        )
                                     }
                                 }
