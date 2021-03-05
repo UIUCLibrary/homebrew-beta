@@ -163,7 +163,7 @@ pipeline{
                 }
             }
             post{
-                success{
+                always{
                     archiveArtifacts artifacts: "*.bottle.*,${HOMEBREW_FORMULA_FILE}"
                 }
                 cleanup{
