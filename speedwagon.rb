@@ -6,16 +6,16 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   include Language::Python::Virtualenv
   desc "Collection of tools and workflows for DS"
   homepage "https://github.com/UIUCLibrary/Speedwagon"
-  url "https://github.com/UIUCLibrary/Speedwagon/archive/v0.1.5b15.tar.gz"
-  version "0.1.5b15"
-  sha256 "719f5e921c0f1e025306e2b1e629b9ae9d388f7b95e53a7d9884cdfc63e02146"
+  url "https://github.com/UIUCLibrary/Speedwagon/archive/v0.1.5b16.tar.gz"
+  version "0.1.5b16"
+  sha256 "1023df0ebb326726debd455b6bd9e2f79f3bdcc3ea6d8e031483a0e1684e6d9c"
   version_scheme 1
   head "https://github.com/UIUCLibrary/Speedwagon.git"
 
   bottle do
     root_url "https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/"
-    sha256 cellar: :any, catalina: "c54eb0c87a0195f7b1411d8f098678bc60cba7fae306aad091776e99fd8f0f51"
-    sha256 cellar: :any, mojave:   "a8d1d10fe58ea017cd82b2f51003ac1deae4ff7fecb2b77493fbcdc98d8cc005"
+    sha256 cellar: :any, catalina: "42ee1695b393eb9b5c11ac4c519850df385e4cb739bfc0c50031f1623ea4d598"
+    sha256 cellar: :any, mojave:   "7a1f35fd494ef6b4020f734e3ca8f776adb2df06ec1e34f20ff246d9bf3121b3"
   end
 
   depends_on "cmake" => :build
@@ -31,8 +31,8 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   end
 
   resource "uiucprescon.packager" do
-    url "https://github.com/UIUCLibrary/Packager/archive/v0.2.11b7.tar.gz"
-    sha256 "18ebea884c162c4abbbd96b9b4f4554bc0a4c5621b85f984d94aafb8d732e5eb"
+    url "https://github.com/UIUCLibrary/Packager/archive/v0.2.11b8.tar.gz"
+    sha256 "5f66c5690a6d939832e9b05aa05cee63d6223b4a05072e2f0363d288f79955df"
   end
 
   resource "uiucprescon.ocr" do
@@ -74,8 +74,8 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   # Third party
   # ==================================================
   resource "PyQt5" do
-    url "https://files.pythonhosted.org/packages/28/6c/640e3f5c734c296a7193079a86842a789edb7988dca39eab44579088a1d1/PyQt5-5.15.2.tar.gz"
-    sha256 "372b08dc9321d1201e4690182697c5e7ffb2e0770e6b4a45519025134b12e4fc"
+    url "https://files.pythonhosted.org/packages/8e/a4/d5e4bf99dd50134c88b95e926d7b81aad2473b47fde5e3e4eac2c69a8942/PyQt5-5.15.4.tar.gz"
+    sha256 "2a69597e0dd11caabe75fae133feca66387819fc9bc050f547e5551bce97e5be"
   end
 
   resource "PyQt5-sip" do

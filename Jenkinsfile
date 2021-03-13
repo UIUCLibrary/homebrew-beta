@@ -163,7 +163,7 @@ pipeline{
                                         }
                                         withEnv([
                                             "uploadFile=${bottle['root_url'] + filename}",
-                                            "localFilename=${tagData['localFilename']}"
+                                            "localFilename=${tagData['local_filename']}"
                                             ]) {
                                             sh(label: "Using ${localFilename} to upload to ${uploadFile}",
                                                script: 'curl --silent --user $NEXUS_USR:$NEXUS_PSW --upload-file $localFilename $uploadFile'
