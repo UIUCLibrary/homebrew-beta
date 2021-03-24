@@ -34,7 +34,7 @@ pipeline{
                                 stage("Auditing ${it.path}"){
                                     checkout scm
                                     catchError(buildResult: 'UNSTABLE', stageResult: 'UNSTABLE', message: "${it.path} failed audit") {
-                                        sh "brew audit ${it.path}"
+                                        sh "brew audit --formula ${it.path} --verbose"
                                     }
                                 }
                             }
