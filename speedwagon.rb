@@ -6,17 +6,11 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   include Language::Python::Virtualenv
   desc "Collection of tools and workflows for DS"
   homepage "https://github.com/UIUCLibrary/Speedwagon"
-  url "https://github.com/UIUCLibrary/Speedwagon/archive/0.1.5b17.tar.gz"
-  version "0.1.5b17"
-  sha256 "c36dafd9fd2d41b6d5c86c88062d4ed2b8f9566d8fef227c2608a2bd9276e91d"
+  url "https://github.com/UIUCLibrary/Speedwagon/archive/refs/tags/v0.1.5b18.tar.gz"
+  version "0.1.5b18"
+  sha256 "cf022fef5dbd4ea3034baba61009936606e4e926b094672716696c058ea6b29c"
   version_scheme 1
   head "https://github.com/UIUCLibrary/Speedwagon.git"
-
-  bottle do
-    root_url "https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/"
-    sha256 cellar: :any, catalina: "159cb54f9e7216b610148269fbcf32577727c47899b96657f832fc2e91e14616"
-    sha256 cellar: :any, mojave:   "d12fb8c1c6b67be1acf4990e2d490482f47cc16aaae9f867754b6126faba49b8"
-  end
 
   depends_on "cmake" => :build
   depends_on "conan" => :build
@@ -52,11 +46,6 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   resource "HathiZip" do
     url "https://github.com/UIUCLibrary/HathiZip/archive/v0.1.9.tar.gz"
     sha256 "40753f5325f9b31fca2a7fb51fa6626db0ca29fa43a1183b4b333fbec7d798c7"
-  end
-
-  resource "uiucprescon-getmarc" do
-    url "https://github.com/UIUCLibrary/pygetmarc/archive/0.1.3b1.tar.gz"
-    sha256 "2753be8fd85105e42638ce55eff1090ea472f0e0813cfa4a2fe86447fde9e72e"
   end
 
   resource "py3exiv2bind" do
@@ -235,7 +224,6 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
       resource("py3exiv2bind"),
       resource("pyhathiprep"),
       resource("uiucprescon.images"),
-      resource("uiucprescon-getmarc"),
       resource("uiucprescon.imagevalidate"),
     ]
   end
