@@ -29,8 +29,8 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   end
 
   resource "uiucprescon.ocr" do
-    url "https://github.com/UIUCLibrary/Tesseract_Glue/archive/v0.1.2b2.tar.gz"
-    sha256 "693e4c5329dcbb35a0a1fcd057a616da898a5109a0b0269cfa9b46d1960cb77f"
+    url "https://github.com/UIUCLibrary/Tesseract_Glue/archive/v0.1.2b3.tar.gz"
+    sha256 "52ac70376f3d72f315aced1943d7c59e525c97339f3b560e8c7975f4b5cda87c"
   end
 
   resource "HathiValidate" do
