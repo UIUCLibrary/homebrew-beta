@@ -6,9 +6,9 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   include Language::Python::Virtualenv
   desc "Collection of tools and workflows for DS"
   homepage "https://github.com/UIUCLibrary/Speedwagon"
-  url "https://github.com/UIUCLibrary/Speedwagon/archive/refs/tags/v0.1.5b19.tar.gz"
-  version "0.1.5b19"
-  sha256 "9474ffa8777d71fe076aedd0b69c508ca888942378a18640bdd86b497975ead6"
+  url "https://github.com/UIUCLibrary/Speedwagon/archive/refs/tags/v0.1.5b20.tar.gz"
+  version "0.1.5b20"
+  sha256 "63b615aa21c25f1c9c47183762cd82ddd97f422a502494b2c9e1e400b09ebb38"
   version_scheme 1
   head "https://github.com/UIUCLibrary/Speedwagon.git"
 
@@ -30,8 +30,8 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   end
 
   resource "uiucprescon.packager" do
-    url "https://github.com/UIUCLibrary/Packager/archive/v0.2.11b10.tar.gz"
-    sha256 "f5dabbb4e7c4978918e89fd0527e862f771a5028eacd6e55dfc5904afa49e958"
+    url "https://github.com/UIUCLibrary/Packager/archive/v0.2.11b11.tar.gz"
+    sha256 "acc213681b22150be79ab40bfc44f9a1dbd16a54fcd57db2316a6a52c02c8757"
   end
 
   resource "uiucprescon.ocr" do
