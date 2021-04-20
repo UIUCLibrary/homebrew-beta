@@ -15,6 +15,7 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   bottle do
     root_url "https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/"
     sha256 cellar: :any, catalina: "4d1aad34d0fc79a5845724ac218394459ea864b0015d4af8052911e3bc867a0a"
+    sha256 cellar: :any, mojave:   "84fa2fd4f8e8926286d4d821c1facb7b339db02995848e24cc6eda7b9253af19"
   end
 
   depends_on "cmake" => :build
@@ -161,7 +162,7 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
            "https://devpi.library.illinois.edu/production/release/+simple/"
   end
 
-  def third_party_python_deps # rubocop:disable Metrics/MethodLength,Metrics/AbcSize
+  def third_party_python_deps # rubocop:disable Metrics/MethodLength
     [
       resource("idna"),
       resource("certifi"),
@@ -179,7 +180,7 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
     ]
   end
 
-  def first_party_python_deps # rubocop:disable Metrics/MethodLength
+  def first_party_python_deps
     [
       resource("uiucprescon.ocr"),
       resource("HathiValidate"),
