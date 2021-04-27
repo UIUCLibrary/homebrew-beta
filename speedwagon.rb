@@ -6,17 +6,11 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   include Language::Python::Virtualenv
   desc "Collection of tools and workflows for DS"
   homepage "https://github.com/UIUCLibrary/Speedwagon"
-  url "https://github.com/UIUCLibrary/Speedwagon/archive/refs/tags/v0.1.5b20.tar.gz"
-  version "0.1.5b20"
-  sha256 "63b615aa21c25f1c9c47183762cd82ddd97f422a502494b2c9e1e400b09ebb38"
+  url "https://github.com/UIUCLibrary/Speedwagon/archive/refs/tags/v0.1.5b21.tar.gz"
+  version "0.1.5b21"
+  sha256 "a22f59d5cc1f43bb9d206f9ec23de74eb32e3587edc9448f13a3eaf5bbb5a606"
   version_scheme 1
   head "https://github.com/UIUCLibrary/Speedwagon.git"
-
-  bottle do
-    root_url "https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/"
-    sha256 cellar: :any, catalina: "4d1aad34d0fc79a5845724ac218394459ea864b0015d4af8052911e3bc867a0a"
-    sha256 cellar: :any, mojave:   "84fa2fd4f8e8926286d4d821c1facb7b339db02995848e24cc6eda7b9253af19"
-  end
 
   depends_on "cmake" => :build
   depends_on "conan" => :build
@@ -30,8 +24,8 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   end
 
   resource "uiucprescon.packager" do
-    url "https://github.com/UIUCLibrary/Packager/archive/v0.2.11b11.tar.gz"
-    sha256 "acc213681b22150be79ab40bfc44f9a1dbd16a54fcd57db2316a6a52c02c8757"
+    url "https://github.com/UIUCLibrary/Packager/archive/v0.2.11b12.tar.gz"
+    sha256 "d9b4f444226beef7416ca8490c3afe08150705de37f99ee0d598d947ed209a72"
   end
 
   resource "uiucprescon.ocr" do
