@@ -6,17 +6,11 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   include Language::Python::Virtualenv
   desc "Collection of tools and workflows for DS"
   homepage "https://github.com/UIUCLibrary/Speedwagon"
-  url "https://github.com/UIUCLibrary/Speedwagon/archive/refs/tags/v0.1.5b21.tar.gz"
-  version "0.1.5b21"
-  sha256 "a22f59d5cc1f43bb9d206f9ec23de74eb32e3587edc9448f13a3eaf5bbb5a606"
+  url "https://github.com/UIUCLibrary/Speedwagon/archive/refs/tags/v0.1.5b22.tar.gz"
+  version "0.1.5b22"
+  sha256 "1f188f4ff933426bd47128d13d95ad911bc42b567a39ed286095ac491825e5b2"
   version_scheme 1
   head "https://github.com/UIUCLibrary/Speedwagon.git"
-
-  bottle do
-    root_url "https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/"
-    sha256 cellar: :any, catalina: "26c77a097be436b70f2c7ccd5a93661c4886a9a6dcf4b91c8d9a34de22bd946f"
-    sha256 cellar: :any, mojave:   "3fa452b60ee2fd365a4ed5eccbbcfe0515fcf93b526d8c2582cdac199560459d"
-  end
 
   depends_on "cmake" => :build
   depends_on "conan" => :build
@@ -158,7 +152,7 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
 
     # system "#{libexec}/bin/pip", "install", "-v", "PyQt5-Qt==5.15.2"
     system "#{libexec}/bin/pip", "install", "-v", "--no-deps", "--no-binary", ":all:",
-           "--ignore-installed", "pykdu-compress==0.1.3", "-i",
+           "--ignore-installed", "pykdu-compress==0.1.4.b1", "-i",
            "https://devpi.library.illinois.edu/production/release/+simple/"
   end
 
