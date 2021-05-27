@@ -24,8 +24,8 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   end
 
   resource "uiucprescon.packager" do
-    url "https://github.com/UIUCLibrary/Packager/archive/v0.2.11b12.tar.gz"
-    sha256 "d9b4f444226beef7416ca8490c3afe08150705de37f99ee0d598d947ed209a72"
+    url "https://github.com/UIUCLibrary/Packager/archive/v0.2.11b13.tar.gz"
+    sha256 "bd0faa9a0e92c35fe97fdd4159a26d87d0020173e6a35300bb4b62bd0d55e2da"
   end
 
   resource "uiucprescon.ocr" do
