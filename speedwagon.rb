@@ -6,17 +6,11 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   include Language::Python::Virtualenv
   desc "Collection of tools and workflows for DS"
   homepage "https://github.com/UIUCLibrary/Speedwagon"
-  url "https://github.com/UIUCLibrary/Speedwagon/archive/refs/tags/v0.1.5b22.tar.gz"
-  version "0.1.5b22"
-  sha256 "1f188f4ff933426bd47128d13d95ad911bc42b567a39ed286095ac491825e5b2"
+  url "https://github.com/UIUCLibrary/Speedwagon/archive/refs/tags/v0.1.5b23.tar.gz"
+  version "0.1.5b23"
+  sha256 "5537cb2464a5ee851d1d889c2582e2fa42e376ba4e3fe5200e3668897cd446c0"
   version_scheme 1
   head "https://github.com/UIUCLibrary/Speedwagon.git"
-
-  bottle do
-    root_url "https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/"
-    sha256 cellar: :any, catalina: "5976bdc08391549e898b3a386da01e1b224913e2d64a53836ced02d57d0732a0"
-    sha256 cellar: :any, mojave:   "bc959f2e52ac1c85def265e79dee1b70dbde0bd84ca0cee7781385617fc5a37b"
-  end
 
   depends_on "cmake" => :build
   depends_on "conan" => :build
@@ -60,8 +54,8 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   end
 
   resource "uiucprescon.imagevalidate" do
-    url "https://github.com/UIUCLibrary/imagevalidate/archive/v0.1.5.tar.gz"
-    sha256 "ff3e65fa517521067b7052131572617aafff7a0ff7cf9f50103e9a49c393be11"
+    url "https://github.com/UIUCLibrary/imagevalidate/archive/v0.1.6b2.tar.gz"
+    sha256 "33a798ec501ffcc00bb6be333e617757b62d56dcfe4f767bbd7a4834729a95b0"
   end
 
   # ==================================================
