@@ -106,23 +106,12 @@ pipeline{
                         }
                     }
                 }
-
-//                 stage("Adding bottle to current formula"){
-//                     steps{
-//                         sh(label: "Creating a bottle package",
-//                            script: """brew bottle --force-core-tap --json --root_url=https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/ ${HOMEBREW_FORMULA_FILE}
-//                                       brew bottle --merge \$(find . -type f -name "*bottle.json") --write --no-commit --verbose
-//                                       """
-//                         )
-//                     }
-//                 }
                 stage("Upload new bottle to repository"){
                     input {
                         message 'Upload artifact?'
-                        // parameters {
-                        //     string defaultValue: '', description: 'Nexus Username', name: 'NEXUS_USR', trim: true
-                        //     password defaultValue: '', description: 'Nexus Password', name: 'NEXUS_PSW'
-                        // }
+                        parameters {
+                            credentials credentialType: 'com.cloudbees.plugins.credentials.common.StandardCredentials', defaultValue: 'jenkins-nexus', name: 'NEXUS_CREDS', required: true
+                        }
                     }
                     options {
                         retry(3)
@@ -144,8 +133,6 @@ pipeline{
                                     echo "jsonData = ${jsonData}"
                                     error "invalid data with key ${key}"
                                 }
-
-
                                 bottle['tags'].each { tag, tagData ->
                                     try{
                                         def localFilename = tagData['local_filename']
@@ -157,19 +144,7 @@ pipeline{
                                         if(!filename){
                                             error "${tag} is missing required field filename"
                                         }
-                                        def uploadFile = bottle['root_url'] + filename
-                                        if(!uploadFile){
-                                            error "${tag} is missing required field root_url"
-                                        }
-                                        def response = httpRequest authentication: 'jenkins-nexus', httpMode: 'PUT', uploadFile: tagData['local_filename'], url: "https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/${filename}", wrapAsMultipart: false
-                                        // withEnv([
-                                        //     "uploadFile=${bottle['root_url'] + filename}",
-                                        //     "localFilename=${tagData['local_filename']}"
-                                        //     ]) {
-                                        //     sh(label: "Using ${localFilename} to upload to ${uploadFile}",
-                                        //        script: 'curl --silent --user $NEXUS_USR:$NEXUS_PSW --upload-file $localFilename $uploadFile'
-                                        //    )
-                                        // }
+                                        def response = httpRequest authentication: NEXUS_CREDS, httpMode: 'PUT', uploadFile: tagData['local_filename'], url: "https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/${filename}", wrapAsMultipart: false
                                     } catch(Exception e){
                                         echo "Unable to upload bottle with the following information.\n${tagData}"
                                         throw e;
