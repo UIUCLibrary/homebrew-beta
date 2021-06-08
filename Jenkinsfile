@@ -163,7 +163,7 @@ pipeline{
 //                 }
                 cleanup{
                     sh( label: "Removing ${HOMEBREW_FORMULA_FILE}",
-                        script: "brew uninstall ${HOMEBREW_FORMULA_FILE} -v || echo '${HOMEBREW_FORMULA_FILE} not installed'",
+                        script: "brew uninstall --formula ${HOMEBREW_FORMULA_FILE} -v || echo '${HOMEBREW_FORMULA_FILE} not installed'",
                         returnStatus:true
                     )
                     cleanWs(
