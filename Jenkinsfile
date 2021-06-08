@@ -119,10 +119,10 @@ pipeline{
                 stage("Upload new bottle to repository"){
                     input {
                         message 'Upload artifact?'
-                        parameters {
-                            string defaultValue: '', description: 'Nexus Username', name: 'NEXUS_USR', trim: true
-                            password defaultValue: '', description: 'Nexus Password', name: 'NEXUS_PSW'
-                        }
+                        // parameters {
+                        //     string defaultValue: '', description: 'Nexus Username', name: 'NEXUS_USR', trim: true
+                        //     password defaultValue: '', description: 'Nexus Password', name: 'NEXUS_PSW'
+                        // }
                     }
                     options {
                         retry(3)
@@ -161,14 +161,15 @@ pipeline{
                                         if(!uploadFile){
                                             error "${tag} is missing required field root_url"
                                         }
-                                        withEnv([
-                                            "uploadFile=${bottle['root_url'] + filename}",
-                                            "localFilename=${tagData['local_filename']}"
-                                            ]) {
-                                            sh(label: "Using ${localFilename} to upload to ${uploadFile}",
-                                               script: 'curl --silent --user $NEXUS_USR:$NEXUS_PSW --upload-file $localFilename $uploadFile'
-                                           )
-                                        }
+                                        def response = httpRequest authentication: 'jenkins-nexus', httpMode: 'PUT', uploadFile: tagData['local_filename'], url: "https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/${filename}", wrapAsMultipart: false
+                                        // withEnv([
+                                        //     "uploadFile=${bottle['root_url'] + filename}",
+                                        //     "localFilename=${tagData['local_filename']}"
+                                        //     ]) {
+                                        //     sh(label: "Using ${localFilename} to upload to ${uploadFile}",
+                                        //        script: 'curl --silent --user $NEXUS_USR:$NEXUS_PSW --upload-file $localFilename $uploadFile'
+                                        //    )
+                                        // }
                                     } catch(Exception e){
                                         echo "Unable to upload bottle with the following information.\n${tagData}"
                                         throw e;
