@@ -1,5 +1,5 @@
 def formulas = []
-node('master') {
+node("") {
     stage("Checking Formula files"){
         ws{
             checkout scm
