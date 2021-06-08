@@ -134,6 +134,7 @@ pipeline{
                                     error "invalid data with key ${key}"
                                 }
                                 bottle['tags'].each { tag, tagData ->
+                                    def put_response
                                     try{
                                         def localFilename = tagData['local_filename']
                                         if(!localFilename){
@@ -144,9 +145,10 @@ pipeline{
                                         if(!filename){
                                             error "${tag} is missing required field filename"
                                         }
-                                        def response = httpRequest authentication: NEXUS_CREDS, httpMode: 'PUT', uploadFile: tagData['local_filename'], url: "https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/${filename}", wrapAsMultipart: false
+                                        put_response = httpRequest authentication: NEXUS_CREDS, httpMode: 'PUT', uploadFile: tagData['local_filename'], url: "https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/${filename}", wrapAsMultipart: false
                                     } catch(Exception e){
                                         echo "Unable to upload bottle with the following information.\n${tagData}"
+                                        echo "http request response: ${put_response.content}"
                                         throw e;
                                     }
                                 }
