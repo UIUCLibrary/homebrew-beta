@@ -12,11 +12,6 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   version_scheme 1
   head "https://github.com/UIUCLibrary/Speedwagon.git"
 
-  bottle do
-    root_url "https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/"
-    sha256 cellar: :any, mojave: "1c0f01b6d7ebd2a2bbe3d6995cc33d6049fb7bde607117940f009bf8b4eab4d0"
-  end
-
   depends_on "cmake" => :build
   depends_on "conan" => :build
   depends_on "python@3.9"
@@ -54,8 +49,8 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   end
 
   resource "py3exiv2bind" do
-    url "https://github.com/UIUCLibrary/pyexiv2bind/archive/v0.1.5.tar.gz"
-    sha256 "1c9f5e10c91b993a7cf96939b007a1073838e9a17efd40b168e10e6f93912fa1"
+    url "https://github.com/UIUCLibrary/pyexiv2bind/archive/refs/tags/v0.1.7b1.tar.gz"
+    sha256 "9d022d843dec8223bea91b11133f348e8e42d7a3678a3c86c2fa6ab161b070d2"
   end
 
   resource "uiucprescon.imagevalidate" do
