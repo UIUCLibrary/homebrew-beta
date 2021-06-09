@@ -6,16 +6,16 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   include Language::Python::Virtualenv
   desc "Collection of tools and workflows for DS"
   homepage "https://github.com/UIUCLibrary/Speedwagon"
-  url "https://github.com/UIUCLibrary/Speedwagon/archive/refs/tags/v0.1.5b22.tar.gz"
-  version "0.1.5b22"
-  sha256 "1f188f4ff933426bd47128d13d95ad911bc42b567a39ed286095ac491825e5b2"
+  url "https://github.com/UIUCLibrary/Speedwagon/archive/refs/tags/v0.1.5b23.tar.gz"
+  version "0.1.5b23"
+  sha256 "5537cb2464a5ee851d1d889c2582e2fa42e376ba4e3fe5200e3668897cd446c0"
   version_scheme 1
   head "https://github.com/UIUCLibrary/Speedwagon.git"
 
   bottle do
     root_url "https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/"
-    sha256 cellar: :any, catalina: "5976bdc08391549e898b3a386da01e1b224913e2d64a53836ced02d57d0732a0"
-    sha256 cellar: :any, mojave:   "bc959f2e52ac1c85def265e79dee1b70dbde0bd84ca0cee7781385617fc5a37b"
+    sha256 cellar: :any, catalina: "176c8c6054d293963bbbaa64e906f49d865ecf7d04d23240cc4504bb60224e3f"
+    sha256 cellar: :any, mojave:   "4240c920a2185ea5d1b96f09faf0efcefa6bafd378bc5a757f8f7dd33f50cbd0"
   end
 
   depends_on "cmake" => :build
@@ -30,8 +30,8 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   end
 
   resource "uiucprescon.packager" do
-    url "https://github.com/UIUCLibrary/Packager/archive/v0.2.11b12.tar.gz"
-    sha256 "d9b4f444226beef7416ca8490c3afe08150705de37f99ee0d598d947ed209a72"
+    url "https://github.com/UIUCLibrary/Packager/archive/v0.2.11b13.tar.gz"
+    sha256 "bd0faa9a0e92c35fe97fdd4159a26d87d0020173e6a35300bb4b62bd0d55e2da"
   end
 
   resource "uiucprescon.ocr" do
@@ -55,13 +55,13 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   end
 
   resource "py3exiv2bind" do
-    url "https://github.com/UIUCLibrary/pyexiv2bind/archive/v0.1.5.tar.gz"
-    sha256 "1c9f5e10c91b993a7cf96939b007a1073838e9a17efd40b168e10e6f93912fa1"
+    url "https://github.com/UIUCLibrary/pyexiv2bind/archive/refs/tags/v0.1.7b1.tar.gz"
+    sha256 "9d022d843dec8223bea91b11133f348e8e42d7a3678a3c86c2fa6ab161b070d2"
   end
 
   resource "uiucprescon.imagevalidate" do
-    url "https://github.com/UIUCLibrary/imagevalidate/archive/v0.1.5.tar.gz"
-    sha256 "ff3e65fa517521067b7052131572617aafff7a0ff7cf9f50103e9a49c393be11"
+    url "https://github.com/UIUCLibrary/imagevalidate/archive/v0.1.6b2.tar.gz"
+    sha256 "33a798ec501ffcc00bb6be333e617757b62d56dcfe4f767bbd7a4834729a95b0"
   end
 
   # ==================================================
@@ -73,8 +73,8 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   end
 
   resource "PyQt5-sip" do
-    url "https://files.pythonhosted.org/packages/73/8c/c662b7ebc4b2407d8679da68e11c2a2eb275f5f2242a92610f6e5024c1f2/PyQt5_sip-12.8.1.tar.gz"
-    sha256 "30e944db9abee9cc757aea16906d4198129558533eb7fadbe48c5da2bd18e0bd"
+    url "https://files.pythonhosted.org/packages/b1/40/dd8f081f04a12912b65417979bf2097def0af0f20c89083ada3670562ac5/PyQt5_sip-12.9.0.tar.gz"
+    sha256 "d3e4489d7c2b0ece9d203ae66e573939f7f60d4d29e089c9f11daa17cfeaae32"
   end
 
   resource "PyYAML" do
