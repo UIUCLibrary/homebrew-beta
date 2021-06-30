@@ -152,7 +152,7 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
 
     # system "#{libexec}/bin/pip", "install", "-v", "PyQt5-Qt==5.15.2"
     system "#{libexec}/bin/pip", "install", "-v", "--no-deps", "--no-binary", ":all:",
-           "--ignore-installed", "pykdu-compress==0.1.4.b1", "-i",
+           "--ignore-installed", "pykdu-compress==0.1.5", "-i",
            "https://devpi.library.illinois.edu/production/release/+simple/"
   end
 
