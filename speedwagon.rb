@@ -6,17 +6,11 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   include Language::Python::Virtualenv
   desc "Collection of tools and workflows for DS"
   homepage "https://github.com/UIUCLibrary/Speedwagon"
-  url "https://github.com/UIUCLibrary/Speedwagon/archive/refs/tags/v0.1.5b23.tar.gz"
-  version "0.1.5b23"
-  sha256 "5537cb2464a5ee851d1d889c2582e2fa42e376ba4e3fe5200e3668897cd446c0"
+  url "https://github.com/UIUCLibrary/Speedwagon/archive/v0.1.5b25.tar.gz"
+  version "0.1.5b25"
+  sha256 "b0457b285b1ccfef4984a90999d51a0e283db49a0802cb7026e8f1b3fabca1fb"
   version_scheme 1
   head "https://github.com/UIUCLibrary/Speedwagon.git"
-
-  bottle do
-    root_url "https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/"
-    sha256 cellar: :any, catalina: "176c8c6054d293963bbbaa64e906f49d865ecf7d04d23240cc4504bb60224e3f"
-    sha256 cellar: :any, mojave:   "4240c920a2185ea5d1b96f09faf0efcefa6bafd378bc5a757f8f7dd33f50cbd0"
-  end
 
   depends_on "cmake" => :build
   depends_on "conan" => :build
@@ -30,8 +24,8 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   end
 
   resource "uiucprescon.packager" do
-    url "https://github.com/UIUCLibrary/Packager/archive/v0.2.11b13.tar.gz"
-    sha256 "bd0faa9a0e92c35fe97fdd4159a26d87d0020173e6a35300bb4b62bd0d55e2da"
+    url "https://github.com/UIUCLibrary/Packager/archive/v0.2.12.tar.gz"
+    sha256 "1bd8d052393612433b114f9d490423b38cd9f807ea16542719ed95228a49322b"
   end
 
   resource "uiucprescon.ocr" do
@@ -55,13 +49,13 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   end
 
   resource "py3exiv2bind" do
-    url "https://github.com/UIUCLibrary/pyexiv2bind/archive/refs/tags/v0.1.7b1.tar.gz"
+    url "https://github.com/UIUCLibrary/pyexiv2bind/archive/v0.1.7b1.tar.gz"
     sha256 "9d022d843dec8223bea91b11133f348e8e42d7a3678a3c86c2fa6ab161b070d2"
   end
 
   resource "uiucprescon.imagevalidate" do
-    url "https://github.com/UIUCLibrary/imagevalidate/archive/v0.1.6b2.tar.gz"
-    sha256 "33a798ec501ffcc00bb6be333e617757b62d56dcfe4f767bbd7a4834729a95b0"
+    url "https://github.com/UIUCLibrary/imagevalidate/archive/v0.1.6.tar.gz"
+    sha256 "52d80f8ee1f071b35fb19cc2c85808d0f636923452f23a60aa6c1b7febdf2a6b"
   end
 
   # ==================================================
