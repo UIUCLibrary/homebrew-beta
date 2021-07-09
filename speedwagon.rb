@@ -6,16 +6,10 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   include Language::Python::Virtualenv
   desc "Collection of tools and workflows for DS"
   homepage "https://github.com/UIUCLibrary/Speedwagon"
-  url "https://github.com/UIUCLibrary/Speedwagon/archive/v0.1.5b26.tar.gz"
-  version "0.1.5b26"
-  sha256 "150eb76e78ab49cd95ecf586121aa902deb1680a4c7e495f958872675798b466"
+  url "https://github.com/UIUCLibrary/Speedwagon/archive/refs/tags/0.1.5.tar.gz"
+  sha256 "6fe6523940603c6405ab1d6b0f3f30bad40c797c81e44201b4df3aa3b142e984"
   version_scheme 1
   head "https://github.com/UIUCLibrary/Speedwagon.git"
-
-  bottle do
-    root_url "https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/"
-    sha256 cellar: :any, catalina: "2639a810c771b96113d277803205675f9aeef8e2da1dc3a87025a8e8a09e0099"
-  end
 
   depends_on "cmake" => :build
   depends_on "conan" => :build
@@ -54,8 +48,8 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   end
 
   resource "py3exiv2bind" do
-    url "https://github.com/UIUCLibrary/pyexiv2bind/archive/v0.1.7b1.tar.gz"
-    sha256 "9d022d843dec8223bea91b11133f348e8e42d7a3678a3c86c2fa6ab161b070d2"
+    url "https://github.com/UIUCLibrary/pyexiv2bind/archive/v0.1.7.tar.gz"
+    sha256 "20740541b630eab78f3f132621c647f57837b85485fcf07a20e6c0b6370f18e3"
   end
 
   resource "uiucprescon.imagevalidate" do
