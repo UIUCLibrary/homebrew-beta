@@ -6,14 +6,14 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   include Language::Python::Virtualenv
   desc "Collection of tools and workflows for DS"
   homepage "https://github.com/UIUCLibrary/Speedwagon"
-  url "https://github.com/UIUCLibrary/Speedwagon/archive/refs/tags/0.1.5.tar.gz"
-  sha256 "6fe6523940603c6405ab1d6b0f3f30bad40c797c81e44201b4df3aa3b142e984"
+  url "https://github.com/UIUCLibrary/Speedwagon/archive/refs/tags/0.1.6.post1.tar.gz"
+  sha256 "f6f9c5fd95d9cd8300a5e88cd641dc443ef232138af880754405e76c0b3a77c4"
   version_scheme 1
   head "https://github.com/UIUCLibrary/Speedwagon.git"
 
   bottle do
     root_url "https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/"
-    sha256 cellar: :any, catalina: "08799455b69dca3ead6af2ea7e92b98801a703d33ed71180b58f94d0f43d8f6f"
+    sha256 cellar: :any, catalina: "a1d8b8791aa945426d6133fab9eb00c3387719187948a29f1d841d6887091661"
   end
 
   depends_on "cmake" => :build
@@ -23,43 +23,43 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   depends_on "sip"
 
   resource "uiucprescon.images" do
-    url "https://github.com/UIUCLibrary/uiucprescon.images/archive/v0.0.4.tar.gz"
-    sha256 "6c17cca6094222a98c42200fe7e9c55118d5234a53f091812c699e9a56f076fd"
+    url "https://github.com/UIUCLibrary/uiucprescon.images/archive/v0.0.5.tar.gz"
+    sha256 "342bfd5a7f59d5865cc8e83603bd219324bda6f9c5ad8c0a5613e95b6078c3f5"
   end
 
   resource "uiucprescon.packager" do
-    url "https://github.com/UIUCLibrary/Packager/archive/v0.2.12.tar.gz"
-    sha256 "1bd8d052393612433b114f9d490423b38cd9f807ea16542719ed95228a49322b"
+    url "https://github.com/UIUCLibrary/Packager/archive/v0.2.14.tar.gz"
+    sha256 "a8dd941c4f21c634ee93c558c5fd17ff6a08ece5482cfe1189b9ce5b3877a31d"
   end
 
   resource "uiucprescon.ocr" do
-    url "https://github.com/UIUCLibrary/Tesseract_Glue/archive/v0.1.2.tar.gz"
-    sha256 "9936ef752eb3a46e018fa279070262ffc8dc8d4285bfe8382fda40c854a4a1ec"
+    url "https://github.com/UIUCLibrary/Tesseract_Glue/archive/0.1.3.tar.gz"
+    sha256 "0e7b0d48e7c330dbb4da7d7f52e57021b41caf9d29f1ca118e36e75ef35d58e1"
   end
 
   resource "HathiValidate" do
-    url "https://github.com/UIUCLibrary/HathiValidate/archive/v0.3.6.tar.gz"
-    sha256 "2e4db46925878956bdd0c454617f37da86321642384caf2ae535feba96a1d757"
+    url "https://github.com/UIUCLibrary/HathiValidate/archive/v0.3.8.tar.gz"
+    sha256 "00c897a60b50b41a5f69becaae334c711cbd173fe3ca39f47b97b4669da2e291"
   end
 
   resource "pyhathiprep" do
-    url "https://github.com/UIUCLibrary/pyhathiprep/archive/v0.1.5.tar.gz"
-    sha256 "a6d1295eabf0e21bf42e6949070a69b4b9e4f368f9ff5f0f3f785709e9000d23"
+    url "https://github.com/UIUCLibrary/pyhathiprep/archive/v0.1.7.tar.gz"
+    sha256 "fdbafb267ae8b84a4bdd490bed196fc596ba8c6f4f6d9305bce2b944dc112a90"
   end
 
   resource "HathiZip" do
-    url "https://github.com/UIUCLibrary/HathiZip/archive/v0.1.9.tar.gz"
-    sha256 "40753f5325f9b31fca2a7fb51fa6626db0ca29fa43a1183b4b333fbec7d798c7"
+    url "https://github.com/UIUCLibrary/HathiZip/archive/v0.1.10.tar.gz"
+    sha256 "5b5ddb263adae11b462cdd0054abfde1ddb578966767c3e48b9e7e9c2529dc0a"
   end
 
   resource "py3exiv2bind" do
-    url "https://github.com/UIUCLibrary/pyexiv2bind/archive/v0.1.7.tar.gz"
-    sha256 "20740541b630eab78f3f132621c647f57837b85485fcf07a20e6c0b6370f18e3"
+    url "https://github.com/UIUCLibrary/pyexiv2bind/archive/0.1.8.tar.gz"
+    sha256 "4296d79e8f0285e4a8b71aa5b5ec07c97d8aa7c076d35b8e984f5bde40a572b4"
   end
 
   resource "uiucprescon.imagevalidate" do
-    url "https://github.com/UIUCLibrary/imagevalidate/archive/v0.1.6.tar.gz"
-    sha256 "52d80f8ee1f071b35fb19cc2c85808d0f636923452f23a60aa6c1b7febdf2a6b"
+    url "https://github.com/UIUCLibrary/imagevalidate/archive/v0.1.7.tar.gz"
+    sha256 "3acb5885ff43c473612cfc1e9f67806d9aec65a23d039182a313fa511929760e"
   end
 
   # ==================================================
@@ -156,7 +156,7 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
 
     # system "#{libexec}/bin/pip", "install", "-v", "PyQt5-Qt==5.15.2"
     system "#{libexec}/bin/pip", "install", "-v", "--no-deps", "--no-binary", ":all:",
-           "--ignore-installed", "pykdu-compress==0.1.5", "-i",
+           "--ignore-installed", "pykdu-compress==0.1.6", "-i",
            "https://devpi.library.illinois.edu/production/release/+simple/"
   end
 
