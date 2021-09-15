@@ -8,13 +8,13 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   homepage "https://github.com/UIUCLibrary/Speedwagon"
   url "https://github.com/UIUCLibrary/Speedwagon/archive/refs/tags/0.1.6.post1.tar.gz"
   version "0.1.6.1"
-  sha256 "7306b5133f02cb38ce42dba2db5b8fdfa2cd8f94929efd0da195fc59754299f7"
+  sha256 "f6f9c5fd95d9cd8300a5e88cd641dc443ef232138af880754405e76c0b3a77c4"
   version_scheme 1
   head "https://github.com/UIUCLibrary/Speedwagon.git", branch: "master"
 
   bottle do
     root_url "https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/"
-    sha256 cellar: :any, catalina: "a1d8b8791aa945426d6133fab9eb00c3387719187948a29f1d841d6887091661"
+    sha256 cellar: :any, catalina: "7306b5133f02cb38ce42dba2db5b8fdfa2cd8f94929efd0da195fc59754299f7"
   end
 
   depends_on "cmake" => :build
