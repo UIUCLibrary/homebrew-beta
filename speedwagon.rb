@@ -7,6 +7,7 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   desc "Collection of tools and workflows for DS"
   homepage "https://github.com/UIUCLibrary/Speedwagon"
   url "https://github.com/UIUCLibrary/Speedwagon/archive/refs/tags/0.1.6.post1.tar.gz"
+  version "0.1.6.1"
   sha256 "f6f9c5fd95d9cd8300a5e88cd641dc443ef232138af880754405e76c0b3a77c4"
   version_scheme 1
   head "https://github.com/UIUCLibrary/Speedwagon.git"
