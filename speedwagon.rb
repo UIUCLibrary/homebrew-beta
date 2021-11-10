@@ -6,15 +6,15 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   include Language::Python::Virtualenv
   desc "Collection of tools and workflows for DS"
   homepage "https://github.com/UIUCLibrary/Speedwagon"
-  url "https://github.com/UIUCLibrary/Speedwagon/archive/refs/tags/0.1.6.post1.tar.gz"
-  version "0.1.6.1"
-  sha256 "f6f9c5fd95d9cd8300a5e88cd641dc443ef232138af880754405e76c0b3a77c4"
+  url "https://github.com/UIUCLibrary/Speedwagon/archive/refs/tags/0.2.0b2.tar.gz"
+  version "0.2.0b2"
+  sha256 "c75ec9fe811193ec90138203ecc6c992999bbcc9b1c1c37f33335a18740a553a"
   version_scheme 1
   head "https://github.com/UIUCLibrary/Speedwagon.git", branch: "master"
 
   bottle do
     root_url "https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/"
-    sha256 cellar: :any, catalina: "7306b5133f02cb38ce42dba2db5b8fdfa2cd8f94929efd0da195fc59754299f7"
+    sha256 cellar: :any, catalina: "79a615946ef341186aafa887d47f61e4cc88075cc3d2a40322bfe296f80b8cef"
   end
 
   depends_on "cmake" => :build
@@ -29,8 +29,8 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   end
 
   resource "uiucprescon.packager" do
-    url "https://github.com/UIUCLibrary/Packager/archive/v0.2.14.tar.gz"
-    sha256 "a8dd941c4f21c634ee93c558c5fd17ff6a08ece5482cfe1189b9ce5b3877a31d"
+    url "https://github.com/UIUCLibrary/Packager/archive/0.2.15b2.tar.gz"
+    sha256 "aaf0b7b0c4ad6713c917f0637e6c57e1c8b42ef63886130fc2d7110dc860090b"
   end
 
   resource "uiucprescon.ocr" do
@@ -54,8 +54,8 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   end
 
   resource "py3exiv2bind" do
-    url "https://github.com/UIUCLibrary/pyexiv2bind/archive/0.1.8.tar.gz"
-    sha256 "4296d79e8f0285e4a8b71aa5b5ec07c97d8aa7c076d35b8e984f5bde40a572b4"
+    url "https://github.com/UIUCLibrary/pyexiv2bind/archive/0.1.9b1.tar.gz"
+    sha256 "665f53dcd718784d09e9695c8675919e5a85299522d744625d5e9b9b7d09c898"
   end
 
   resource "uiucprescon.imagevalidate" do
@@ -157,7 +157,7 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
 
     # system "#{libexec}/bin/pip", "install", "-v", "PyQt5-Qt==5.15.2"
     system "#{libexec}/bin/pip", "install", "-v", "--no-deps", "--no-binary", ":all:",
-           "--ignore-installed", "pykdu-compress==0.1.6", "-i",
+           "--ignore-installed", "pykdu-compress==0.1.7b2", "-i",
            "https://devpi.library.illinois.edu/production/release/+simple/"
   end
 
