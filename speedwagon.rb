@@ -6,15 +6,15 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   include Language::Python::Virtualenv
   desc "Collection of tools and workflows for DS"
   homepage "https://github.com/UIUCLibrary/Speedwagon"
-  url "https://github.com/UIUCLibrary/Speedwagon/archive/refs/tags/0.2.0b2.tar.gz"
+  url "https://github.com/UIUCLibrary/Speedwagon/archive/refs/tags/0.2.0b3.tar.gz"
   version "0.2.0b2"
-  sha256 "c75ec9fe811193ec90138203ecc6c992999bbcc9b1c1c37f33335a18740a553a"
+  sha256 "437aa11cf9633be0fae2f155c3047e80275bb258a935e24fa40a7eae9762bd31"
   version_scheme 1
   head "https://github.com/UIUCLibrary/Speedwagon.git", branch: "master"
 
   bottle do
     root_url "https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/"
-    sha256 cellar: :any, catalina: "dfdc91037622f47d9421a29f428582dd309edb08e87aa0458946b46df73bb049"
+    sha256 cellar: :any, catalina: "ea2b72ec0a1811bca13ac457eed035394472e37eba833fc5aa1a01f0afa68c08"
   end
 
   depends_on "cmake" => :build
@@ -34,8 +34,8 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   end
 
   resource "uiucprescon.ocr" do
-    url "https://github.com/UIUCLibrary/Tesseract_Glue/archive/0.1.3.tar.gz"
-    sha256 "0e7b0d48e7c330dbb4da7d7f52e57021b41caf9d29f1ca118e36e75ef35d58e1"
+    url "https://github.com/UIUCLibrary/Tesseract_Glue/archive/v0.1.4b1.tar.gz"
+    sha256 "1d4ab0c799055df7d288e2e72e087e0c991b569442d667da2c51ccf1bac7648e"
   end
 
   resource "HathiValidate" do
@@ -59,8 +59,8 @@ class Speedwagon < Formula # rubocop:disable Metrics/ClassLength
   end
 
   resource "uiucprescon.imagevalidate" do
-    url "https://github.com/UIUCLibrary/imagevalidate/archive/v0.1.7.tar.gz"
-    sha256 "3acb5885ff43c473612cfc1e9f67806d9aec65a23d039182a313fa511929760e"
+    url "https://github.com/UIUCLibrary/imagevalidate/archive/0.1.9b2.tar.gz"
+    sha256 "a58e1d600c4a862567ac3e24cc6511d387db9c499a950a7a84d69d59a0977332"
   end
 
   # ==================================================
