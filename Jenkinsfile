@@ -1,11 +1,16 @@
 def formulas = []
+def casks = []
 node("") {
-    stage("Checking Formula files"){
+    stage("Checking for Homebrew files"){
         ws{
             checkout scm
             findFiles( excludes: '', glob: '*.rb').each{
                 echo "Found ${it.path}"
                 formulas << it
+            }
+            findFiles( excludes: '', glob: 'Casks/*.rb').each{
+                echo "Found ${it.path}"
+                casks << it
             }
         }
     }
@@ -16,6 +21,7 @@ pipeline{
     agent none
     parameters {
         booleanParam defaultValue: true, description: '', name: 'AUDIT_FORMULA'
+        booleanParam defaultValue: false, description: '', name: 'AUDIT_FORMULA_ONLINE_OPTION'
         booleanParam defaultValue: false, description: '', name: 'BOTTLE_FORMULA'
         booleanParam defaultValue: false, description: '', name: 'BOTTLE_UPLOAD'
     }
@@ -27,26 +33,47 @@ pipeline{
             }
             steps{
                 script{
-                    def forumla_audits = [:]
+                    def formula_audits = [:]
                     formulas.each{
-                        forumla_audits[it.path] = {
-                            node('mac') {
+                        formula_audits[it.path] = {
+                            node('mac && homebrew') {
                                 stage("Auditing ${it.path}"){
                                     checkout scm
                                     catchError(buildResult: 'UNSTABLE', stageResult: 'UNSTABLE', message: "${it.path} failed audit") {
-                                        sh "brew audit --formula ${it.path} --verbose"
+                                        def auditCommand = "brew audit --formula ${it.path} --verbose"
+                                        if (params.AUDIT_FORMULA_ONLINE_OPTION) {
+                                            auditCommand = auditCommand + ' --online'
+                                        }
+                                        sh auditCommand
                                     }
                                 }
                             }
                         }
                     }
-                    parallel(forumla_audits)
+                    def cask_audits = [:]
+                    casks.each{
+                        cask_audits[it.path] = {
+                            node('mac && homebrew') {
+                                stage("Auditing ${it.path}"){
+                                    checkout scm
+                                    catchError(buildResult: 'UNSTABLE', stageResult: 'UNSTABLE', message: "${it.path} failed audit") {
+                                        def auditCommand = "brew audit --cask ${it.path} --verbose"
+                                        if (params.AUDIT_FORMULA_ONLINE_OPTION) {
+                                            auditCommand = auditCommand + ' --online'
+                                        }
+                                        sh auditCommand
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    parallel(formula_audits + cask_audits)
                 }
             }
         }
         stage("Build"){
             agent {
-                label 'mac'
+                label 'mac && homebrew'
             }
             options {
                 lock('homebrew')
@@ -72,15 +99,11 @@ pipeline{
                                 sh "brew install --build-bottle ${HOMEBREW_FORMULA_FILE} --HEAD"
                             } else{
                                 sh(label:"Running Homebrew Test-Bot",
-                                    script: "sh ./build_bottle.sh ${HOMEBREW_FORMULA_FILE}"
-//                                    script: """mkdir -p \$(brew --repo)/Library/Taps/uiuclibrary
-//                                               ln -s ${WORKSPACE} \$(brew --repo uiuclibrary/jenkins-${JOB_BASE_NAME})
-//                                               trap "brew untap uiuclibrary/jenkins-${JOB_BASE_NAME}" EXIT
-//                                               brew test-bot --verbose --debug --tap uiuclibrary/jenkins-${JOB_BASE_NAME} --root-url=https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/ --only-formulae ${HOMEBREW_FORMULA_FILE}
-//                                               git status
-//                                               """
-//                                               brew test-bot --local --root-url=https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/ --verbose --skip-setup ${HOMEBREW_FORMULA_FILE}
-                                )
+                                    script: """ln -s \$PWD "\$(brew --repo uiuclibrary/build)"
+                                               trap "rm \$(brew --repo uiuclibrary/build)" EXIT
+                                               brew test-bot --debug --verbose --tap uiuclibrary/build --root-url=https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta/ --only-formulae "\$(brew --repo uiuclibrary/build)/${HOMEBREW_FORMULA_FILE}"
+                                               """
+                                    )
                             }
                         }
                     }
@@ -111,18 +134,18 @@ pipeline{
                         message 'Upload artifact?'
                         parameters {
                             credentials credentialType: 'com.cloudbees.plugins.credentials.common.StandardCredentials', defaultValue: 'jenkins-nexus', name: 'NEXUS_CREDS', required: true
-                            extendedChoice(
+                             choice(
+                                choices: [
+                                    'https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles/release',
+                                    'https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles/beta'
+                                ],
                                 description: 'Where should the bottle files be deployed?',
-                                multiSelectDelimiter: ',',
-                                name: 'BOTTLE_URL_ROOTS',
-                                quoteValue: false,
-                                saveJSONParameterToFile: false,
-                                type: 'PT_MULTI_SELECT',
-                                value: 'https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles-beta/beta,https://jenkins.library.illinois.edu/nexus/repository/homebrew-bottles/release',
-                                visibleItemCount: 5
+                                name: 'BOTTLE_URL_ROOT'
                                 )
                         }
                     }
+
+
                     options {
                         retry(3)
                     }
@@ -145,23 +168,21 @@ pipeline{
                                 }
                                 bottle['tags'].each { tag, tagData ->
                                     def put_response
-                                    BOTTLE_URL_ROOTS.split(',').each{ BOTTLE_URL_ROOT ->
-                                        try{
-                                            def localFilename = tagData['local_filename']
-                                            if(!localFilename){
-                                                error "${tag} is missing required field local_filename"
-                                            }
-
-                                            def filename = tagData['filename']
-                                            if(!filename){
-                                                error "${tag} is missing required field filename"
-                                            }
-                                            put_response = httpRequest authentication: NEXUS_CREDS, httpMode: 'PUT', uploadFile: tagData['local_filename'], url: "${BOTTLE_URL_ROOT}/${filename}", wrapAsMultipart: false
-                                        } catch(Exception e){
-                                            echo "Unable to upload bottle with the following information.\n${tagData}"
-                                            echo "http request response: ${put_response.content}"
-                                            throw e;
+                                    try{
+                                        def localFilename = tagData['local_filename']
+                                        if(!localFilename){
+                                            error "${tag} is missing required field local_filename"
                                         }
+
+                                        def filename = tagData['filename']
+                                        if(!filename){
+                                            error "${tag} is missing required field filename"
+                                        }
+                                        put_response = httpRequest authentication: NEXUS_CREDS, httpMode: 'PUT', uploadFile: tagData['local_filename'], url: "${BOTTLE_URL_ROOT}/${filename}", wrapAsMultipart: false
+                                    } catch(Exception e){
+                                        echo "Unable to upload bottle with the following information.\n${tagData}"
+                                        echo "http request response: ${put_response.content}"
+                                        throw e;
                                     }
                                 }
                             }
